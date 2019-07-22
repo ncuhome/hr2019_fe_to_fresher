@@ -2,7 +2,6 @@ import * as React from 'react';
 import anime from 'animejs';
 import { Icon } from 'antd';
 import './style.css';
-import { render } from 'react-dom';
 
 const { useState } = React;
 

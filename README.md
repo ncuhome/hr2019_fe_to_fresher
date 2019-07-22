@@ -16,10 +16,12 @@
 
 ## 开发说明
 
-本项目采用 `react` && `hook` && `es6+` 进行开发。
+本项目采用 `react` && `typescript` && `es6+` 进行开发。
+使用 React 16.8 的新增特性 Hook 管理状态以及操作副作用
 
 相关文档地址:
   * [React](https://doc.react-china.org/) 
+  * [TypeScript](https://www.tslang.cn/docs/)
   * [es6](http://es6.ruanyifeng.com/)
 
 开发流程:
