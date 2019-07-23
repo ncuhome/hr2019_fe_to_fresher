@@ -19,7 +19,7 @@ export default function Application(props: any) {
     classname: "",
     introduce:""
   });
-  const [stageIndex, setStageIndex] = useState(0);
+  const [isUpper, setIsUpper] = useState(true);
   const [ncuhomeStyle, setNcuhomeStyle] = useState({});
 
   const handleChange = (event:any):void => {
@@ -44,25 +44,58 @@ export default function Application(props: any) {
 
   useEffect(() => {
     anime({
-      targets: '.icon-container img',
-      translateY: '10px',
+      targets: ".icon-container img",
+      translateY: "10px",
       loop: true,
       autoplay: true,
-      direction: 'alternate'
-    })
-  })
+      direction: "alternate",
+      easing: 'easeInOutSine',
+    });
+    const setting = {
+      direction: 'normal',
+      duration: 500,
+      easing: 'easeInOutSine'
+    };
+    const t1 = anime.timeline(setting);
+    t1.add({
+      targets: ".circle",
+      width: "100vw",
+      borderTopLeftRadius: "0%",
+      borderTopRightRadius: "0%",
+    });
+    t1.pause();
+    function handleScroll(e:any) {
+      const halfCircleTop = 150 + document.body.clientHeight * 0.05;
+      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      console.log(isUpper);
+      console.log(halfCircleTop+" " +scrollTop);
+      if ((scrollTop > halfCircleTop) && isUpper) {
+        setIsUpper(false);
+        t1.play();
+      }
+      else if ((scrollTop < halfCircleTop) && !isUpper) {
+        setIsUpper(true);
+        t1.reverse();
+        t1.play();
+      }
+    };
+    window.addEventListener("scroll",handleScroll);
+    return function cleanup() {
+      window.removeEventListener("scroll",handleScroll);
+    };
+  });
 
   return (
     <div className="container">
       <div className="circle-container">
-        <div className="circle">
+        <div className="circle" id="mycircle">
         </div>
       </div>
       <div className="ncuhome-container">
         <p style={ncuhomeStyle}>家园工作室</p>
       </div>
       <div className="icon-container">
-        <img src={circle_arrow} />
+        <img src={circle_arrow}/>
       </div>
       <div className="form-container">
         <div className="divide-line">
