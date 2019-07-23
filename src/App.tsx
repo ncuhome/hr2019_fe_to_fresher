@@ -1,9 +1,9 @@
 import * as React from 'react';
 import enquire from 'enquire.js';
-import Introduce from './pages/introduce/introduce';
+import Introduce from './pages/introduce';
 import './App.css';
 import config from './config';
-import Application from './pages/application/application';
+import Application from './pages/application';
 
 const { useState, useEffect } = React;
 const { mobileQuery } = config;

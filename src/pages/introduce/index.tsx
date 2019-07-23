@@ -38,9 +38,9 @@ export default class Introduce extends React.Component<propsValue> {
 
   render() {
     return (
-      <div className={"container"}>
-      <div className={"letter-container"}>
-        <div className={"letter"}>
+      <div className="container">
+      <div className="letter-container">
+        <div className="letter">
           <p>Hi~</p>
           <p>这里是NCUHOME星系</p>
           <p>很开心与你在这相遇</p>
@@ -50,7 +50,7 @@ export default class Introduce extends React.Component<propsValue> {
           <p>这里是NCUHOME星系</p>
         </div>
       </div>
-      <div className={"pointer"} ref={el => { this.myRef = el;}}>
+      <div className="pointer" ref={el => { this.myRef = el;}}>
         <Icon type="like" />
       </div>
     </div>

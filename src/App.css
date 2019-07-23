@@ -1,5 +1,12 @@
 @import '~antd/dist/antd.css';
 
-.App {
-  text-align: center;
+html {
+  font-size: 16px;
+}
+
+body {
+  background-color: rgba(25, 25, 25, 1);
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
 }
