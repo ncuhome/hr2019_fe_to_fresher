@@ -49,11 +49,7 @@ export default function Application(props: any) {
       loop: true,
       autoplay: true,
       direction: "alternate",
-      easing: function(el, i, total) {
-        return function(t) {
-          return Math.pow(Math.sin(t * (i + 1)), total);
-        }
-      }
+      easing: 'easeInOutQuad'
     });
   },[]);
 
