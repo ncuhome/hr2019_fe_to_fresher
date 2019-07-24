@@ -9,7 +9,9 @@ label {
   background: 
     center bottom/100% no-repeat url('../../assets/png/xiaojiayuan.png'),
     center bottom/100% no-repeat url('../../assets/png/planet.png'),
-    center bottom/100% space url('../../assets/png/space.png');
+    center bottom/100% no-repeat url('../../assets/png/cloud.png'),
+    center bottom/100% space url('../../assets/png/space.png'),
+    rgb(14, 15, 16);
   padding-bottom: 220px;
 }
 
@@ -43,7 +45,7 @@ label {
   margin-bottom: 500px;
 }
 
-.container .icon-container {
+.container .form-container .icon-container {
   display: flex;
   justify-content: center;
   color: rgb(56, 56, 56);

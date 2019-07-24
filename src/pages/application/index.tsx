@@ -43,47 +43,57 @@ export default function Application(props: any) {
   },[]);
 
   useEffect(() => {
-    anime({
+    const t2 = anime({
       targets: ".icon-container img",
-      translateY: "10px",
+      translateY: "10",
       loop: true,
       autoplay: true,
       direction: "alternate",
-      easing: 'easeInOutSine',
+      easing: function(el, i, total) {
+        return function(t) {
+          return Math.pow(Math.sin(t * (i + 1)), total);
+        }
+      }
     });
-    const setting = {
+  },[]);
+
+  useEffect(() => {
+    const t1 = anime({
+      targets: ".circle",
       direction: 'normal',
       duration: 500,
-      easing: 'easeInOutSine'
-    };
-    const t1 = anime.timeline(setting);
-    t1.add({
-      targets: ".circle",
+      easing: 'easeInOutQuad',
       width: "100vw",
       borderTopLeftRadius: "0%",
       borderTopRightRadius: "0%",
     });
     t1.pause();
-    function handleScroll(e:any) {
+    const handleScroll = (e:any) => {
       const halfCircleTop = 150 + document.body.clientHeight * 0.05;
       const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
       console.log(isUpper);
       console.log(halfCircleTop+" " +scrollTop);
+      console.log(anime.version);
       if ((scrollTop > halfCircleTop) && isUpper) {
         setIsUpper(false);
         t1.play();
+        anime.set(".circle",{
+          direction: "reverse"
+        });
       }
       else if ((scrollTop < halfCircleTop) && !isUpper) {
         setIsUpper(true);
-        t1.reverse();
         t1.play();
+        anime.set(".circle",{
+          direction: "normal"
+        })
       }
     };
     window.addEventListener("scroll",handleScroll);
     return function cleanup() {
       window.removeEventListener("scroll",handleScroll);
     };
-  });
+  },[isUpper]);
 
   return (
     <div className="container">
@@ -94,10 +104,10 @@ export default function Application(props: any) {
       <div className="ncuhome-container">
         <p style={ncuhomeStyle}>家园工作室</p>
       </div>
-      <div className="icon-container">
-        <img src={circle_arrow}/>
-      </div>
       <div className="form-container">
+        <div className="icon-container">
+          <img src={circle_arrow}/>
+        </div>
         <div className="divide-line">
           <span />
         </div>
