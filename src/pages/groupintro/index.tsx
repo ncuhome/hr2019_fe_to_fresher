@@ -139,9 +139,9 @@ export default function GroupIntro() {
       if (isScrolling === 0) {    //当为水平滚动时
         if (Number(duration) > 10) {
           //判断是左移还是右移，当偏移量大于10时执行
-          if (endPos.x > 10) {
+          if (endPos.x > 10 && index!==0) {
             startAnime(false);
-          } else if (endPos.x < -10) {
+          } else if (endPos.x < -10 && index !==3) {
             startAnime(true);
           }
         }
@@ -151,10 +151,7 @@ export default function GroupIntro() {
       return true;
     }
     const handleTouchStart = (event: TouchEvent) => {
-      if(isAnimeing) {
-
-      }
-      else {
+      if(!isAnimeing) {
         const touch = event.targetTouches[0];
         startPos = { x: touch.pageX, y: touch.pageY, time: +new Date };
         isScrolling = 0;
@@ -177,7 +174,7 @@ export default function GroupIntro() {
         <img src={ncuhomePlanet} alt="家园星球" />
       </div>
       <div className="now-planet-container">
-        <img src={planetArray[(index) % 3]} alt="现在的星球" />
+        <img src={planetArray[index]} alt="现在的星球" />
       </div>
       <div className="modal-container">
         <div className="introduction-text-container" ref={Ref => textRef = Ref}>
@@ -200,8 +197,8 @@ export default function GroupIntro() {
           <span />
           JOIN US
         </div>
-        <div className="arrow-pre" onClick={handlePreClick} />
-        <div className="arrow-next" onClick={handleNextClick} />
+        <div className="arrow-pre" onClick={handlePreClick} hidden={index===0} />
+        <div className="arrow-next" onClick={handleNextClick} hidden={index===3} />
       </div>
     </div>
   )
