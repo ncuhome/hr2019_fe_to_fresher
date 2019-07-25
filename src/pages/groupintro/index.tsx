@@ -10,26 +10,28 @@ const unknownPlanet = require('../../assets/png/introduce_unknown_planet.png');
 
 const { useState, useEffect } = React;
 
-const planetArray = [pmPlanet,devPlanet,desighPlanet,unknownPlanet];
+const planetArray = [pmPlanet, devPlanet, desighPlanet, unknownPlanet];
+let textRef: HTMLDivElement;
+
 
 export default function GroupIntro() {
 
-  const [ index, setIndex ] = useState(0);
-  const [ isAnimeing, setIsAnimeing ] = useState(false);
+  const [index, setIndex] = useState(0);
+  const [isAnimeing, setIsAnimeing] = useState(false);
 
-  const handlePreClick = (e:React.MouseEvent<HTMLElement,MouseEvent>) => {
+  const handlePreClick = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     if (!isAnimeing) {
       startAnime(false);
     }
   }
 
-  const handleNextClick = (e:React.MouseEvent<HTMLElement,MouseEvent>) => {
+  const handleNextClick = (e: React.MouseEvent<HTMLElement, MouseEvent>) => {
     if (!isAnimeing) {
       startAnime(true);
     }
   }
 
-  const startAnime = (isNext:boolean) =>{
+  const startAnime = (isNext: boolean) => {
     setIsAnimeing(true);
     const nextTimeline = anime.timeline({
       duration: 1000,
@@ -41,11 +43,11 @@ export default function GroupIntro() {
       translateX: "100vw",
       translateY: "15vh"
     })
-    .add({
-      targets: ".now-planet-container",
-      translateX: "-100vw",
-      translateY: "-15vh"
-    },"0");
+      .add({
+        targets: ".now-planet-container",
+        translateX: "-100vw",
+        translateY: "-15vh"
+      }, "0");
     nextTimeline.pause();
 
     const preTimeline = anime.timeline({
@@ -58,27 +60,28 @@ export default function GroupIntro() {
       translateX: "-100vw",
       translateY: "-15vh"
     })
-    .add({
-      targets: ".now-planet-container",
-      translateX: "100vw",
-      translateY: "15vh"
-    },"0");
+      .add({
+        targets: ".now-planet-container",
+        translateX: "100vw",
+        translateY: "15vh"
+      }, "0");
     preTimeline.pause();
-    
+
+    // 介绍文字显示消失用reserve不知为何会闪一下，只好写两个
     const modalApearAnime = anime({
       targets: ".modal-container",
-      opacity: [0,0.85],
+      opacity: [0, 0.85],
       duration: 1000,
       easing: 'linear',
     })
     const modalDisapearAnime = anime({
       targets: ".modal-container",
-      opacity: [0.85,0],
+      opacity: [0.85, 0],
       duration: 1000,
       easing: 'linear',
     });
 
-    // 选择
+    // 介绍文字消失后promise
     modalDisapearAnime.finished.then(() => {
       if (isNext) {
         nextTimeline.finished.then(() => {
@@ -86,7 +89,7 @@ export default function GroupIntro() {
             modalApearAnime.play()
             setIsAnimeing(false);
           });
-          setIndex(index+1);
+          setIndex(index + 1);
           preTimeline.reverse();
           preTimeline.seek(preTimeline.duration);
           preTimeline.play();
@@ -98,7 +101,7 @@ export default function GroupIntro() {
             modalApearAnime.play();
             setIsAnimeing(false);
           });
-          setIndex(index-1);
+          setIndex(index - 1);
 
           nextTimeline.reverse();
           nextTimeline.seek(nextTimeline.duration);
@@ -110,6 +113,7 @@ export default function GroupIntro() {
   }
 
   useEffect(() => {
+    // Join Us 箭头动画
     const joinusArrow = anime({
       targets: ".joinus-container span",
       loop: true,
@@ -118,21 +122,65 @@ export default function GroupIntro() {
       direction: "alternate",
       easing: 'easeInOutQuad'
     });
-  },[]);
 
-  return(
+    let startPos: any, endPos: any, isScrolling: number;
+    // 处理滑动
+    const handleTouch = (event: TouchEvent) => {
+      if (event.targetTouches.length > 1) return;
+      const touch = event.targetTouches[0];
+      endPos = { x: touch.pageX - startPos.x, y: touch.pageY - startPos.y };
+      isScrolling = Math.abs(endPos.x) < Math.abs(endPos.y) ? 1 : 0;
+      if (isScrolling === 0) {
+        event.preventDefault();      //阻止触摸事件的默认行为，即阻止滚屏
+      }
+    }
+    const handleTouchEnd = (event: TouchEvent) => {
+      const duration = +new Date - startPos.time;
+      if (isScrolling === 0) {    //当为水平滚动时
+        if (Number(duration) > 10) {
+          //判断是左移还是右移，当偏移量大于10时执行
+          if (endPos.x > 10) {
+            startAnime(false);
+          } else if (endPos.x < -10) {
+            startAnime(true);
+          }
+        }
+      }
+      textRef.removeEventListener("touchmove", handleTouch);
+      textRef.removeEventListener("touchend", handleTouchEnd);
+      return true;
+    }
+    const handleTouchStart = (event: TouchEvent) => {
+      if(isAnimeing) {
+
+      }
+      else {
+        const touch = event.targetTouches[0];
+        startPos = { x: touch.pageX, y: touch.pageY, time: +new Date };
+        isScrolling = 0;
+        textRef.addEventListener("touchmove", handleTouch);
+        textRef.addEventListener("touchend", handleTouchEnd);
+      }
+    }
+    textRef.addEventListener("touchstart", handleTouchStart);
+    return () => {
+      textRef.removeEventListener("touchstart", handleTouchStart)
+    }
+  }, [isAnimeing]);
+
+  return (
     <div className="container">
       <div className="next-planet-container">
-        <img src={planetArray[(index+1)%3]} alt="下一个星球"/>
+        <img src={planetArray[(index + 1) % 3]} alt="下一个星球" />
       </div>
       <div className="ncuhome-planet-container">
-        <img src={ncuhomePlanet} alt="家园星球"/>
+        <img src={ncuhomePlanet} alt="家园星球" />
       </div>
       <div className="now-planet-container">
-        <img src={planetArray[(index)%3]} alt="现在的星球"/>
+        <img src={planetArray[(index) % 3]} alt="现在的星球" />
       </div>
       <div className="modal-container">
-        <div className="introduction-text-container">
+        <div className="introduction-text-container" ref={Ref => textRef = Ref}>
           <div className="headline-container">
             <p>产品 组</p>
           </div>
@@ -152,7 +200,7 @@ export default function GroupIntro() {
           <span />
           JOIN US
         </div>
-        <div className="arrow-pre" onClick={handlePreClick}/>
+        <div className="arrow-pre" onClick={handlePreClick} />
         <div className="arrow-next" onClick={handleNextClick} />
       </div>
     </div>
