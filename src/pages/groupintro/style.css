@@ -1,0 +1,121 @@
+.container {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  background: top / 100% no-repeat url('../../assets/png/introduce_space.png') rgb(15, 15, 16);
+}
+
+.next-planet-container {
+  position: absolute;
+  left: 12vw;
+  top: 6vh;
+}
+
+.next-planet-container img {
+  width: 60vw;
+}
+
+.ncuhome-planet-container {
+  position: absolute;
+  right: 0;
+  top: 40vh;
+}
+
+.ncuhome-planet-container img {
+  width: 40vw;
+}
+
+.now-planet-container {
+  position: absolute;
+  top: 55vh;
+  left: 15vw;
+}
+
+.now-planet-container img {
+  width: 80vw;
+}
+
+.modal-container {
+  position: relative;
+  top: 20vh;
+  z-index: 1;
+  opacity: 0.85;
+  border-radius: 16px;
+  background-color: rgba(21, 21, 21, 1);
+  color: rgba(255, 255, 255, 0.85);
+  padding: 0 8vw;
+  font-size: 14px;
+  overflow: hidden;
+  filter:url(#blur_j0dp3cg7a);
+}
+
+.modal-container:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+.modal-container .introduction-text-container {
+  padding: 42px 30px 0;
+}
+
+.modal-container .introduction-text-container .headline-container p {
+  font-size: 31px;
+  color: #FFFFFF 85%;
+  margin-bottom: 4px;
+  letter-spacing: 1px;
+}
+
+.modal-container .introduction-text-container .subheading-container p {
+  color: rgba(219, 219, 219, 1);
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.modal-container .introduction-text-container .introdution-container p {
+  color: rgba(166, 166, 166, 1);
+  margin-bottom: 6px;
+  letter-spacing: 2px;
+}
+
+.modal-container .joinus-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgba(209, 209, 209, 1);
+  margin: 5.2vh auto;
+  font-size: 18px;
+}
+
+.modal-container .joinus-container span {
+  display: inline-block;
+  height: 20px;
+  width: 20px;
+  position: absolute;
+  left: 34vw;
+  background: url('../../assets/svg/introduce_joinus.svg') no-repeat center/16px 15px;
+}
+
+.modal-container .arrow-next {
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 20px;
+  height: 40px;
+  background: url('../../assets/svg/introduce_arrow.svg') no-repeat center/12px 29px;
+}
+
+.modal-container .arrow-pre {
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 20px;
+  height: 40px;
+  background: url('../../assets/svg/introduce_arrow.svg') no-repeat center/12px 29px;
+  transform: rotate(180deg);
+}
