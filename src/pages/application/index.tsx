@@ -27,8 +27,6 @@ export default function Application(props: any) {
     const newValue:any = {...formValues};
     newValue[name] = value;
     setFormValues(newValue);
-    console.log(name+' '+value);
-    console.log(formValues);
   }
 
   useEffect(() => {
@@ -43,7 +41,7 @@ export default function Application(props: any) {
   },[]);
 
   useEffect(() => {
-    const t2 = anime({
+    const arrowAnime = anime({
       targets: ".icon-container img",
       translateY: "10",
       loop: true,
@@ -67,22 +65,16 @@ export default function Application(props: any) {
     const handleScroll = (e:any) => {
       const halfCircleTop = 150 + document.body.clientHeight * 0.05;
       const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-      console.log(isUpper);
-      console.log(halfCircleTop+" " +scrollTop);
-      console.log(anime.version);
       if ((scrollTop > halfCircleTop) && isUpper) {
         setIsUpper(false);
+        t1.seek(0);
         t1.play();
-        anime.set(".circle",{
-          direction: "reverse"
-        });
       }
       else if ((scrollTop < halfCircleTop) && !isUpper) {
         setIsUpper(true);
+        t1.reverse();
+        t1.seek(t1.duration);
         t1.play();
-        anime.set(".circle",{
-          direction: "normal"
-        })
       }
     };
     window.addEventListener("scroll",handleScroll);

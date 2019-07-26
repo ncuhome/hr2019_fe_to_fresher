@@ -30,8 +30,8 @@ export default function App() {
 
   return isMobile ? (
     // <Introduce isMobile={isMobile}/>
-    // <Application />
-    <GroupIntro />
+    <Application />
+    // <GroupIntro />
   ) :
   (
     <div>请使用移动端打开</div>
