@@ -30,7 +30,6 @@ export default function App() {
   },[]);
 
   return isMobile ? (
-    // <Introduce isMobile={isMobile}/>
     <Router>
       <Route exact path="/" component={ProductIntro} />
       <Route exact path="/group" component={GroupIntro} />
