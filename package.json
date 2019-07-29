@@ -36,6 +36,7 @@
     "@types/enquire.js": "^2.1.2",
     "@types/react": "^16.8.23",
     "@types/react-dom": "^16.8.4",
+    "@types/react-router-dom": "^4.3.4",
     "animejs": "^3.0.1",
     "antd": "^3.20.3",
     "enquire.js": "^2.1.6",
