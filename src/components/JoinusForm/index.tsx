@@ -11,19 +11,14 @@ export interface formType {
     classname:string,
     introduce:string
   },
-  onChange: any
-}
-
-function handleSubmit(event:any) {
-  event.persist();
-  event.preventDefault();
-  console.log(event);
+  onChange: any,
+  onSubmit: (event:React.FormEvent<HTMLFormElement>) => void
 }
 
 export default function JoinusForm(props:formType) {
 
   const { name,gender,groupType,email,phonenumber, classname,introduce} = props.value;
-  const handleChange = props.onChange;
+  const { onChange:handleChange, onSubmit:handleSubmit } = props;
 
   const isMale = (gender === '男') ? true : false;
 

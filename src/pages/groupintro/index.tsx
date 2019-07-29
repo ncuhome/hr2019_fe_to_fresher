@@ -1,6 +1,7 @@
 import * as React from 'react';
 import anime from 'animejs';
 import './style.css';
+import { Link } from 'react-router-dom';
 
 const ncuhomePlanet = require('../../assets/png/ncuhome_planet.png')
 const pmPlanet = require('../../assets/png/introduce_pm_planet.png');
@@ -13,8 +14,7 @@ const { useState, useEffect } = React;
 const planetArray = [pmPlanet, devPlanet, desighPlanet, unknownPlanet];
 let textRef: HTMLDivElement;
 
-
-export default function GroupIntro() {
+export default function GroupIntro(props:any) {
 
   const [index, setIndex] = useState(0);
   const [isAnimeing, setIsAnimeing] = useState(false);
@@ -122,7 +122,9 @@ export default function GroupIntro() {
       direction: "alternate",
       easing: 'easeInOutQuad'
     });
+  },[]);
 
+  useEffect(() => {
     let startPos: any, endPos: any, isScrolling: number;
     // 处理滑动
     const handleTouch = (event: TouchEvent) => {
@@ -166,7 +168,7 @@ export default function GroupIntro() {
   }, [isAnimeing]);
 
   return (
-    <div className="container">
+    <div className="groupintro-container">
       <div className="next-planet-container">
         <img src={planetArray[(index + 1) % 3]} alt="下一个星球" />
       </div>
@@ -195,7 +197,9 @@ export default function GroupIntro() {
         </div>
         <div className="joinus-container">
           <span />
-          JOIN US
+          <Link to="/application" >
+            JOIN US
+          </Link>
         </div>
         <div className="arrow-pre" onClick={handlePreClick} hidden={index===0} />
         <div className="arrow-next" onClick={handleNextClick} hidden={index===3} />

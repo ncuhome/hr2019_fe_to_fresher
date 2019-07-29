@@ -13,9 +13,9 @@ export default class Introduce extends React.Component<propsValue> {
   myRef: any
   animeRef: anime.AnimeInstance;
 
-  constructor(props:propsValue) {
+  constructor(props: propsValue) {
     super(props)
-    this.state={
+    this.state = {
       index: 0
     }
     this.myRef = React.createRef();
@@ -38,22 +38,22 @@ export default class Introduce extends React.Component<propsValue> {
 
   render() {
     return (
-      <div className="container">
-      <div className="letter-container">
-        <div className="letter">
-          <p>Hi~</p>
-          <p>这里是NCUHOME星系</p>
-          <p>很开心与你在这相遇</p>
-          <p>这里是NCUHOME星系</p>
-          <p>这里是NCUHOME星系</p>
-          <p>这里是NCUHOME星系</p>
-          <p>这里是NCUHOME星系</p>
+      <div className="introduce-container">
+        <div className="letter-container">
+          <div className="letter">
+            <p>Hi~</p>
+            <p>这里是NCUHOME星系</p>
+            <p>很开心与你在这相遇</p>
+            <p>这里是NCUHOME星系</p>
+            <p>这里是NCUHOME星系</p>
+            <p>这里是NCUHOME星系</p>
+            <p>这里是NCUHOME星系</p>
+          </div>
+        </div>
+        <div className="pointer" ref={el => { this.myRef = el; }}>
+          <Icon type="like" />
         </div>
       </div>
-      <div className="pointer" ref={el => { this.myRef = el;}}>
-        <Icon type="like" />
-      </div>
-    </div>
     );
   }
 }

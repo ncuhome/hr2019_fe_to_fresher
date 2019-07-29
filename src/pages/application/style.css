@@ -1,11 +1,4 @@
-label {
-  color: rgba(206, 206, 206, 1);
-  font-size: 14px;
-  text-align: left;
-  font-family: PingFangSC-Medium;
-}
-
-.container {
+.application-container {
   background: 
     center bottom/100% no-repeat url('../../assets/png/xiaojiayuan.png'),
     center bottom/100% no-repeat url('../../assets/png/planet.png'),
@@ -15,12 +8,12 @@ label {
   padding-bottom: 220px;
 }
 
-.container .circle-container {
+.application-container .circle-container {
   display: flex;
   justify-content: center;
 }
 
-.container .circle-container .circle {
+.application-container .circle-container .circle {
   width: 297px;
   height: 297px;
   min-width: 297px;
@@ -32,12 +25,12 @@ label {
   border-radius: 100%;
 }
 
-.container .ncuhome-container {
+.application-container .ncuhome-container {
   display: flex;
   justify-content: center;
 }
 
-.container .ncuhome-container p {
+.application-container .ncuhome-container p {
   color: rgba(223, 223, 223, 1);
   font-size: 24px;
   text-align: left;
@@ -45,14 +38,14 @@ label {
   margin-bottom: 500px;
 }
 
-.container .form-container .icon-container {
+.application-container .form-container .icon-container {
   display: flex;
   justify-content: center;
   color: rgb(56, 56, 56);
   font-size: 28px;
 }
 
-.container .form-container {
+.application-container .form-container {
   position: relative;
   top: 3.1vh;
   margin: auto 21px;
@@ -63,7 +56,7 @@ label {
   /* visibility: hidden; */
 }
 
-.container .form-container .divide-line {
+.application-container .form-container .divide-line {
   display: block;
   width: 22.4vw;
   height: 8px;
@@ -72,18 +65,18 @@ label {
   background-color: rgba(25, 25, 25, 1);
 }
 
-.container .form-container .headline-container {
+.application-container .form-container .headline-container {
   color: #DADADA;
 }
 
-.container .form-container .headline-container .english-headline {
+.application-container .form-container .headline-container .english-headline {
   color: rgba(123, 123, 123, 1);
   text-align: center;
   font-size: 12px;
   margin-bottom: 0;
 }
 
-.container .form-container .headline-container .headline {
+.application-container .form-container .headline-container .headline {
   font-size: 25px;
   text-align: center;
 }

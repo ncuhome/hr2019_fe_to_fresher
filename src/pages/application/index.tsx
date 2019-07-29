@@ -5,9 +5,7 @@ import './style.css';
 
 const { useState, useEffect } = React;
 
-
 const circle_arrow = require('../../assets/svg/circle_arrow.svg');
-
 
 export default function Application(props: any) {
   const [formValues, setFormValues] = useState({
@@ -29,6 +27,12 @@ export default function Application(props: any) {
     setFormValues(newValue);
   }
 
+  const handleSubmit = (event:React.FormEvent<HTMLFormElement>) => {
+    event.persist();
+    event.preventDefault();
+    console.log(formValues);
+  }
+
   useEffect(() => {
     // 计算icon位置使表单始终只露出标题
     const heightdif:number = document.body.clientHeight -667
@@ -42,8 +46,8 @@ export default function Application(props: any) {
 
   useEffect(() => {
     const arrowAnime = anime({
-      targets: ".icon-container img",
-      translateY: "10",
+      targets: ".application-container .icon-container img",
+      translateY: ["-40","-50"],
       loop: true,
       autoplay: true,
       direction: "alternate",
@@ -52,29 +56,43 @@ export default function Application(props: any) {
   },[]);
 
   useEffect(() => {
-    const t1 = anime({
-      targets: ".circle",
+    const circleAnime = anime({
+      targets: ".application-container .circle",
       direction: 'normal',
       duration: 500,
       easing: 'easeInOutQuad',
       width: "100vw",
       borderTopLeftRadius: "0%",
-      borderTopRightRadius: "0%",
+      borderTopRightRadius: "0%"
     });
-    t1.pause();
+    circleAnime.pause();
+    const arrowDisapearAnime = anime({
+      targets: ".application-container .icon-container img",
+      opacity: [1, 0],
+      duration: 1000,
+      easing: 'linear'
+    });
+    arrowDisapearAnime.pause();
     const handleScroll = (e:any) => {
       const halfCircleTop = 150 + document.body.clientHeight * 0.05;
       const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
       if ((scrollTop > halfCircleTop) && isUpper) {
         setIsUpper(false);
-        t1.seek(0);
-        t1.play();
+        // console.log(circleAnime.reversed);
+        if (circleAnime.reversed) {
+          circleAnime.seek(circleAnime.duration);
+        }
+        circleAnime.play();
+        arrowDisapearAnime.play();
       }
       else if ((scrollTop < halfCircleTop) && !isUpper) {
         setIsUpper(true);
-        t1.reverse();
-        t1.seek(t1.duration);
-        t1.play();
+        circleAnime.reverse();
+        circleAnime.seek(circleAnime.duration);
+        circleAnime.play();
+        arrowDisapearAnime.reverse();
+        arrowDisapearAnime.seek(arrowDisapearAnime.duration);
+        arrowDisapearAnime.play();
       }
     };
     window.addEventListener("scroll",handleScroll);
@@ -84,7 +102,7 @@ export default function Application(props: any) {
   },[isUpper]);
 
   return (
-    <div className="container">
+    <div className="application-container">
       <div className="circle-container">
         <div className="circle" id="mycircle">
         </div>
@@ -103,7 +121,7 @@ export default function Application(props: any) {
           <p className="english-headline">Ncuhome Application Form</p>
           <p className="headline">星球入驻申请单</p>
         </div>
-        <JoinusForm value={formValues} onChange={handleChange} />
+        <JoinusForm value={formValues} onChange={handleChange} onSubmit={handleSubmit} />
       </div>
     </div>
   )
