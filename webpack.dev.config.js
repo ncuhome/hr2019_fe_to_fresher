@@ -8,7 +8,8 @@ config.devServer = {
   open: true,
   // publicPath: '/dist/',
   port: 3000,
-  host: "0.0.0.0"
+  host: "0.0.0.0",
+  historyApiFallback: true
 }
 config.plugins.push(new webpack.HotModuleReplacementPlugin());
 module.exports = config;
