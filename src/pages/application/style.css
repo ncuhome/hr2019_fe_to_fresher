@@ -3,26 +3,21 @@
     center bottom/100% no-repeat url('../../assets/png/xiaojiayuan.png'),
     center bottom/100% no-repeat url('../../assets/png/planet.png'),
     center bottom/100% no-repeat url('../../assets/png/cloud.png'),
-    center bottom/100% space url('../../assets/png/space.png'),
+    center bottom/100% space url('../../assets/png/space.png') fixed,
     rgb(14, 15, 16);
   padding-bottom: 220px;
+  overflow: hidden;
+  
 }
 
-.application-container .circle-container {
+.application-container .ncuhome-planet-container {
   display: flex;
   justify-content: center;
 }
 
-.application-container .circle-container .circle {
-  width: 297px;
-  height: 297px;
-  min-width: 297px;
-  min-height: 297px;
-  background-color: rgba(50, 50, 50, 1);
-  margin: 5vh auto 5vh;
-  box-shadow: 0px 2px 16px 0px rgba(0, 0, 0, 0.23);
-  border: 6px solid rgba(31, 31, 31, 1);
-  border-radius: 100%;
+.application-container .ncuhome-planet-container img {
+  width: 350px;
+  margin: 4vh auto 0;
 }
 
 .application-container .ncuhome-container {
@@ -31,6 +26,8 @@
 }
 
 .application-container .ncuhome-container p {
+  position: relative;
+  top: -3vh;
   color: rgba(223, 223, 223, 1);
   font-size: 24px;
   text-align: left;
@@ -41,7 +38,6 @@
 .application-container .form-container .icon-container {
   display: flex;
   justify-content: center;
-  color: rgb(56, 56, 56);
   font-size: 28px;
 }
 

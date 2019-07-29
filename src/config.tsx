@@ -25,6 +25,48 @@ export default {
     },
   },
   mobileQuery: 'only screen and (max-width: 1079px)',
+  groups: [
+    {
+      name: "产品",
+      subheading: "人均都有超能力",
+      description: [
+        "头脑风暴、思维导图、交互设计",
+        "我们是逻辑控、控制狂",
+        "规划产品蓝图",
+        "把控项目进度",
+        "协调对接工作",
+        "一款产品的前世今生，由我们缔造",
+      ],
+    },
+    {
+      name: "研发",
+      subheading: "",
+      description: [
+        "",
+      ],
+    },
+    {
+      name: "设计",
+      subheading: "",
+      description: [
+        "",
+      ],
+    },
+    {
+      name: "运营",
+      subheading: "",
+      description: [
+        "",
+      ],
+    },
+    {
+      name: "行政",
+      subheading: "",
+      description: [
+        "",
+      ],
+    },
+  ],
   products:[
     {
       name: "南大家园",

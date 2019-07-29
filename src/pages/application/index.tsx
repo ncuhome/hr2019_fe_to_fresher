@@ -5,7 +5,8 @@ import './style.css';
 
 const { useState, useEffect } = React;
 
-const circle_arrow = require('../../assets/svg/circle_arrow.svg');
+const ncuhome = require('../../assets/png/application_ncuhome.png');
+const arrowUp = require('../../assets/svg/form_arrow_up.svg');
 
 export default function Application(props: any) {
   const [formValues, setFormValues] = useState({
@@ -36,7 +37,7 @@ export default function Application(props: any) {
   useEffect(() => {
     // 计算icon位置使表单始终只露出标题
     const heightdif:number = document.body.clientHeight -667
-    const newMarginBottom:number = heightdif + 100 - (heightdif*0.10);
+    const newMarginBottom:number = heightdif + 100 - (heightdif*0.1);
     setNcuhomeStyle({
       "marginBottom": `${newMarginBottom}px`,
       "transition": "1s all",
@@ -57,22 +58,26 @@ export default function Application(props: any) {
 
   useEffect(() => {
     const circleAnime = anime({
-      targets: ".application-container .circle",
+      targets: ".application-container .ncuhome-planet-container img",
       direction: 'normal',
       duration: 500,
       easing: 'easeInOutQuad',
-      width: "100vw",
-      borderTopLeftRadius: "0%",
-      borderTopRightRadius: "0%"
+      scale: '1.5'
     });
     circleAnime.pause();
-    const arrowDisapearAnime = anime({
-      targets: ".application-container .icon-container img",
-      opacity: [1, 0],
+    const disapearAnime = anime.timeline({
       duration: 1000,
       easing: 'linear'
     });
-    arrowDisapearAnime.pause();
+    disapearAnime.add({
+      targets: ".application-container .icon-container img",
+      opacity: [1, 0]
+    },0)
+    .add({
+      targets: ".application-container .ncuhome-container",
+      opacity: [1, 0]
+    },0);
+    disapearAnime.pause();
     const handleScroll = (e:any) => {
       const halfCircleTop = 150 + document.body.clientHeight * 0.05;
       const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
@@ -83,16 +88,16 @@ export default function Application(props: any) {
           circleAnime.seek(circleAnime.duration);
         }
         circleAnime.play();
-        arrowDisapearAnime.play();
+        disapearAnime.play();
       }
       else if ((scrollTop < halfCircleTop) && !isUpper) {
         setIsUpper(true);
         circleAnime.reverse();
         circleAnime.seek(circleAnime.duration);
         circleAnime.play();
-        arrowDisapearAnime.reverse();
-        arrowDisapearAnime.seek(arrowDisapearAnime.duration);
-        arrowDisapearAnime.play();
+        disapearAnime.reverse();
+        disapearAnime.seek(disapearAnime.duration);
+        disapearAnime.play();
       }
     };
     window.addEventListener("scroll",handleScroll);
@@ -103,16 +108,15 @@ export default function Application(props: any) {
 
   return (
     <div className="application-container">
-      <div className="circle-container">
-        <div className="circle" id="mycircle">
-        </div>
+      <div className="ncuhome-planet-container">
+        <img src={ncuhome} className="ncuhome-planet" alt="ncuhome" />
       </div>
       <div className="ncuhome-container">
         <p style={ncuhomeStyle}>家园工作室</p>
       </div>
       <div className="form-container">
         <div className="icon-container">
-          <img src={circle_arrow}/>
+          <img src={arrowUp}/>
         </div>
         <div className="divide-line">
           <span />

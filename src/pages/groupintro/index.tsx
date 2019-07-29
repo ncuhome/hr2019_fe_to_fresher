@@ -1,20 +1,24 @@
 import * as React from 'react';
 import anime from 'animejs';
-import './style.css';
 import { Link } from 'react-router-dom';
+import config from '../../config';
+import './style.css';
+
+const { groups } = config;
 
 const ncuhomePlanet = require('../../assets/png/ncuhome_planet.png')
 const pmPlanet = require('../../assets/png/introduce_pm_planet.png');
 const devPlanet = require('../../assets/png/introduce_dev_planet.png');
 const desighPlanet = require('../../assets/png/introduce_desigh_planet.png');
-const unknownPlanet = require('../../assets/png/introduce_unknown_planet.png');
+const omPlanet = require('../../assets/png/introduce_om_planet.png');
+const managePlanet = require('../../assets/png/introduce_manage_planet.png');
 
 const { useState, useEffect } = React;
 
-const planetArray = [pmPlanet, devPlanet, desighPlanet, unknownPlanet];
+const planetArray = [pmPlanet, devPlanet, desighPlanet, omPlanet, managePlanet];
 let textRef: HTMLDivElement;
 
-export default function GroupIntro(props:any) {
+export default function GroupIntro(props: any) {
 
   const [index, setIndex] = useState(0);
   const [isAnimeing, setIsAnimeing] = useState(false);
@@ -122,7 +126,7 @@ export default function GroupIntro(props:any) {
       direction: "alternate",
       easing: 'easeInOutQuad'
     });
-  },[]);
+  }, []);
 
   useEffect(() => {
     let startPos: any, endPos: any, isScrolling: number;
@@ -141,9 +145,9 @@ export default function GroupIntro(props:any) {
       if (isScrolling === 0) {    //当为水平滚动时
         if (Number(duration) > 10) {
           //判断是左移还是右移，当偏移量大于10时执行
-          if (endPos.x > 10 && index!==0) {
+          if (endPos.x > 10 && index !== 0) {
             startAnime(false);
-          } else if (endPos.x < -10 && index !==3) {
+          } else if (endPos.x < -10 && index !== 3) {
             startAnime(true);
           }
         }
@@ -153,7 +157,7 @@ export default function GroupIntro(props:any) {
       return true;
     }
     const handleTouchStart = (event: TouchEvent) => {
-      if(!isAnimeing) {
+      if (!isAnimeing) {
         const touch = event.targetTouches[0];
         startPos = { x: touch.pageX, y: touch.pageY, time: +new Date };
         isScrolling = 0;
@@ -170,7 +174,7 @@ export default function GroupIntro(props:any) {
   return (
     <div className="groupintro-container">
       <div className="next-planet-container">
-        <img src={planetArray[(index + 1) % 3]} alt="下一个星球" />
+        <img src={planetArray[(index + 1) % 5]} alt="下一个星球" />
       </div>
       <div className="ncuhome-planet-container">
         <img src={ncuhomePlanet} alt="家园星球" />
@@ -179,30 +183,27 @@ export default function GroupIntro(props:any) {
         <img src={planetArray[index]} alt="现在的星球" />
       </div>
       <div className="modal-container">
-        <div className="introduction-text-container" ref={Ref => textRef = Ref}>
-          <div className="headline-container">
-            <p>产品 组</p>
+        <div className="modal-container-background">
+          <div className="introduction-text-container" ref={Ref => textRef = Ref}>
+            <div className="headline-container">
+              <p>{groups[index].name} 组</p>
+            </div>
+            <div className="subheading-container">
+              <p>{groups[index].subheading}</p>
+            </div>
+            <div className="introdution-container">
+              {groups[index].description.map((line: string, index: number) => (<p key={index}>{line}</p>))}
+            </div>
           </div>
-          <div className="subheading-container">
-            <p>人均都有超能力</p>
-          </div>
-          <div className="introdution-container">
-            <p>头脑风暴、思维导图、交互设计</p>
-            <p>我们是逻辑控、控制狂</p>
-            <p>规划产品蓝图</p>
-            <p>把控项目进度</p>
-            <p>协调对接工作</p>
-            <p>一款产品的前世今生，由我们缔造</p>
-          </div>
-        </div>
-        <div className="joinus-container">
-          <span />
-          <Link to="/application" >
-            JOIN US
+          <div className="joinus-container">
+            <span />
+            <Link to="/application" >
+              JOIN US
           </Link>
+          </div>
         </div>
-        <div className="arrow-pre" onClick={handlePreClick} hidden={index===0} />
-        <div className="arrow-next" onClick={handleNextClick} hidden={index===3} />
+        <div className="arrow-pre" onClick={handlePreClick} hidden={index === 0} />
+        <div className="arrow-next" onClick={handleNextClick} hidden={index === 4} />
       </div>
     </div>
   )
