@@ -25,4 +25,14 @@ export default {
     },
   },
   mobileQuery: 'only screen and (max-width: 1079px)',
+  products:[
+    {
+      name: "南大家园",
+      description: [
+        "查成绩 看课表 习惯圈子 校园地图",
+        "累计超过2万人次使用",
+        "开启专属你的校园生活轨迹",
+      ],
+    },
+  ],
 };
