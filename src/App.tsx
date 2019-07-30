@@ -14,7 +14,7 @@ const { mobileQuery } = config;
 
 export default function App() {
 
-  const [ isMobile, setIsMobile ] = useState(true);
+  const [ isMobile, setIsMobile ] = useState(false);
 
   useEffect(() => {
     enquire.register(mobileQuery,{
@@ -28,7 +28,7 @@ export default function App() {
     return () => {
       enquire.unregister(mobileQuery);
     }
-  },[]);
+  },[ isMobile ]);
 
   return isMobile ? (
     <Router>
