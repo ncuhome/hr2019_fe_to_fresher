@@ -57,14 +57,14 @@ export default function Application(props: any) {
   },[]);
 
   useEffect(() => {
-    const circleAnime = anime({
+    const planetAnime = anime({
       targets: ".application-container .ncuhome-planet-container img",
       direction: 'normal',
       duration: 500,
       easing: 'easeInOutQuad',
-      scale: '1.5'
+      scale: [1,2],
     });
-    circleAnime.pause();
+    planetAnime.pause();
     const disapearAnime = anime.timeline({
       duration: 1000,
       easing: 'linear'
@@ -83,18 +83,17 @@ export default function Application(props: any) {
       const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
       if ((scrollTop > halfCircleTop) && isUpper) {
         setIsUpper(false);
-        // console.log(circleAnime.reversed);
-        if (circleAnime.reversed) {
-          circleAnime.seek(circleAnime.duration);
+        if (planetAnime.reversed) {
+          planetAnime.reverse();
         }
-        circleAnime.play();
+        planetAnime.play();
         disapearAnime.play();
       }
       else if ((scrollTop < halfCircleTop) && !isUpper) {
         setIsUpper(true);
-        circleAnime.reverse();
-        circleAnime.seek(circleAnime.duration);
-        circleAnime.play();
+        planetAnime.reverse();
+        planetAnime.seek(planetAnime.duration);
+        planetAnime.play();
         disapearAnime.reverse();
         disapearAnime.seek(disapearAnime.duration);
         disapearAnime.play();
