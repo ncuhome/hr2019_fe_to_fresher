@@ -1,6 +1,6 @@
 import * as React from 'react';
 import anime from 'animejs';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import config from '../../config';
 import './style.css';
 
@@ -23,7 +23,7 @@ const rotateArray = [
 
 let itemContainerRef:HTMLDivElement;
 
-export default function ProductIntro(props:any) {
+function ProductIntro(props:any) {
   
   const [ index, setIndex ] = useState(0);
   const [ isAnimeing, setIsAnimeing ] = useState(false);
@@ -56,6 +56,12 @@ export default function ProductIntro(props:any) {
       easing: "linear",
     },0)
     .add({
+      targets: ".productintro-container .joinlink",
+      opacity: 0,
+      duration: 1000,
+      easing: "linear",
+    },0)
+    .add({
       targets: ".product-introduce-container",
       opacity: 0,
       duration: 1000,
@@ -76,6 +82,10 @@ export default function ProductIntro(props:any) {
       translateY: "25vh",
       easing: "easeInQuart",
       duration: 3000,
+      endDelay:1000,
+      complete: () => {
+        props.history.push("/group");
+      }
     },"1000");
   }
 
@@ -83,7 +93,7 @@ export default function ProductIntro(props:any) {
     const productPlanetAnime = anime({
       targets: ".productintro-container .product-planet-container",
       rotate: `+=${-rotateStep*72.0}`,
-      duration: 5000,
+      duration: 2000,
       easing: "easeOutElastic",
       autoplay: true,
     });
@@ -173,3 +183,5 @@ export default function ProductIntro(props:any) {
     </div>
   );
 }
+
+export default withRouter(ProductIntro);
