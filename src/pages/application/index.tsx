@@ -8,17 +8,19 @@ const { useState, useEffect } = React;
 const ncuhome = require('../../assets/png/application_ncuhome.png');
 const arrowUp = require('../../assets/svg/form_arrow_up.svg');
 
+let formRef:any;
+
 export default function Application(props: any) {
   const [formValues, setFormValues] = useState({
     name: "",
     gender: "男",
     groupType: "",
     email: "",
-    phonenumber: undefined,
+    phonenumber: "",
     classname: "",
     introduce:""
   });
-  const [isUpper, setIsUpper] = useState(true);
+  // const [isUpper, setIsUpper] = useState(true);
   const [ncuhomeStyle, setNcuhomeStyle] = useState({});
 
   const handleChange = (event:any):void => {
@@ -32,6 +34,16 @@ export default function Application(props: any) {
     event.persist();
     event.preventDefault();
     console.log(formValues);
+  }
+
+  const handleArrowClick = () => {
+    const scrollWindow = anime({
+      targets: "html,body",
+      duration: 1000,
+      scrollTop: formRef.offsetTop,
+      easing: "easeInOutQuad",
+      autoplay: true,
+    });
   }
 
   useEffect(() => {
@@ -79,31 +91,33 @@ export default function Application(props: any) {
     },0);
     disapearAnime.pause();
     const handleScroll = (e:any) => {
-      const halfCircleTop = 150 + window.innerHeight * 0.05;
+      const halfCircleTop = 200 + window.innerHeight * 0.05;
       const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-      if ((scrollTop > halfCircleTop) && isUpper) {
-        setIsUpper(false);
-        if (planetAnime.reversed) {
-          planetAnime.reverse();
-        }
-        planetAnime.play();
-        disapearAnime.play();
-      }
-      else if ((scrollTop < halfCircleTop) && !isUpper) {
-        setIsUpper(true);
-        planetAnime.reverse();
-        planetAnime.seek(planetAnime.duration);
-        planetAnime.play();
-        disapearAnime.reverse();
-        disapearAnime.seek(disapearAnime.duration);
-        disapearAnime.play();
-      }
+      // if ((scrollTop > halfCircleTop) && isUpper) {
+      //   setIsUpper(false);
+      //   if (planetAnime.reversed) {
+      //     planetAnime.reverse();
+      //   }
+      //   planetAnime.play();
+      //   disapearAnime.play();
+      // }
+      // else if ((scrollTop < halfCircleTop) && !isUpper) {
+      //   setIsUpper(true);
+      //   planetAnime.reverse();
+      //   planetAnime.seek(planetAnime.duration);
+      //   planetAnime.play();
+      //   disapearAnime.reverse();
+      //   disapearAnime.seek(disapearAnime.duration);
+      //   disapearAnime.play();
+      // }
+      planetAnime.seek((scrollTop/halfCircleTop)*planetAnime.duration);
+      disapearAnime.seek((scrollTop/halfCircleTop)*disapearAnime.duration);
     };
     window.addEventListener("scroll",handleScroll);
     return function cleanup() {
       window.removeEventListener("scroll",handleScroll);
     };
-  },[isUpper]);
+  },[]);
 
   return (
     <div className="application-container">
@@ -113,9 +127,9 @@ export default function Application(props: any) {
       <div className="ncuhome-container">
         <p style={ncuhomeStyle}>家园工作室</p>
       </div>
-      <div className="form-container">
+      <div className="form-container" id="form" ref={(Ref) => {formRef=Ref}}>
         <div className="icon-container">
-          <img src={arrowUp}/>
+          <img src={arrowUp} onClick={handleArrowClick} />
         </div>
         <div className="divide-line">
           <span />

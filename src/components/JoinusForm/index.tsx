@@ -7,7 +7,7 @@ export interface formType {
     gender:string,
     groupType:string,
     email:string,
-    phonenumber:number,
+    phonenumber:string,
     classname:string,
     introduce:string
   },
@@ -26,7 +26,14 @@ export default function JoinusForm(props:formType) {
     <form action="" className="form" onSubmit={handleSubmit}>
       <p>
         <label htmlFor="name">姓名</label>
-        <input type="text" name="name" id="name" value={name} onChange={handleChange} />
+        <input
+          type="text"
+          name="name"
+          id="name"
+          value={name}
+          onChange={handleChange}
+          required={true}
+        />
       </p>
       <p>
         <label htmlFor="gender">性别</label>
@@ -53,15 +60,36 @@ export default function JoinusForm(props:formType) {
       </p>
       <p>
         <label htmlFor="email">邮箱</label>
-        <input type="email" name="email" id="email" value={email} onChange={handleChange} />
+        <input
+          type="email"
+          name="email"
+          id="email"
+          value={email}
+          onChange={handleChange}
+          required={true}
+        />
       </p>
       <p>
         <label htmlFor="phonenumber">手机号码</label>
-        <input type="tel" name="phonenumber" id="phonenumber" value={phonenumber} onChange={handleChange} />
+        <input
+          type="tel"
+          pattern="/^[1]([3-9])[0-9]{9}$/"
+          name="phonenumber" id="phonenumber"
+          value={phonenumber}
+          onChange={handleChange}
+          required={true}
+        />
       </p>
       <p>
         <label htmlFor="class">专业班级</label>
-        <input type="text" name="classname" id="classname" value={classname} onChange={handleChange} />
+        <input
+          type="text"
+          name="classname"
+          id="classname"
+          value={classname}
+          onChange={handleChange}
+          required={true}
+        />
       </p>
       <p>
         <label htmlFor="introduce">自我介绍</label>
@@ -72,6 +100,7 @@ export default function JoinusForm(props:formType) {
         placeholder="可以说说自己的爱好，特长和有趣的经历哦~ PS:还可以说说选择该组的理由呢！"
         value={introduce}
         onChange={handleChange}
+        required={true}
       />
       <div className="btn-container">
         <input type="submit" value="提交"/>
