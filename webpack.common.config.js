@@ -35,8 +35,14 @@ module.exports = {
         loader: 'style-loader!css-loader'
       },
       {
-        test: /\.(png|jpe?g|gif|svg)/,
+        test: /\.(png|jpe?g|gif)/,
         loader: "file-loader"
+      },
+      {
+        test: /\.(woff|woff2|svg|ttf|eot)$/,
+        use:[
+          {loader:'file-loader',options:{name:'fonts/[name].[hash:8].[ext]'}}
+        ]
       },
       {
         enforce: "pre",
