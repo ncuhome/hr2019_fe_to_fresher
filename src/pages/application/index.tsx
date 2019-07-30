@@ -36,7 +36,7 @@ export default function Application(props: any) {
 
   useEffect(() => {
     // 计算icon位置使表单始终只露出标题
-    const heightdif:number = document.body.clientHeight -667
+    const heightdif:number = window.innerHeight  -667
     const newMarginBottom:number = heightdif + 100 - (heightdif*0.1);
     setNcuhomeStyle({
       "marginBottom": `${newMarginBottom}px`,
@@ -79,7 +79,7 @@ export default function Application(props: any) {
     },0);
     disapearAnime.pause();
     const handleScroll = (e:any) => {
-      const halfCircleTop = 150 + document.body.clientHeight * 0.05;
+      const halfCircleTop = 150 + window.innerHeight * 0.05;
       const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
       if ((scrollTop > halfCircleTop) && isUpper) {
         setIsUpper(false);

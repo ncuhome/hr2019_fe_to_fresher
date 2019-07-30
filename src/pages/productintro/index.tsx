@@ -105,7 +105,7 @@ function ProductIntro(props:any) {
   useEffect(() => {
     itemContainerRef.childNodes.forEach((child:HTMLElement,key) => {
       const deg = 72*key;
-      const changeHeight = (document.body.clientHeight * 20)/(document.body.clientWidth);
+      const changeHeight = (window.innerWidth * 20)/(window.innerWidth);
       child.style["top"] = `${changeHeight-40*Math.sin((90-deg)*Math.PI/180)}vw`;
       child.style["left"] = `${30+40*Math.cos((90-deg)*Math.PI/180)}vw`;
       child.style["transform"] = `rotate(${deg}deg)`;

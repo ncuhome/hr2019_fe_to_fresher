@@ -117,6 +117,20 @@ export default function GroupIntro(props: any) {
   }
 
   useEffect(() => {
+    // 开场动画
+    const startTimeline = anime.timeline();
+    startTimeline.add({
+      targets: ".groupintro-container .next-planet-container,.ncuhome-planet-container,.now-planet-container",
+      opacity: [0,1],
+      duration: 1000,
+      easing: "linear",
+    })
+    .add({
+      targets: ".groupintro-container .modal-container",
+      opacity: [0,0.85],
+      duration: 1000,
+      easing: "linear",
+    },"+=0");
     // Join Us 箭头动画
     const joinusArrow = anime({
       targets: ".joinus-container span",

@@ -4,7 +4,7 @@ import './style.css';
 
 export default function Home() {
   return (
-    <div>
+    <div className="home-container">
       我是主页
     </div>
   )
