@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack');
 const config = require('./webpack.common.config');
+const host = process.env.HOST || '0.0.0.0';
 config.mode = 'development';
 config.devtool = "inline-source-map";
 config.devServer = {
@@ -9,8 +10,9 @@ config.devServer = {
   open: true,
   // publicPath: '/dist/',
   port: 3000,
-  host: "0.0.0.0",
-  historyApiFallback: true
+  // host: host,
+  historyApiFallback: true,
+  disableHostCheck: true,
 }
 config.plugins.push(new webpack.HotModuleReplacementPlugin());
 module.exports = config;

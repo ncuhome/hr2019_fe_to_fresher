@@ -1,7 +1,6 @@
 const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 const paths = {
   src: path.resolve(__dirname, "src"),
@@ -43,15 +42,8 @@ module.exports = {
       { 
         test: /\.css$/, 
         use: [
-          {
-            loader: MiniCssExtractPlugin.loader,
-            options: {
-              // 这里可以指定一个 publicPath
-              // 默认使用 webpackOptions.output中的publicPath
-              // publicPath: '../'
-            },
-          },
-          'css-loader',
+          'style-loader',
+          'css-loader'
         ],
       },
       {
@@ -82,10 +74,6 @@ module.exports = {
   },
   plugins: [
     new CleanWebpackPlugin(),
-    new MiniCssExtractPlugin({
-      filename: '[name].css',
-      chunkFilename: '[id].css',
-    }),
     new htmlWebpackPlugin({ template: './src/index.html' })
   ]
 };
