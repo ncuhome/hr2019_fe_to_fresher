@@ -3,13 +3,24 @@
   height: 100vh;
   width: 100vw;
   overflow: hidden;
-  background: top / 100% no-repeat url('../../assets/png/introduce_space.png') rgb(15, 15, 16);
+  background: center center / 100% no-repeat url('../../assets/png/introduce_space.png');
+  background-color: rgb(15, 15, 16);
+}
+
+.groupintro-orbits-mask {
+  background: center center / 100% no-repeat url('../../assets/png/introduce_orbits.png');
+  width: 100vw;
+  height: 100vh;
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
 .groupintro-container .next-planet-container {
   position: absolute;
   left: 12vw;
-  top: 6vh;
+  top: 10vh;
 }
 
 .groupintro-container .next-planet-container img {

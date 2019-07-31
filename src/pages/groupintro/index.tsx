@@ -47,11 +47,11 @@ export default function GroupIntro(props: any) {
       translateX: "100vw",
       translateY: "15vh"
     })
-      .add({
-        targets: ".now-planet-container",
-        translateX: "-100vw",
-        translateY: "-15vh"
-      }, "0");
+    .add({
+      targets: ".now-planet-container",
+      translateX: "-100vw",
+      translateY: "-20vh"
+    }, "0");
     nextTimeline.pause();
 
     const preTimeline = anime.timeline({
@@ -64,11 +64,11 @@ export default function GroupIntro(props: any) {
       translateX: "-100vw",
       translateY: "-15vh"
     })
-      .add({
-        targets: ".now-planet-container",
-        translateX: "100vw",
-        translateY: "15vh"
-      }, "0");
+    .add({
+      targets: ".now-planet-container",
+      translateX: "100vw",
+      translateY: "20vh"
+    }, "0");
     preTimeline.pause();
 
     // 介绍文字显示消失用reserve不知为何会闪一下，只好写两个
@@ -118,19 +118,29 @@ export default function GroupIntro(props: any) {
 
   useEffect(() => {
     // 开场动画
+    setIsAnimeing(true);
     const startTimeline = anime.timeline();
     startTimeline.add({
-      targets: ".groupintro-container .next-planet-container,.ncuhome-planet-container,.now-planet-container",
+      targets: ".groupintro-orbits-mask",
       opacity: [0,1],
       duration: 1000,
       easing: "linear",
     })
+    .add({
+      targets: ".groupintro-container .next-planet-container,.ncuhome-planet-container,.now-planet-container",
+      opacity: [0,1],
+      duration: 1000,
+      easing: "linear",
+    },"+=0")
     .add({
       targets: ".groupintro-container .modal-container",
       opacity: [0,0.85],
       duration: 1000,
       easing: "linear",
     },"+=0");
+    startTimeline.finished.then(() => {
+      setIsAnimeing(false);
+    })
     // Join Us 箭头动画
     const joinusArrow = anime({
       targets: ".joinus-container span",
@@ -150,8 +160,8 @@ export default function GroupIntro(props: any) {
       const touch = event.targetTouches[0];
       endPos = { x: touch.pageX - startPos.x, y: touch.pageY - startPos.y };
       isScrolling = Math.abs(endPos.x) < Math.abs(endPos.y) ? 1 : 0;
-      if (isScrolling === 0) {
-        event.preventDefault();      //阻止触摸事件的默认行为，即阻止滚屏
+      if (isScrolling === 0 && event.cancelable) {
+        event.preventDefault();
       }
     }
     const handleTouchEnd = (event: TouchEvent) => {
@@ -187,6 +197,7 @@ export default function GroupIntro(props: any) {
 
   return (
     <div className="groupintro-container">
+      <div className="groupintro-orbits-mask" />
       <div className="next-planet-container">
         <img src={planetArray[(index + 1) % 5]} alt="下一个星球" />
       </div>
