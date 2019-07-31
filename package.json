@@ -37,11 +37,13 @@
     "@types/enquire.js": "^2.1.2",
     "@types/react": "^16.8.23",
     "@types/react-dom": "^16.8.4",
+    "@types/react-lottie": "^1.2.2",
     "@types/react-router-dom": "^4.3.4",
     "animejs": "^3.0.1",
     "enquire.js": "^2.1.6",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
+    "react-lottie": "^1.2.3",
     "react-router": "^5.0.1",
     "react-router-dom": "^5.0.1"
   }
