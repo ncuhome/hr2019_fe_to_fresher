@@ -25,6 +25,13 @@ export default {
     },
   },
   mobileQuery: 'only screen and (max-width: 1079px)',
+  indexText: [
+    "公元2001年" ,
+    "互联宇宙深处的一次小型爆炸 造就了NCUHOME星系",
+    "星系中的五颗行星以家园星为中心进行公转 每颗行星上的居住者们各尽其能",
+    "致力于将家园星建造为灵感与互联的乌托邦",
+    "这里从不拒绝想法与创意 行动让星系的梦想生生不息"
+  ],
   groups: [
     {
       name: "产品",

@@ -1,3 +1,52 @@
 .home-container {
-  
+  height: 100vh;
+  width: 100vw;
+  background: center top/cover url("../../assets/png/index.png");
+}
+
+.loading-container {
+  position: relative;
+  top: 20vh;
+  color: white;
+}
+
+.loading-container .process-container {
+  display: inline-block;
+  position: absolute;
+  left: 53%;
+  top: 62%;
+  width: 40px;
+  transform: rotate(-50deg);
+}
+
+.loading-container .process-container #loadingProcess {
+  width: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.loading-container .process-container #loadingProcess::after {
+  content: "%";
+}
+
+.home-introduction-container {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: rgba(216, 216, 216, 1);
+  font-size: 9px;
+  margin-bottom: 4.3vh;
+}
+
+.home-introduction-container p {
+  text-align: center;
+  line-height: 15px;
+  margin-bottom: 1px;
+}
+
+.home-introduction-container .home-introduction-headline {
+  color: rgba(240, 240, 240, 1);
+  font-size: 16px;
+  margin-bottom: 12px;
 }

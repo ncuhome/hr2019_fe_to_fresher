@@ -91,3 +91,7 @@ label {
   text-align: left;
   font-family: PingFangSC-Medium;
 }
+
+#root {
+  overflow: hidden;
+}
