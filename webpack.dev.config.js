@@ -2,6 +2,7 @@ const path = require('path')
 const webpack = require('webpack');
 const config = require('./webpack.common.config');
 config.mode = 'development';
+config.devtool = "inline-source-map";
 config.devServer = {
   hot: true,
   // contentBase: path.join(__dirname, "./dist"),
