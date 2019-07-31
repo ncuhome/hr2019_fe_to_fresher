@@ -5,7 +5,7 @@ import './style.css';
 
 const { useState, useEffect } = React;
 
-const ncuhome = require('../../assets/png/application_ncuhome.png');
+const ncuhome = require('../../assets/png/ncuhome_planet.png');
 const arrowUp = require('../../assets/svg/form_arrow_up.svg');
 
 let formRef:any;
@@ -20,7 +20,7 @@ export default function Application(props: any) {
     classname: "",
     introduce:""
   });
-  // const [isUpper, setIsUpper] = useState(true);
+  const [isUpper, setIsUpper] = useState(true);
   const [ncuhomeStyle, setNcuhomeStyle] = useState({});
 
   const handleChange = (event:any):void => {
@@ -91,33 +91,31 @@ export default function Application(props: any) {
     },0);
     disapearAnime.pause();
     const handleScroll = (e:any) => {
-      const halfCircleTop = 200 + window.innerHeight * 0.05;
+      const halfCircleTop = 100 + window.innerHeight * 0.05;
       const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
-      // if ((scrollTop > halfCircleTop) && isUpper) {
-      //   setIsUpper(false);
-      //   if (planetAnime.reversed) {
-      //     planetAnime.reverse();
-      //   }
-      //   planetAnime.play();
-      //   disapearAnime.play();
-      // }
-      // else if ((scrollTop < halfCircleTop) && !isUpper) {
-      //   setIsUpper(true);
-      //   planetAnime.reverse();
-      //   planetAnime.seek(planetAnime.duration);
-      //   planetAnime.play();
-      //   disapearAnime.reverse();
-      //   disapearAnime.seek(disapearAnime.duration);
-      //   disapearAnime.play();
-      // }
-      planetAnime.seek((scrollTop/halfCircleTop)*planetAnime.duration);
-      disapearAnime.seek((scrollTop/halfCircleTop)*disapearAnime.duration);
+      if ((scrollTop > halfCircleTop) && isUpper) {
+        setIsUpper(false);
+        if (planetAnime.reversed) {
+          planetAnime.reverse();
+        }
+        planetAnime.play();
+        disapearAnime.play();
+      }
+      else if ((scrollTop < halfCircleTop) && !isUpper) {
+        setIsUpper(true);
+        planetAnime.reverse();
+        planetAnime.seek(planetAnime.duration);
+        planetAnime.play();
+        disapearAnime.reverse();
+        disapearAnime.seek(disapearAnime.duration);
+        disapearAnime.play();
+      }
     };
     window.addEventListener("scroll",handleScroll);
     return function cleanup() {
       window.removeEventListener("scroll",handleScroll);
     };
-  },[]);
+  },[ isUpper ]);
 
   return (
     <div className="application-container">
