@@ -28,6 +28,50 @@ function ProductIntro(props:any) {
   const [ index, setIndex ] = useState(0);
   const [ isAnimeing, setIsAnimeing ] = useState(false);
 
+  const t1 = anime.timeline({
+    autoplay: false
+  });
+  t1.add({
+    targets: ".introduce-to-group-container",
+    opacity: 0,
+    duration: 1000,
+    easing: "linear",
+  },0)
+  .add({
+    targets: ".productintro-container .joinlink",
+    opacity: 0,
+    duration: 1000,
+    easing: "linear",
+  },0)
+  .add({
+    targets: ".product-introduce-container",
+    opacity: 0,
+    duration: 1000,
+    easing: "linear"
+  },0)
+  .add({
+    targets: ".productintro-container .product-planet-container",
+    scale: 3,
+    bottom: "-600px",
+    left: "-800px",
+    easing: "easeInQuart",
+    duration: 3000,
+  },"1000")
+  .add({
+    targets: ".productintro-container",
+    scale: 3,
+    translateX: "-22vw",
+    translateY: "25vh",
+    easing: "easeInQuart",
+    duration: 3000,
+    endDelay:1000,
+    complete: () => {
+      if (!t1.reversed) {
+        props.history.push("/group");
+      }
+    }
+  },"1000");
+
   const handleItemClick = (event:MouseEvent) => {
     const imgDom:any = event.target;
     const itemIndex = itemArray.indexOf(imgDom.alt);
@@ -47,46 +91,8 @@ function ProductIntro(props:any) {
   };
 
   const handleArrowClick = () => {
-    const t1 = anime.timeline({
-    });
-    t1.add({
-      targets: ".introduce-to-group-container",
-      opacity: 0,
-      duration: 1000,
-      easing: "linear",
-    },0)
-    .add({
-      targets: ".productintro-container .joinlink",
-      opacity: 0,
-      duration: 1000,
-      easing: "linear",
-    },0)
-    .add({
-      targets: ".product-introduce-container",
-      opacity: 0,
-      duration: 1000,
-      easing: "linear"
-    },0)
-    .add({
-      targets: ".productintro-container .product-planet-container",
-      scale: 3,
-      bottom: "-600px",
-      left: "-800px",
-      easing: "easeInQuart",
-      duration: 3000,
-    },"1000")
-    .add({
-      targets: ".productintro-container",
-      scale: 3,
-      translateX: "-22vw",
-      translateY: "25vh",
-      easing: "easeInQuart",
-      duration: 3000,
-      endDelay:1000,
-      complete: () => {
-        props.history.push("/group");
-      }
-    },"1000");
+
+    t1.play();
   }
 
   const startRotate = (rotateStep:number) => {
@@ -113,8 +119,8 @@ function ProductIntro(props:any) {
     setIsAnimeing(true);
     const startAnime = anime({
       targets: ".productintro-container .product-planet-container",
-      rotate: 720,
-      duration: 4000,
+      rotate: 360,
+      duration: 3000,
       easing: "easeOutElastic",
     });
     startAnime.finished.then(()=>{
@@ -133,10 +139,56 @@ function ProductIntro(props:any) {
     itemContainerRef.childNodes.forEach((child:HTMLElement,key) => {
       child.addEventListener("click",handleItemClick);
     });
+    let startPos: any, endPos: any, isScrolling: number;
+    // 处理滑动
+    const handleTouch = (event: TouchEvent) => {
+      if (event.targetTouches.length > 1) return;
+      const touch = event.targetTouches[0];
+      endPos = { x: touch.pageX - startPos.x, y: touch.pageY - startPos.y };
+      isScrolling = Math.abs(endPos.x) < Math.abs(endPos.y) ? 1 : 0;
+      if (isScrolling === 1) {
+        if (t1.reversed) {
+          t1.reverse();
+        }
+        t1.pause()
+        t1.seek(-(endPos.y/10)*50);
+      }
+    }
+    const handleTouchEnd = (event: TouchEvent) => {
+      const duration = +new Date - startPos.time;
+      if (isScrolling === 1) {    //当为竖直滚动时
+        if (Number(duration) > 10 && endPos.y < -200) {
+          t1.play();
+          if (t1.reversed) {
+            t1.reverse();
+          }
+        }
+        else {
+          t1.play();
+          if (!t1.reversed) {
+            t1.reverse();
+          }
+        }
+      }
+      document.body.removeEventListener("touchmove", handleTouch);
+      document.body.removeEventListener("touchend", handleTouchEnd);
+      return true;
+    }
+    const handleTouchStart = (event: TouchEvent) => {
+      if (!isAnimeing) {
+        const touch = event.targetTouches[0];
+        startPos = { x: touch.pageX, y: touch.pageY, time: +new Date };
+        isScrolling = 0;
+        document.body.addEventListener("touchmove", handleTouch, { passive:true });
+        document.body.addEventListener("touchend", handleTouchEnd);
+      }
+    }
+    document.body.addEventListener("touchstart", handleTouchStart);
     return () => {
       itemContainerRef.childNodes.forEach((child:HTMLElement,key) => {
         child.removeEventListener("click",handleItemClick);
       });
+      document.body.removeEventListener("touchstart", handleTouchStart)
     };
   },[ isAnimeing ]);
 
