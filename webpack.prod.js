@@ -24,6 +24,7 @@ config.plugins.push(new MiniCssExtractPlugin({
   filename: '[name].css',
   chunkFilename: '[id].css',
 }));
+config.plugins.push(new CleanWebpackPlugin());
 config.plugins.push(new BundleAnalyzerPlugin());
 
 module.exports = config;

@@ -66,6 +66,15 @@ module.exports = {
         }],
       },
       {
+        test: /\.(ico)$/,
+        use:[{
+          loader:'file-loader',
+          options:{
+            name:'[name].[ext]'
+          }
+        }],
+      },
+      {
         enforce: "pre",
         test: /\.js$/,
         loader: "source-map-loader"
@@ -73,7 +82,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new CleanWebpackPlugin(),
-    new htmlWebpackPlugin({ template: './src/index.html' })
+    new htmlWebpackPlugin({ template: './public/index.html',favicon: './public/favicon.ico', inject: true}),
   ]
 };
