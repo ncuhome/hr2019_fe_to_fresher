@@ -6,18 +6,24 @@
 ├── src
 │   ├── assets               # 本地静态资源
 │   ├── components           # 业务通用组件
-│   ├── pages                # 页面
-│   └── layouts              # 通用布局
+│   └── pages                # 页面
+├── public
+│   └── index.html           # html模板文件
 ├── README.md
+├── tsconfig.json            # typescript配置文件
 ├── webpack.common.config.js # webpack通用配置文件
 ├── webpack.dev.config.js    # webpack开发环境配置文件
-└── package.json
+├── webpack.prod.config.js   # webpack生产环境配置文件
+├── package.json
+└── package-lock.json
 ```
 
 ## 开发说明
 
 本项目采用 `react` && `typescript` && `es6+` 进行开发。
 使用 React 16.8 的新增特性 Hook 管理状态以及操作副作用
+
+动效方面使用`animejs`与`react-lottie`
 
 相关文档地址:
   * [React](https://doc.react-china.org/) 
