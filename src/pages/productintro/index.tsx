@@ -213,9 +213,9 @@ function ProductIntro(props:any) {
         </span>
       </div>
       <div className="product-introduce-container">
-        <p className="product-name">{products[0].name}</p>
+        <p className="product-name">{products[index].name}</p>
         <div className="product-description-container">
-          {products[0].description.map((line:string,index:number)=>(<p key={index}>{line}</p>))}
+          {products[index].description.map((line:string,index:number)=>(<p key={index}>{line}</p>))}
         </div>
       </div>
       <div className="product-planet-container">
