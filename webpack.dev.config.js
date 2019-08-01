@@ -10,7 +10,7 @@ config.devServer = {
   open: true,
   // publicPath: '/dist/',
   port: 3000,
-  // host: host,
+  host: host,
   historyApiFallback: true,
   disableHostCheck: true,
 }
