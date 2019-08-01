@@ -1,55 +1,82 @@
 import * as React from "react";
-import anime from "animejs";
-import Lottie from "react-lottie";
-import animationData from "../../components/LoadingAnime/setting";
+import anime from 'animejs';
+import { withRouter } from "react-router";
+import LoadingAnime from "../../components/LoadingAnime/index";
+import loadImage from "../../image";
 import config from "../../config";
 import "./style.css";
 
 const { useState, useEffect } = React;
 const { indexText } = config;
 
-export default function Home() {
+function Home(props:any) {
 
   const [ isStopped, setIsStopped ] = useState(false);
   const [ isPaused, setIsPaused ] = useState(false);
+  const [ processValue, setProcessValue ] = useState(0);
 
-  const defaultOptions = {
-    loop: true,
-    autoplay: true, 
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: 'xMidYMid slice'
-    }
-  };
+  const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    const changeAnime = anime.timeline({
+      autoplay: true,
+      complete: () => {
+        props.history.push("/product");
+      }
+    });
+    changeAnime.add({
+      targets: ".loading-container,.home-guide-container,.home-introduction-container",
+      duration: 2000,
+      opacity: [1,0],
+      easing: "linear"
+    })
+    .add({
+      targets: ".home-hidden-container",
+      duration: 4000,
+      opacity: [0,1,0],
+      easing: "linear"
+    })
+  }
 
   useEffect(() => {
-    anime({
-      targets: "#loadingProcess",
-      innerHTML: [0,100],
-      easing: "linear",
-      duration:10000,
-      round: 1
-    })
+    const callback = (count:number,length:number) => {
+      const value = Math.round((count/length)*100);
+      setProcessValue(value);
+    }
+    loadImage(callback);
   },[]);
+
+  useEffect(() => {
+    if (processValue === 100) {
+      console.log("success");
+      anime({
+        targets: ".home-guide-container",
+        autoplay: true,
+        duration: 1000,
+        opacity: [0,1],
+        easing: "linear"
+      });
+    }
+  }, [ processValue ]);
 
   return (
     <div className="home-container">
-      <div className="loading-container">
-        <Lottie 
-          options={defaultOptions}
-          isStopped={isStopped}
-          isPaused={isPaused}
-          isClickToPauseDisabled={true}
-          width="70vw"
-        />
-        <div className="process-container">
-          <span id="loadingProcess"></span>
-        </div>
+      <LoadingAnime
+        isPaused={isPaused}
+        isStopped={isStopped}
+        processValue={processValue}
+      />
+      <div className="home-guide-container" onClick={handleClick}>
+        <p>点击进入星系</p>
       </div>
       <div className="home-introduction-container">
         <p className="home-introduction-headline">ABOUT NCUHOME</p>
-        {indexText.map((line) => (<p>{line}</p>))}
+        {indexText.map((line,index) => (<p key={index}>{line}</p>))}
+      </div>
+      <div className="home-hidden-container">
+        <p>欢迎来到NCUHOME的世界</p>
+        <p>不平凡将从这里开始</p>
       </div>
     </div>
   )
 }
+
+export default withRouter(Home);

@@ -1,0 +1,24 @@
+.loading-container {
+  position: relative;
+  top: 20vh;
+  color: white;
+}
+
+.loading-container .process-container {
+  display: inline-block;
+  position: absolute;
+  left: 53%;
+  top: 62%;
+  width: 40px;
+  transform: rotate(-50deg);
+}
+
+.loading-container .process-container #loadingProcess {
+  width: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.loading-container .process-container #loadingProcess::after {
+  content: "%";
+}
