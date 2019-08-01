@@ -1,6 +1,6 @@
 .productintro-container {
   height: 100vh;
-  background: url('../../assets/png/product_background.png') center/100% no-repeat;
+  background: url('../../assets/webp/product_background.webp') center/100% no-repeat;
   background-color: rgba(15, 15, 16, 1);
   overflow: hidden;
 }

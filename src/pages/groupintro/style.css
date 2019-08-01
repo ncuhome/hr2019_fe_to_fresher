@@ -3,7 +3,7 @@
   height: 100vh;
   width: 100vw;
   overflow: hidden;
-  background: center center / 100% no-repeat url('../../assets/png/introduce_space.png');
+  background: center center / 100% no-repeat url('../../assets/webp/introduce_space.webp');
   background-color: rgb(15, 15, 16);
 }
 
