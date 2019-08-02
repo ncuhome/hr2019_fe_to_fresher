@@ -55,3 +55,9 @@
 .home-hidden-container p {
   margin-bottom: 0;
 }
+
+@media(min-width:400px) {
+  .home-introduction-container {
+    font-size: 10px;
+  }
+}

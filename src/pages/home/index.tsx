@@ -1,7 +1,7 @@
 import * as React from "react";
 import anime from 'animejs';
 import { withRouter } from "react-router";
-import LoadingAnime from "../../components/LoadingAnime/index";
+import LoadingAnime from "../../components/LoadingAnime";
 import loadImage from "../../image";
 import config from "../../config";
 import "./style.css";
@@ -11,32 +11,49 @@ const { indexText } = config;
 
 function Home(props:any) {
 
+  const [ isAnimeing, setIsAnimeing ] = useState(false);
   const [ isStopped, setIsStopped ] = useState(false);
   const [ isPaused, setIsPaused ] = useState(false);
   const [ processValue, setProcessValue ] = useState(0);
 
   const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
-    const changeAnime = anime.timeline({
-      autoplay: true,
-      complete: () => {
-        props.history.push("/product");
-      }
-    });
-    changeAnime.add({
-      targets: ".loading-container,.home-guide-container,.home-introduction-container",
-      duration: 2000,
-      opacity: [1,0],
-      easing: "linear"
-    })
-    .add({
-      targets: ".home-hidden-container",
-      duration: 4000,
-      opacity: [0,1,0],
-      easing: "linear"
-    })
+    setIsAnimeing(true);
+    if (!isAnimeing) {
+      const changeAnime = anime.timeline({
+        autoplay: true,
+        complete: () => {
+          props.history.push("/product");
+        }
+      });
+      changeAnime.add({
+        targets: ".loading-container,.home-guide-container,.home-introduction-container",
+        duration: 2000,
+        opacity: [1,0],
+        easing: "linear"
+      })
+      .add({
+        targets: ".home-hidden-container",
+        duration: 2000,
+        opacity: [0,1],
+        easing: "linear",
+        endDelay: 1000,
+      })
+      .add({
+        targets: ".home-hidden-container",
+        duration: 1000,
+        opacity: [1,0],
+        easing: "linear",
+      });
+    }
   }
 
   useEffect(() => {
+    anime({
+      targets: ".home-introduction-container",
+      duration: 1000,
+      opacity: [0,1],
+      easing: "linear",
+    });
     const callback = (count:number,length:number) => {
       const value = Math.round((count/length)*100);
       setProcessValue(value);
