@@ -5,11 +5,11 @@ export interface formType {
   value:{
     name:string
     gender:string,
-    groupType:string,
+    department:string,
     email:string,
-    phonenumber:string,
-    classname:string,
-    introduce:string
+    phone:string,
+    clazz:string,
+    introduction:string
   },
   onChange: any,
   onSubmit: (event:React.FormEvent<HTMLFormElement>) => void
@@ -17,7 +17,7 @@ export interface formType {
 
 export default function JoinusForm(props:formType) {
 
-  const { name,gender,groupType,email,phonenumber, classname,introduce} = props.value;
+  const { name,gender,department,email,phone, clazz,introduction} = props.value;
   const { onChange:handleChange, onSubmit:handleSubmit } = props;
 
   const isMale = (gender === '男') ? true : false;
@@ -49,8 +49,8 @@ export default function JoinusForm(props:formType) {
         </span>
       </p>
       <p>
-        <label htmlFor="groupType">组别</label>
-        <select name="groupType" id="groupType" value={groupType} onChange={handleChange}>
+        <label htmlFor="department">组别</label>
+        <select name="department" id="department" value={department} onChange={handleChange}>
           <option value="设计">设计组</option>
           <option value="研发">研发组</option>
           <option value="运营">运营组</option>
@@ -70,35 +70,35 @@ export default function JoinusForm(props:formType) {
         />
       </p>
       <p>
-        <label htmlFor="phonenumber">手机号码</label>
+        <label htmlFor="phone">手机号码</label>
         <input
           type="tel"
           pattern="^[1]([3-9])[0-9]{9}$"
-          name="phonenumber" id="phonenumber"
-          value={phonenumber}
+          name="phone" id="phone"
+          value={phone}
           onChange={handleChange}
           required={true}
         />
       </p>
       <p>
-        <label htmlFor="class">专业班级</label>
+        <label htmlFor="clazz">专业班级</label>
         <input
           type="text"
-          name="classname"
-          id="classname"
-          value={classname}
+          name="clazz"
+          id="clazz"
+          value={clazz}
           onChange={handleChange}
           required={true}
         />
       </p>
       <p>
-        <label htmlFor="introduce">自我介绍</label>
+        <label htmlFor="introduction">自我介绍</label>
       </p>
       <textarea 
-        name="introduce"
-        id="introduce"
+        name="introduction"
+        id="introduction"
         placeholder="可以说说自己的爱好，特长和有趣的经历哦~ PS:还可以说说选择该组的理由呢！"
-        value={introduce}
+        value={introduction}
         onChange={handleChange}
         required={true}
       />
