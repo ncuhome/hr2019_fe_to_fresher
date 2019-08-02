@@ -5,7 +5,7 @@ import config from '../../config';
 import './style.css';
 
 const { useState, useEffect } = React;
-const { groups } = config;
+const { departments } = config;
 
 const ncuhomePlanet = require('../../assets/png/ncuhome_planet.png')
 const pmPlanet = require('../../assets/png/introduce_pm_planet.png');
@@ -118,6 +118,8 @@ export default function GroupIntro(props: any) {
   }
 
   useEffect(() => {
+    const handleTouch = (e:TouchEvent) => { e.preventDefault(); };
+    document.body.addEventListener("touchmove", handleTouch, { passive:false });
     // 开场动画
     setIsAnimeing(true);
     const startTimeline = anime.timeline();
@@ -151,6 +153,9 @@ export default function GroupIntro(props: any) {
       direction: "alternate",
       easing: 'easeInOutQuad'
     });
+    return () => {
+      document.body.removeEventListener("touchmove", handleTouch)
+    }
   }, []);
 
   useEffect(() => {
@@ -186,7 +191,7 @@ export default function GroupIntro(props: any) {
         const touch = event.targetTouches[0];
         startPos = { x: touch.pageX, y: touch.pageY, time: +new Date };
         isScrolling = 0;
-        textRef.addEventListener("touchmove", handleTouch);
+        textRef.addEventListener("touchmove", handleTouch, { passive:false });
         textRef.addEventListener("touchend", handleTouchEnd);
       }
     }
@@ -194,7 +199,7 @@ export default function GroupIntro(props: any) {
     return () => {
       textRef.removeEventListener("touchstart", handleTouchStart)
     }
-  }, [isAnimeing]);
+  }, [ isAnimeing ]);
 
   return (
     <div className="groupintro-container">
@@ -212,13 +217,21 @@ export default function GroupIntro(props: any) {
         <div className="modal-container-background">
           <div className="introduction-text-container" ref={Ref => textRef = Ref}>
             <div className="headline-container">
-              <p>{groups[index].name} 组</p>
+              <p>{departments[index].name} 组</p>
             </div>
             <div className="subheading-container">
-              <p>{groups[index].subheading}</p>
+              <p>{departments[index].subheading}</p>
             </div>
             <div className="introdution-container">
-              {groups[index].description.map((line: string, index: number) => (<p key={index}>{line}</p>))}
+              {departments[index].description.map((line: string, index: number) => (<p key={index}>{line}</p>))}
+            </div>
+            <div className="traits-contianer">
+              特质：
+              {departments[index].traits.map((trait: string, index: number) => {
+                return (index+1) === departments[index].traits.length ? 
+                (<span key={index}>{trait}</span>) :
+                (<React.Fragment key={index}><span>{trait}</span>、</React.Fragment>);
+              })}
             </div>
           </div>
           <div className="joinus-container">
