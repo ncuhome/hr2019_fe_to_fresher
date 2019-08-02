@@ -1,6 +1,6 @@
 .application-container {
+  position: relative;
   background: 
-    center bottom/100% no-repeat url('../../assets/png/xiaojiayuan.png'),
     center bottom/100% no-repeat url('../../assets/png/planet.png'),
     center bottom/100% no-repeat url('../../assets/png/cloud.png'),
     center top/100% space url('../../assets/webp/space.webp') fixed,
@@ -49,6 +49,7 @@
   border-radius: 18px;
   background-color: rgba(41, 41, 41, 1);
   /* visibility: hidden; */
+  z-index: 1;
 }
 
 .application-container .form-container .divide-line {
@@ -74,4 +75,11 @@
 .application-container .form-container .headline-container .headline {
   font-size: 25px;
   text-align: center;
+}
+
+.application-container #xiaojiayuan {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  z-index: 0;
 }
