@@ -1,4 +1,4 @@
-const img_0 = require("../../assets/png/loading/img_0.png");
+const img_0 = require("./img_0.png");
 
 export default {
   "v": "5.5.0",

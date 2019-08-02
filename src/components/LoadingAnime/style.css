@@ -1,7 +1,17 @@
 .loading-container {
   position: relative;
-  top: 20vh;
+  top: 16vh;
   color: white;
+}
+
+.loading-container .lottie-contianer {
+  position: relative;
+  margin: 0 15vw;
+  width: 70vw;
+}
+
+.loading-container .lottie-contianer svg {
+  text-align: center;
 }
 
 .loading-container .process-container {

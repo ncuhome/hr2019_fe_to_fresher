@@ -1,7 +1,8 @@
 const path = require('path')
 const config = require('./webpack.common.config');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 config.mode = 'production';
 config.devtool = "source-map";
@@ -25,6 +26,6 @@ config.plugins.push(new MiniCssExtractPlugin({
   chunkFilename: '[id].css',
 }));
 config.plugins.push(new CleanWebpackPlugin());
-config.plugins.push(new BundleAnalyzerPlugin());
+// config.plugins.push(new BundleAnalyzerPlugin());
 
 module.exports = config;

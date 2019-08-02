@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --config webpack.dev.config.js",
-    "build": "webpack --config webpack.prod.js --mode production"
+    "build": "webpack --config webpack.prod.config.js --mode production"
   },
   "keywords": [],
   "author": "",
@@ -39,14 +39,13 @@
     "@types/enquire.js": "^2.1.2",
     "@types/react": "^16.8.23",
     "@types/react-dom": "^16.8.4",
-    "@types/react-lottie": "^1.2.2",
     "@types/react-router-dom": "^4.3.4",
     "animejs": "^3.1.0",
     "axios": "^0.19.0",
     "enquire.js": "^2.1.6",
+    "lottie-web": "^5.5.7",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-lottie": "^1.2.3",
     "react-router": "^5.0.1",
     "react-router-dom": "^5.0.1"
   }

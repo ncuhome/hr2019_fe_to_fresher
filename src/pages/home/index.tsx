@@ -12,8 +12,6 @@ const { indexText } = config;
 function Home(props:any) {
 
   const [ isAnimeing, setIsAnimeing ] = useState(false);
-  const [ isStopped, setIsStopped ] = useState(false);
-  const [ isPaused, setIsPaused ] = useState(false);
   const [ processValue, setProcessValue ] = useState(0);
   const [ unmount, setUnmount ] = useState(true);
 
@@ -96,8 +94,6 @@ function Home(props:any) {
   return (
     <div className="home-container">
       <LoadingAnime
-        isPaused={isPaused}
-        isStopped={isStopped}
         processValue={processValue}
       />
       <div className="home-guide-container" onClick={handleClick}>
