@@ -10,23 +10,23 @@ import config from './config';
 
 
 const { useState, useEffect } = React;
-const { mobileQuery } = config;
+const { desktopQuery } = config;
 
 export default function App() {
 
-  const [ isMobile, setIsMobile ] = useState(false);
+  const [ isMobile, setIsMobile ] = useState(true);
 
   useEffect(() => {
-    enquire.register(mobileQuery,{
+    enquire.register(desktopQuery,{
       match: () => {
-        setIsMobile(true);
+        setIsMobile(false);
       },
       unmatch: () => {
-        setIsMobile(false);
+        setIsMobile(true);
       }
     });
     return () => {
-      enquire.unregister(mobileQuery);
+      enquire.unregister(desktopQuery);
     }
   },[ isMobile ]);
 

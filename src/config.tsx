@@ -24,7 +24,7 @@ export default {
       minWidth: 1600,
     },
   },
-  mobileQuery: 'only screen and (max-width: 1079px)',
+  desktopQuery: 'only screen and (min-width: 768px)',
   indexText: [
     "公元2001年" ,
     "互联宇宙深处的一次小型爆炸 造就了NCUHOME星系",
