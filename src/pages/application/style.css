@@ -16,8 +16,9 @@
 }
 
 .application-container .ncuhome-planet-container img {
-  width: 350px;
-  margin: 4vh auto 0;
+  width: 75vw;
+  max-width: 400px;
+  margin: 5vh auto 5vh;
 }
 
 .application-container .ncuhome-container {
@@ -27,7 +28,6 @@
 
 .application-container .ncuhome-container p {
   position: relative;
-  top: -3vh;
   color: rgba(223, 223, 223, 1);
   font-size: 24px;
   text-align: left;
@@ -43,7 +43,6 @@
 
 .application-container .form-container {
   position: relative;
-  top: 3.1vh;
   margin: auto 21px;
   margin-bottom: 10vh;
   padding-top: 1px;

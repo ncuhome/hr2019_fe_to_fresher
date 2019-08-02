@@ -47,9 +47,13 @@ export default function Application(props: any) {
   }
 
   useEffect(() => {
-    // 计算icon位置使表单始终只露出标题
-    const heightdif:number = window.innerHeight  -667
-    const newMarginBottom:number = heightdif + 100 - (heightdif*0.1);
+    // 计算工作室名称下外边框大小使表单始终只露出标题与姓名栏
+    const heightDif:number = window.innerHeight  - 667
+    const widthDif:number = window.innerWidth - 375;
+    // 以下参数与布局和图片尺寸有关
+    const extHeightByHeight: number = heightDif*1.0
+    const extHeightByWidth: number = (window.innerWidth*0.75)>400 ? (-120*229/280) : (-widthDif*0.75*229/280);
+    const newMarginBottom:number =  + 160 + extHeightByWidth + extHeightByHeight;
     setNcuhomeStyle({
       "marginBottom": `${newMarginBottom}px`,
       "transition": "1s all",
@@ -72,12 +76,13 @@ export default function Application(props: any) {
     const planetAnime = anime({
       targets: ".application-container .ncuhome-planet-container img",
       direction: 'normal',
+      autoplay: false,
       duration: 500,
       easing: 'easeInOutQuad',
       scale: [1,2],
     });
-    planetAnime.pause();
     const disapearAnime = anime.timeline({
+      autoplay: false,
       duration: 1000,
       easing: 'linear'
     });
@@ -89,7 +94,6 @@ export default function Application(props: any) {
       targets: ".application-container .ncuhome-container",
       opacity: [1, 0]
     },0);
-    disapearAnime.pause();
     const handleScroll = (e:any) => {
       const halfCircleTop = 100 + window.innerHeight * 0.05;
       const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
