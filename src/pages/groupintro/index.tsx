@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import config from '../../config';
 import './style.css';
 
+const { useState, useEffect } = React;
 const { groups } = config;
 
 const ncuhomePlanet = require('../../assets/png/ncuhome_planet.png')
@@ -13,9 +14,8 @@ const desighPlanet = require('../../assets/png/introduce_desigh_planet.png');
 const omPlanet = require('../../assets/png/introduce_om_planet.png');
 const managePlanet = require('../../assets/png/introduce_manage_planet.png');
 
-const { useState, useEffect } = React;
-
 const planetArray = [pmPlanet, devPlanet, desighPlanet, omPlanet, managePlanet];
+
 let textRef: HTMLDivElement;
 
 export default function GroupIntro(props: any) {
@@ -38,38 +38,38 @@ export default function GroupIntro(props: any) {
   const startAnime = (isNext: boolean) => {
     setIsAnimeing(true);
     const nextTimeline = anime.timeline({
+      autoplay: false,
       duration: 1000,
       easing: 'easeInOutQuad',
-      direction: 'normal'
+      direction: 'normal',
     });
     nextTimeline.add({
       targets: ".next-planet-container",
       translateX: "100vw",
-      translateY: "15vh"
+      translateY: "15vh",
     })
     .add({
       targets: ".now-planet-container",
       translateX: "-100vw",
-      translateY: "-20vh"
+      translateY: "-20vh",
     }, "0");
-    nextTimeline.pause();
 
     const preTimeline = anime.timeline({
+      autoplay: false,
       duration: 1000,
       easing: 'easeInOutQuad',
-      direction: 'normal'
+      direction: 'normal',
     });
     preTimeline.add({
       targets: ".next-planet-container",
       translateX: "-100vw",
-      translateY: "-15vh"
+      translateY: "-15vh",
     })
     .add({
       targets: ".now-planet-container",
       translateX: "100vw",
-      translateY: "20vh"
+      translateY: "20vh",
     }, "0");
-    preTimeline.pause();
 
     // 介绍文字显示消失用reserve不知为何会闪一下，只好写两个
     const modalApearAnime = anime({
@@ -94,6 +94,7 @@ export default function GroupIntro(props: any) {
             setIsAnimeing(false);
           });
           setIndex(index + 1);
+          
           preTimeline.reverse();
           preTimeline.seek(preTimeline.duration);
           preTimeline.play();
@@ -171,7 +172,7 @@ export default function GroupIntro(props: any) {
           //判断是左移还是右移，当偏移量大于10时执行
           if (endPos.x > 10 && index !== 0) {
             startAnime(false);
-          } else if (endPos.x < -10 && index !== 3) {
+          } else if (endPos.x < -10 && index !== 4) {
             startAnime(true);
           }
         }
