@@ -15,10 +15,11 @@ const arrowUp = require('../../assets/svg/form_arrow_up.svg');
 let formRef:any;
 
 const Application = (props: any) => {
+  const defaultDepartment = props.location.state || "行政";
   const [formValues, setFormValues] = useState({
     name: "",
     gender: "男",
-    department: "行政",
+    department: defaultDepartment,
     email: "",
     phone: "",
     clazz: "",
@@ -62,8 +63,12 @@ const Application = (props: any) => {
     });
   }
 
-  const handleBackClick = (event:any) => {
+  const handleBackClick = () => {
     props.history.push("/group");
+  }
+
+  const handleQRcodeClick = () => {
+    window.location.href="https://jq.qq.com/?_wv=1027&k=5kst7Wj";
   }
 
   useEffect(() => {
@@ -161,7 +166,7 @@ const Application = (props: any) => {
         </div>
         <JoinusForm value={formValues} onChange={handleChange} onSubmit={handleSubmit} />
       </div>
-      <img src={xiaojiayuan} alt="小家园" id="xiaojiayuan"/>
+      <img src={xiaojiayuan} alt="小家园" id="xiaojiayuan" onClick={handleQRcodeClick} />
     </div>
   )
 }

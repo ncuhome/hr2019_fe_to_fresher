@@ -1,6 +1,7 @@
 import * as React from 'react';
 import anime from 'animejs';
 import { Link } from 'react-router-dom';
+import BackArrow from '../../components/BackArrow';
 import config from '../../config';
 import './style.css';
 
@@ -33,6 +34,10 @@ export default function GroupIntro(props: any) {
     if (!isAnimeing) {
       startAnime(true);
     }
+  }
+
+  const handleBackClick = (e:MouseEvent) => {
+    props.history.push("/product");
   }
 
   const startAnime = (isNext: boolean) => {
@@ -227,16 +232,19 @@ export default function GroupIntro(props: any) {
             </div>
             <div className="traits-contianer">
               特质：
-              {departments[index].traits.map((trait: string, index: number) => {
-                return (index+1) === departments[index].traits.length ? 
-                (<span key={index}>{trait}</span>) :
-                (<React.Fragment key={index}><span>{trait}</span>、</React.Fragment>);
+              {departments[index].traits.map((trait: string, traitIndex: number) => {
+                return (traitIndex+1) === departments[index].traits.length ? 
+                (<span key={traitIndex}>{trait}</span>) :
+                (<React.Fragment key={traitIndex}><span>{trait}</span>、</React.Fragment>);
               })}
             </div>
           </div>
           <div className="joinus-container">
             <span />
-            <Link to="/application" >
+            <Link to={{
+              pathname: "/application",
+              state: departments[index].name
+            }}>
               JOIN US
           </Link>
           </div>
@@ -244,6 +252,7 @@ export default function GroupIntro(props: any) {
         <div className="arrow-pre" onClick={handlePreClick} hidden={index === 0} />
         <div className="arrow-next" onClick={handleNextClick} hidden={index === 4} />
       </div>
+      <BackArrow onClick={handleBackClick} />
     </div>
   )
 }

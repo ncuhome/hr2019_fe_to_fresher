@@ -46,7 +46,7 @@ function ProductIntro(props:any) {
     });
     const arrowAnime = anime({
       targets: ".productintro-container .introduce-to-group-container img",
-      translateY: "8px",
+      translateY: "-8px",
       loop: true,
       direction: "alternate",
       easing: "easeInOutQuad"

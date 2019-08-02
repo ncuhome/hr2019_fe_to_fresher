@@ -4,6 +4,7 @@
   width: 100vw;
   background: center center / 100% no-repeat url('../../assets/webp/introduce_space.webp');
   background-color: rgb(15, 15, 16);
+  overflow: hidden;
 }
 
 .groupintro-orbits-mask {
@@ -28,7 +29,7 @@
 
 .groupintro-container .ncuhome-planet-container {
   position: absolute;
-  right: 0;
+  right: 6vw;
   top: 40vh;
 }
 
@@ -38,7 +39,7 @@
 
 .groupintro-container .now-planet-container {
   position: absolute;
-  top: 55vh;
+  top: 54vh;
   left: 15vw;
 }
 

@@ -2,6 +2,7 @@
   height: 100vh;
   background: url('../../assets/webp/product_background.webp') center/100% no-repeat;
   background-color: rgba(15, 15, 16, 1);
+  overflow: hidden;
 }
 
 .productintro-container .joinlink-container {
@@ -30,7 +31,7 @@
 
 .productintro-container .product-introduce-container {
   margin: auto 6.4vw;
-  padding: 2.7vh 9vw;
+  padding: 2.2vh 9vw;
   background: rgba(20, 20, 20, 1);
   height: 28vh;
   opacity: 0.85;
@@ -85,5 +86,5 @@
 
 .introduce-to-group-container img {
   position: fixed;
-  bottom: 1vh;
+  bottom: 0.5vh;
 }
