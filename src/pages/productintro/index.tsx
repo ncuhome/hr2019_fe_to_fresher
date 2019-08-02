@@ -28,6 +28,7 @@ function ProductIntro(props:any) {
   
   const [ index, setIndex ] = useState(0);
   const [ rotatedValue, setRotatedValue ] = useState(360);
+  const [ isAnimeing, setIsAnimeing ] = useState(false);
   
   useEffect(() => {
     // 设置产品图片位置、角度
@@ -130,11 +131,13 @@ function ProductIntro(props:any) {
       endDelay:1000,
       complete: () => {
         if (!changeAnimeTimeline.reversed) {
+          setIsAnimeing(false);
           props.history.push("/group");
         }
       }
     },"1000");
     arrowRef.onclick = () => {
+      setIsAnimeing(true);
       changeAnimeTimeline.play();
     }
     // 滑动动画
@@ -178,14 +181,16 @@ function ProductIntro(props:any) {
       const touch = event.targetTouches[0];
       startPos = { x: touch.pageX, y: touch.pageY, time: +new Date };
       isScrolling = 0;
-      document.body.addEventListener("touchmove", handleTouch, { passive:false });
-      document.body.addEventListener("touchend", handleTouchEnd);
+      if (!isAnimeing) {
+        document.body.addEventListener("touchmove", handleTouch, { passive:false });
+        document.body.addEventListener("touchend", handleTouchEnd);
+      }
     }
     document.body.addEventListener("touchstart", handleTouchStart);
     return () => {
       document.body.removeEventListener("touchstart", handleTouchStart)
     };
-  },[ ]);
+  },[ isAnimeing ]);
 
   useEffect(() => {
     const selectedPlanetAnime = anime({
