@@ -17,17 +17,18 @@ export default function App() {
   const [ isMobile, setIsMobile ] = useState(true);
 
   useEffect(() => {
-    enquire.register(desktopQuery,{
+    const handler = {
       match: () => {
         setIsMobile(false);
       },
       unmatch: () => {
         setIsMobile(true);
       }
-    });
+    };
+    enquire.register(desktopQuery, handler);
     return () => {
-      enquire.unregister(desktopQuery);
-    }
+      enquire.unregister(desktopQuery, handler);
+    };
   },[ isMobile ]);
 
   return isMobile ? (

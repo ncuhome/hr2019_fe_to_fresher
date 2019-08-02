@@ -1,5 +1,5 @@
 import * as React from "react";
-import anime from 'animejs';
+import anime, { set } from 'animejs';
 import { withRouter } from "react-router";
 import LoadingAnime from "../../components/LoadingAnime";
 import loadImage from "../../image";
@@ -15,6 +15,7 @@ function Home(props:any) {
   const [ isStopped, setIsStopped ] = useState(false);
   const [ isPaused, setIsPaused ] = useState(false);
   const [ processValue, setProcessValue ] = useState(0);
+  const [ unmount, setUmount ] = useState(true);
 
   const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     setIsAnimeing(true);
@@ -48,6 +49,7 @@ function Home(props:any) {
   }
 
   useEffect(() => {
+    setUmount(false);
     anime({
       targets: ".home-introduction-container",
       duration: 1000,
@@ -56,9 +58,18 @@ function Home(props:any) {
     });
     const callback = (count:number,length:number) => {
       const value = Math.round((count/length)*100);
-      setProcessValue(value);
+      // 解决组件销毁的时候对异步请求判断
+      if (unmount) {
+        
+      }
+      else {
+        setProcessValue(value);
+      }
     }
     loadImage(callback);
+    return () => {
+      setUmount(true);
+    }
   },[]);
 
   useEffect(() => {
