@@ -1,5 +1,5 @@
 import * as React from "react";
-import lottie from "lottie-web";
+import lottie from "lottie-web/build/player/lottie_light";
 import animationData from "./setting";
 import "./style.css";
 
