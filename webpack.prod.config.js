@@ -1,7 +1,7 @@
 const path = require('path')
 const config = require('./webpack.common.config');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 config.mode = 'production';
@@ -25,7 +25,11 @@ config.plugins.push(new MiniCssExtractPlugin({
   filename: '[name].css',
   chunkFilename: '[id].css',
 }));
+
+if (process.env.npm_config_report) {
+  config.plugins.push(new BundleAnalyzerPlugin());
+}
+
 config.plugins.push(new CleanWebpackPlugin());
-// config.plugins.push(new BundleAnalyzerPlugin());
 
 module.exports = config;
