@@ -1,0 +1,9 @@
+.back-arrow-container {
+  position: fixed;
+  top: 15px;
+  left: 15px;
+}
+
+.back-arrow-container img {
+  width: 30px;
+}
