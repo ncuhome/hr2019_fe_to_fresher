@@ -1,6 +1,6 @@
 import * as React from 'react';
 import anime from 'animejs';
-// import axios from 'axios';
+import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import BackArrow from '../../components/BackArrow';
 import JoinusForm from '../../components/JoinusForm/index';
@@ -18,7 +18,7 @@ const Application = (props: any) => {
   const [formValues, setFormValues] = useState({
     name: "",
     gender: "男",
-    department: "",
+    department: "行政",
     email: "",
     phone: "",
     clazz: "",
@@ -37,10 +37,19 @@ const Application = (props: any) => {
   const handleSubmit = (event:React.FormEvent<HTMLFormElement>) => {
     event.persist();
     event.preventDefault();
-    console.log(formValues);
-    // axios.post('http://freshman.guoxy.top/api/freshman/signup',{
-      
-    // });
+    axios.post('http://freshman.guoxy.top/api/freshman/signup',JSON.stringify(formValues), {
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    }).then((response) => {
+      const { data } = response;
+      if (data.status === 1) {
+        window.alert("报名成功！");
+      }
+      else {
+        window.alert(data.message);
+      }
+    });
   }
 
   const handleArrowClick = () => {
@@ -65,14 +74,6 @@ const Application = (props: any) => {
     const extHeightByHeight: number = heightDif*1.0
     const extHeightByWidth: number = (window.innerWidth*0.75)>400 ? (-120*229/280) : (-widthDif*0.75*229/280);
     const newMarginBottom:number =  + 160 + extHeightByWidth + extHeightByHeight;
-    setNcuhomeStyle({
-      "marginBottom": `${newMarginBottom}px`,
-      "transition": "1s all",
-      ...ncuhomeStyle
-    });
-  },[]);
-
-  useEffect(() => {
     const arrowAnime = anime({
       targets: ".application-container .icon-container img",
       translateY: ["-40","-50"],
@@ -80,6 +81,11 @@ const Application = (props: any) => {
       autoplay: true,
       direction: "alternate",
       easing: 'easeInOutQuad'
+    });
+    setNcuhomeStyle({
+      "marginBottom": `${newMarginBottom}px`,
+      "transition": "1s all",
+      ...ncuhomeStyle
     });
   },[]);
 
@@ -111,17 +117,17 @@ const Application = (props: any) => {
       const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
       if ((scrollTop > halfCircleTop) && isUpper) {
         setIsUpper(false);
-        if (planetAnime.reversed) {
-          planetAnime.reverse();
-        }
-        planetAnime.play();
+        // if (planetAnime.reversed) {
+        //   planetAnime.reverse();
+        // }
+        // planetAnime.play();
         disapearAnime.play();
       }
       else if ((scrollTop < halfCircleTop) && !isUpper) {
         setIsUpper(true);
-        planetAnime.reverse();
-        planetAnime.seek(planetAnime.duration);
-        planetAnime.play();
+        // planetAnime.reverse();
+        // planetAnime.seek(planetAnime.duration);
+        // planetAnime.play();
         disapearAnime.reverse();
         disapearAnime.seek(disapearAnime.duration);
         disapearAnime.play();
