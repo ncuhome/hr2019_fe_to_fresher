@@ -73,7 +73,7 @@ export default function JoinusForm(props:formType) {
         <label htmlFor="phonenumber">手机号码</label>
         <input
           type="tel"
-          pattern="/^[1]([3-9])[0-9]{9}$/"
+          pattern="^[1]([3-9])[0-9]{9}$"
           name="phonenumber" id="phonenumber"
           value={phonenumber}
           onChange={handleChange}
