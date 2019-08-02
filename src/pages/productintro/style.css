@@ -2,7 +2,6 @@
   height: 100vh;
   background: url('../../assets/webp/product_background.webp') center/100% no-repeat;
   background-color: rgba(15, 15, 16, 1);
-  overflow: hidden;
 }
 
 .productintro-container .joinlink-container {

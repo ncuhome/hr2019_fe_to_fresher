@@ -6,8 +6,7 @@
     center top/100% space url('../../assets/webp/space.webp') fixed,
     rgb(14, 15, 16);
   padding-bottom: 220px;
-  overflow: hidden;
-  
+  overflow: hidden; 
 }
 
 .application-container .ncuhome-planet-container {

@@ -22,62 +22,15 @@ const rotateArray = [
 ]
 
 let itemContainerRef:HTMLDivElement;
+let arrowRef:HTMLImageElement;
 
 function ProductIntro(props:any) {
   
   const [ index, setIndex ] = useState(0);
-  const [ isAnimeing, setIsAnimeing ] = useState(false);
   const [ rotatedValue, setRotatedValue ] = useState(360);
-
-  const t1 = anime.timeline({
-    autoplay: false
-  });
-  t1.add({
-    targets: ".introduce-to-group-container",
-    opacity: 0,
-    duration: 1000,
-    easing: "linear",
-  },0)
-  .add({
-    targets: ".productintro-container .joinlink",
-    opacity: 0,
-    duration: 1000,
-    easing: "linear",
-  },0)
-  .add({
-    targets: ".product-introduce-container",
-    opacity: 0,
-    duration: 1000,
-    easing: "linear"
-  },0)
-  .add({
-    targets: ".productintro-container .product-planet-container",
-    scale: 3,
-    bottom: "-600px",
-    left: "-800px",
-    easing: "easeInQuart",
-    duration: 3000,
-  },"1000")
-  .add({
-    targets: ".productintro-container",
-    scale: 3,
-    translateX: "-22vw",
-    translateY: "25vh",
-    easing: "easeInQuart",
-    duration: 3000,
-    endDelay:1000,
-    complete: () => {
-      if (!t1.reversed) {
-        props.history.push("/group");
-      }
-    }
-  },"1000");
-
-  const handleArrowClick = () => {
-    t1.play();
-  }
   
   useEffect(() => {
+    // 设置产品图片位置、角度
     itemContainerRef.childNodes.forEach((child:HTMLElement,key) => {
       const deg = 72*key;
       const changeHeight = (window.innerHeight * 20)/(window.innerWidth);
@@ -85,15 +38,11 @@ function ProductIntro(props:any) {
       child.style["left"] = `${32.5+37.5*Math.cos((90-deg)*Math.PI/180)}vw`;
       child.style["transform"] = `rotate(${deg}deg)`;
     });
-    setIsAnimeing(true);
     const startAnime = anime({
       targets: ".productintro-container .product-planet-container",
       rotate: 360,
       duration: 3000,
       easing: "easeOutElastic",
-    });
-    startAnime.finished.then(()=>{
-      setIsAnimeing(false);
     });
     const arrowAnime = anime({
       targets: ".productintro-container .introduce-to-group-container img",
@@ -105,7 +54,7 @@ function ProductIntro(props:any) {
   },[]);
 
   useEffect(() => {
-
+    // 处理点击产品星球转动动画
     const handleItemClick = (event:MouseEvent) => {
       const imgDom:any = event.target;
       const itemIndex = itemArray.indexOf(imgDom.alt);
@@ -127,44 +76,97 @@ function ProductIntro(props:any) {
           easing: "easeOutElastic",
           autoplay: true,
         });
-        productPlanetAnime.finished.then(()=>{
-          setIsAnimeing(false);
-        });
-        setIsAnimeing(true);
         setRotatedValue(rotatedValue-rotateStep*72);
       }
     };
     itemContainerRef.childNodes.forEach((child:HTMLElement,key) => {
       child.addEventListener("click",handleItemClick);
     });
+    return () => {
+      itemContainerRef.childNodes.forEach((child:HTMLElement,key) => {
+        child.removeEventListener("click",handleItemClick);
+      });
+    }
+  },[ rotatedValue ]);
+
+  useEffect(() => {
+    // 离场动画
+    const changeAnimeTimeline = anime.timeline({
+      autoplay: false
+    });
+    changeAnimeTimeline.add({
+      targets: ".introduce-to-group-container",
+      opacity: 0,
+      duration: 1000,
+      easing: "linear",
+    },0)
+    .add({
+      targets: ".productintro-container .joinlink",
+      opacity: 0,
+      duration: 1000,
+      easing: "linear",
+    },0)
+    .add({
+      targets: ".product-introduce-container",
+      opacity: 0,
+      duration: 1000,
+      easing: "linear"
+    },0)
+    .add({
+      targets: ".productintro-container .product-planet-container",
+      scale: 3,
+      bottom: "-600px",
+      left: "-800px",
+      easing: "easeInQuart",
+      duration: 3000,
+    },"1000")
+    .add({
+      targets: ".productintro-container",
+      scale: 3,
+      translateX: "-22vw",
+      translateY: "25vh",
+      easing: "easeInQuart",
+      duration: 3000,
+      endDelay:1000,
+      complete: () => {
+        if (!changeAnimeTimeline.reversed) {
+          props.history.push("/group");
+        }
+      }
+    },"1000");
+    arrowRef.onclick = () => {
+      changeAnimeTimeline.play();
+    }
+    // 滑动动画
     let startPos: any, endPos: any, isScrolling: number;
     // 处理滑动
     const handleTouch = (event: TouchEvent) => {
+      event.preventDefault();
       if (event.targetTouches.length > 1) return;
       const touch = event.targetTouches[0];
       endPos = { x: touch.pageX - startPos.x, y: touch.pageY - startPos.y };
       isScrolling = Math.abs(endPos.x) < Math.abs(endPos.y) ? 1 : 0;
       if (isScrolling === 1) {
-        if (t1.reversed) {
-          t1.reverse();
+        if (changeAnimeTimeline.reversed) {
+          changeAnimeTimeline.reverse();
         }
-        t1.pause()
-        t1.seek(-(endPos.y/10)*50);
+        changeAnimeTimeline.pause();
+        changeAnimeTimeline.seek(-(endPos.y/10)*50);
       }
     }
     const handleTouchEnd = (event: TouchEvent) => {
       const duration = +new Date - startPos.time;
       if (isScrolling === 1) {    //当为竖直滚动时
         if (Number(duration) > 10 && endPos.y < -200) {
-          t1.play();
-          if (t1.reversed) {
-            t1.reverse();
+          changeAnimeTimeline.play();
+          if (changeAnimeTimeline.reversed) {
+            changeAnimeTimeline.reverse();
           }
         }
         else {
-          t1.play();
-          if (!t1.reversed) {
-            t1.reverse();
+          changeAnimeTimeline.play();
+          if (!changeAnimeTimeline.reversed) {
+            changeAnimeTimeline.reverse();
           }
         }
       }
@@ -173,22 +175,17 @@ function ProductIntro(props:any) {
       return true;
     }
     const handleTouchStart = (event: TouchEvent) => {
-      if (!isAnimeing) {
-        const touch = event.targetTouches[0];
-        startPos = { x: touch.pageX, y: touch.pageY, time: +new Date };
-        isScrolling = 0;
-        document.body.addEventListener("touchmove", handleTouch, { passive:true });
-        document.body.addEventListener("touchend", handleTouchEnd);
-      }
+      const touch = event.targetTouches[0];
+      startPos = { x: touch.pageX, y: touch.pageY, time: +new Date };
+      isScrolling = 0;
+      document.body.addEventListener("touchmove", handleTouch, { passive:false });
+      document.body.addEventListener("touchend", handleTouchEnd);
     }
     document.body.addEventListener("touchstart", handleTouchStart);
     return () => {
-      itemContainerRef.childNodes.forEach((child:HTMLElement,key) => {
-        child.removeEventListener("click",handleItemClick);
-      });
       document.body.removeEventListener("touchstart", handleTouchStart)
     };
-  },[ isAnimeing, rotatedValue ]);
+  },[ ]);
 
   useEffect(() => {
     const selectedPlanetAnime = anime({
@@ -228,7 +225,7 @@ function ProductIntro(props:any) {
       </div>
       <div className="introduce-to-group-container">
         <p>认识创造者们</p>
-        <img src={arrowDown} alt="向下" onClick={handleArrowClick} />
+        <img src={arrowDown} alt="向下" ref={(myRef) => {arrowRef = myRef}} />
       </div>
     </div>
   );

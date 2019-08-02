@@ -49,6 +49,14 @@ function Home(props:any) {
   }
 
   useEffect(() => {
+    const handleTouch = (e:TouchEvent) => { e.preventDefault(); };
+    document.body.addEventListener("touchmove", handleTouch, { passive:false });
+    return () => {
+      document.body.removeEventListener("touchmove", handleTouch)
+    }
+  },[]);
+
+  useEffect(() => {
     setUnmount(false);
     anime({
       targets: ".home-introduction-container",
