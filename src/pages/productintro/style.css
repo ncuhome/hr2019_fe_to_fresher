@@ -39,18 +39,18 @@
 }
 
 .productintro-container .product-introduce-container .product-name {
-  color: rgba(255, 255, 255, 0.85);
+  color: #ffffff;
   font-size: 28px;
+  margin-bottom: 2vh;
 }
 
 .productintro-container .product-introduce-container .product-description-container {
-  margin-top: 4vh;
   color: rgba(146, 146, 146, 1);
   font-size: 14px;
 }
 
 .productintro-container .product-introduce-container .product-description-container p {
-  margin-bottom: 9px;
+  margin-bottom: 1vh;
   letter-spacing: 1px;
 }
 
@@ -62,15 +62,15 @@
 }
 
 .productintro-container .product-planet-container .product-planet {
-  width: 80vw;
-  height: 80vw;
+  width: 75vw;
+  height: 75vw;
 }
 
 .productintro-container .product-planet-container .product-item-container img {
   position: absolute;
   left: 0;
   top: 0;
-  width: 40vw;
+  width: 35vw;
 }
 
 .introduce-to-group-container {

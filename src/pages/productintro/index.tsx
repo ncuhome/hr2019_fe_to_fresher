@@ -27,6 +27,7 @@ function ProductIntro(props:any) {
   
   const [ index, setIndex ] = useState(0);
   const [ isAnimeing, setIsAnimeing ] = useState(false);
+  const [ rotatedValue, setRotatedValue ] = useState(360);
 
   const t1 = anime.timeline({
     autoplay: false
@@ -72,48 +73,16 @@ function ProductIntro(props:any) {
     }
   },"1000");
 
-  const handleItemClick = (event:MouseEvent) => {
-    const imgDom:any = event.target;
-    const itemIndex = itemArray.indexOf(imgDom.alt);
-    const rotateStep = rotateArray[index][itemIndex];
-    if (itemIndex === index || isAnimeing) {
-      event.preventDefault();
-    }
-    else {
-      anime.remove(`.productintro-container .product-item-container #product${index}`);
-      anime.set(`.productintro-container .product-item-container #product${index}`, {
-        translateY: 0,
-      });
-      setIsAnimeing(true);
-      setIndex(itemIndex);
-      startRotate(rotateStep);
-    }
-  };
-
   const handleArrowClick = () => {
-
     t1.play();
-  }
-
-  const startRotate = (rotateStep:number) => {
-    const productPlanetAnime = anime({
-      targets: ".productintro-container .product-planet-container",
-      rotate: `+=${-rotateStep*72.0}`,
-      duration: 2000,
-      easing: "easeOutElastic",
-      autoplay: true,
-    });
-    productPlanetAnime.finished.then(()=>{
-      setIsAnimeing(false);
-    });
   }
   
   useEffect(() => {
     itemContainerRef.childNodes.forEach((child:HTMLElement,key) => {
       const deg = 72*key;
       const changeHeight = (window.innerHeight * 20)/(window.innerWidth);
-      child.style["top"] = `${changeHeight-40*Math.sin((90-deg)*Math.PI/180)}vw`;
-      child.style["left"] = `${30+40*Math.cos((90-deg)*Math.PI/180)}vw`;
+      child.style["top"] = `${changeHeight-37.5*Math.sin((90-deg)*Math.PI/180)}vw`;
+      child.style["left"] = `${32.5+37.5*Math.cos((90-deg)*Math.PI/180)}vw`;
       child.style["transform"] = `rotate(${deg}deg)`;
     });
     setIsAnimeing(true);
@@ -136,6 +105,35 @@ function ProductIntro(props:any) {
   },[]);
 
   useEffect(() => {
+
+    const handleItemClick = (event:MouseEvent) => {
+      const imgDom:any = event.target;
+      const itemIndex = itemArray.indexOf(imgDom.alt);
+      const rotateStep = rotateArray[index][itemIndex];
+      console.log(rotatedValue);
+      if ( itemIndex === index ) {
+        event.preventDefault();
+      }
+      else {
+        anime.remove(`.productintro-container .product-item-container #product${index}`);
+        anime.set(`.productintro-container .product-item-container #product${index}`, {
+          translateY: 0,
+        });
+        setIndex(itemIndex);
+        const productPlanetAnime = anime({
+          targets: ".productintro-container .product-planet-container",
+          rotate: `${rotatedValue-rotateStep*72}`,
+          duration: 2000,
+          easing: "easeOutElastic",
+          autoplay: true,
+        });
+        productPlanetAnime.finished.then(()=>{
+          setIsAnimeing(false);
+        });
+        setIsAnimeing(true);
+        setRotatedValue(rotatedValue-rotateStep*72);
+      }
+    };
     itemContainerRef.childNodes.forEach((child:HTMLElement,key) => {
       child.addEventListener("click",handleItemClick);
     });
@@ -190,7 +188,7 @@ function ProductIntro(props:any) {
       });
       document.body.removeEventListener("touchstart", handleTouchStart)
     };
-  },[ isAnimeing ]);
+  },[ isAnimeing, rotatedValue ]);
 
   useEffect(() => {
     const selectedPlanetAnime = anime({
