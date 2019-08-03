@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route } from "react-router-dom";
 import enquire from 'enquire.js';
 import Home from './pages/home';
 import ProductIntro from './pages/productintro';
-import GroupIntro from './pages/groupintro';
+import DepartmentsIntro from './pages/departmentintro';
 import Application from './pages/application';
 import './App.css';
 import config from './config';
@@ -35,7 +35,7 @@ export default function App() {
     <Router>
       <Route exact path="/" component={Home} />
       <Route path="/product" component={ProductIntro} />
-      <Route path="/group" component={GroupIntro} />
+      <Route path="/department" component={DepartmentsIntro} />
       <Route path="/application" component={Application} />
     </Router>
   ) :

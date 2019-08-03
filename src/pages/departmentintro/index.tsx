@@ -15,11 +15,11 @@ const pmPlanet = require("../../assets/png/introduce_pm_planet.png");
 const desighPlanet = require("../../assets/png/introduce_desigh_planet.png");
 const devPlanet = require("../../assets/png/introduce_dev_planet.png");
 
-const planetArray = [managePlanet, omPlanet, pmPlanet, desighPlanet, managePlanet];
+const planetArray = [managePlanet, omPlanet, pmPlanet, desighPlanet, devPlanet];
 
 let textRef: HTMLDivElement;
 
-export default function GroupIntro(props: any) {
+export default function DepartmentsIntro(props: any) {
 
   const [index, setIndex] = useState(0);
   const [isAnimeing, setIsAnimeing] = useState(false);
