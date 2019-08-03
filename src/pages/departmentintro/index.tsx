@@ -175,6 +175,7 @@ export default function DepartmentsIntro(props: any) {
       anime.remove(".groupintro-container .next-planet-container,.ncuhome-planet-container,.now-planet-container");
       anime.remove(".groupintro-container .modal-container");
       anime.remove(".joinus-container span");
+      console.log(123);
     }
   }, []);
 
