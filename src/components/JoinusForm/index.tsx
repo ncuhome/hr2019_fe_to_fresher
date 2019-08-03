@@ -52,8 +52,8 @@ export default function JoinusForm(props:formType) {
         <label htmlFor="department">组别</label>
         <select name="department" id="department" value={department} onChange={handleChange}>
           <option value="行政">行政组</option>
-          <option value="产品">产品组</option>
           <option value="运营">运营组</option>
+          <option value="产品">产品组</option>
           <option value="设计">设计组</option>
           <option value="研发">研发组</option>
         </select>
