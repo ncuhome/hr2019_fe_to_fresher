@@ -106,8 +106,16 @@ const Application = (props: any) => {
   },[]);
 
   useEffect(() => {
-    // 有冗余，但修改会发现bug，TODO
-    const planetAnime = anime({
+    // 由于animejs v3.1的bug，动画倒放会闪现，只能写两个动画，后期再跟进 TODO
+    const planetSmallerAnime = anime({
+      targets: ".application-container .ncuhome-planet-container img",
+      direction: 'normal',
+      autoplay: false,
+      duration: 500,
+      easing: 'easeInOutQuad',
+      scale: [2,1],
+    });
+    const planetBiggerAnime = anime({
       targets: ".application-container .ncuhome-planet-container img",
       direction: 'normal',
       autoplay: false,
@@ -133,17 +141,14 @@ const Application = (props: any) => {
       const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
       if ((scrollTop > halfCircleTop) && isUpper) {
         setIsUpper(false);
-        // if (planetAnime.reversed) {
-        //   planetAnime.reverse();
-        // }
-        // planetAnime.play();
+        planetBiggerAnime.play();
+
         disapearAnime.play();
       }
       else if ((scrollTop < halfCircleTop) && !isUpper) {
         setIsUpper(true);
-        // planetAnime.reverse();
-        // planetAnime.seek(planetAnime.duration);
-        // planetAnime.play();
+        planetSmallerAnime.play();
+
         disapearAnime.reverse();
         disapearAnime.seek(disapearAnime.duration);
         disapearAnime.play();
