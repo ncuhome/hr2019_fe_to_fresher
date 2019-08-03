@@ -52,6 +52,12 @@ function ProductIntro(props:any) {
       direction: "alternate",
       easing: "easeInOutQuad"
     });
+    return ()=> {
+      // 清理动画防止内存泄漏
+      anime.remove(".productintro-container");
+      anime.remove(".productintro-container .product-planet-container");
+      anime.remove(".productintro-container .introduce-to-group-container img");
+    }
   },[]);
 
   useEffect(() => {
@@ -61,7 +67,7 @@ function ProductIntro(props:any) {
       const itemIndex = itemArray.indexOf(imgDom.alt);
       const rotateStep = rotateArray[index][itemIndex];
       console.log(rotatedValue);
-      if ( itemIndex === index ) {
+      if ( itemIndex === index && isAnimeing ) {
         event.preventDefault();
       }
       else {
@@ -88,7 +94,7 @@ function ProductIntro(props:any) {
         child.removeEventListener("click",handleItemClick);
       });
     }
-  },[ rotatedValue ]);
+  },[ index, rotatedValue, isAnimeing ]);
 
   useEffect(() => {
     // 离场动画
@@ -116,6 +122,8 @@ function ProductIntro(props:any) {
     .add({
       targets: ".productintro-container .product-planet-container",
       scale: 3,
+      // 防止设置scale将rotatate的值重置
+      rotate: [rotatedValue,rotatedValue],
       bottom: "-600px",
       left: "-800px",
       easing: "easeInQuart",
@@ -131,7 +139,7 @@ function ProductIntro(props:any) {
       endDelay:1000,
       complete: () => {
         if (!changeAnimeTimeline.reversed) {
-          setIsAnimeing(false);
+          // setIsAnimeing(false);
           props.history.push("/department");
         }
       }
@@ -188,9 +196,9 @@ function ProductIntro(props:any) {
     }
     document.body.addEventListener("touchstart", handleTouchStart);
     return () => {
-      document.body.removeEventListener("touchstart", handleTouchStart)
+      document.body.removeEventListener("touchstart", handleTouchStart);
     };
-  },[ isAnimeing ]);
+  },[ isAnimeing, rotatedValue ]);
 
   useEffect(() => {
     const selectedPlanetAnime = anime({

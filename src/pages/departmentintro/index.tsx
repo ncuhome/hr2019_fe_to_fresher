@@ -8,12 +8,17 @@ import "./style.css";
 const { useState, useEffect } = React;
 const { departments } = config;
 
-const ncuhomePlanet = require("../../assets/png/ncuhome_planet.png");
+const joinusArrow = require("../../assets/svg/introduce_joinus.svg");
+const changeArrow = require("../../assets/svg/introduce_arrow.svg");
+
+const ncuhomePlanet = require("../../assets/png/ncuhome_planet.png")
 const managePlanet = require("../../assets/png/introduce_manage_planet.png");
 const omPlanet = require("../../assets/png/introduce_om_planet.png");
 const pmPlanet = require("../../assets/png/introduce_pm_planet.png");
 const desighPlanet = require("../../assets/png/introduce_desigh_planet.png");
 const devPlanet = require("../../assets/png/introduce_dev_planet.png");
+
+const orbits = require("../../assets/png/introduce_orbits.png");
 
 const planetArray = [managePlanet, omPlanet, pmPlanet, desighPlanet, devPlanet];
 
@@ -160,13 +165,13 @@ export default function DepartmentsIntro(props: any) {
       setIsAnimeing(false);
     })
     // Join Us 箭头动画
-    const joinusArrow = anime({
+    const joinusArrowAnime = anime({
       targets: ".joinus-container span",
       loop: true,
       autoplay: true,
       translateX: "-10px",
       direction: "alternate",
-      easing: "easeInOutQuad"
+      easing: "easeInOutQuad",
     });
     return () => {
       document.body.removeEventListener("touchmove", handleTouch)
@@ -223,7 +228,9 @@ export default function DepartmentsIntro(props: any) {
 
   return (
     <div className="groupintro-container">
-      <div className="groupintro-orbits-mask" />
+      <div className="groupintro-orbits-mask">
+        <img src={orbits}/>
+      </div>
       <div className="next-planet-container">
         <img src={planetArray[(index + 1) % 5]} alt="下一个星球" />
       </div>
@@ -255,7 +262,9 @@ export default function DepartmentsIntro(props: any) {
             </div>
           </div>
           <div className="joinus-container">
-            <span />
+            <span>
+              <img src={joinusArrow}/>
+            </span>
             <Link to={{
               pathname: "/application",
               state: departments[index].name
@@ -264,8 +273,8 @@ export default function DepartmentsIntro(props: any) {
           </Link>
           </div>
         </div>
-        <div className="arrow-pre" onClick={handlePreClick}/>
-        <div className="arrow-next" onClick={handleNextClick}/>
+        <img src={changeArrow} className="arrow-pre" onClick={handlePreClick}/>
+        <img src={changeArrow} className="arrow-next" onClick={handleNextClick}/>
       </div>
       <BackArrow onClick={handleBackClick} />
     </div>

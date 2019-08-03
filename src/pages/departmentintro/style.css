@@ -8,7 +8,6 @@
 }
 
 .groupintro-orbits-mask {
-  background: center center / 100% no-repeat url('../../assets/png/introduce_orbits.png');
   width: 100vw;
   height: 100vh;
   opacity: 0;
@@ -17,11 +16,16 @@
   left: 0;
 }
 
+.groupintro-orbits-mask img {
+  width: 100vw;
+}
+
 .groupintro-container .next-planet-container {
   position: absolute;
   left: 12vw;
   top: 10vh;
   opacity: 0;
+  z-index: 1;
 }
 
 .groupintro-container .next-planet-container img {
@@ -33,10 +37,11 @@
   right: 6vw;
   top: 40vh;
   opacity: 0;
+  z-index: 1;
 }
 
 .groupintro-container .ncuhome-planet-container img {
-  width: 40vw;
+  width: 30vw;
 }
 
 .groupintro-container .now-planet-container {
@@ -44,6 +49,7 @@
   top: 54vh;
   left: 15vw;
   opacity: 0;
+  z-index: 1;
 }
 
 .groupintro-container .now-planet-container img {
@@ -55,6 +61,7 @@
   top: 15vh;
   color: rgba(255, 255, 255, 0.85);
   font-size: 14px;
+  z-index: 2;
 }
 
 .groupintro-container .modal-container:after {
@@ -134,7 +141,6 @@
   width: 20px;
   position: absolute;
   left: 34vw;
-  background: url('../../assets/svg/introduce_joinus.svg') no-repeat center/16px 15px;
 }
 
 .groupintro-container .modal-container .joinus-container a {
@@ -146,18 +152,16 @@
 .groupintro-container .modal-container .arrow-next {
   position: absolute;
   right: 1vw;
-  top: 50%;
-  width: 25px;
-  height: 50px;
-  background: url('../../assets/svg/introduce_arrow.svg') no-repeat center/12px 29px;
+  top: 45%;
+  width: 15px;
+  height: 30px;
 }
 
 .groupintro-container .modal-container .arrow-pre {
   position: absolute;
   left: 1vw;
-  top: 50%;
-  width: 25px;
-  height: 50px;
-  background: url('../../assets/svg/introduce_arrow.svg') no-repeat center/12px 29px;
+  top: 45%;
+  width: 15px;
+  height: 30px;
   transform: rotate(180deg);
 }
