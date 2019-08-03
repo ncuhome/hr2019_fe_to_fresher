@@ -46,15 +46,6 @@ function ProductIntro(props:any) {
       rotate: 360,
       duration: 3000,
       easing: "easeOutElastic",
-      complete: () => {
-        anime({
-          targets:".product-pointer-container img",
-          autoplay: true,
-          opacity: [0,1],
-          duration: 500,
-          easing: "linear",
-        })
-      }
     });
     const arrowAnime = anime({
       targets: ".productintro-container .introduce-to-group-container img",
@@ -73,11 +64,20 @@ function ProductIntro(props:any) {
       translateX: "15px",
       easing: "easeInOutQuad"
     });
+    anime({
+      targets:".product-pointer-container img",
+      autoplay: true,
+      opacity: [0,1],
+      delay: 3000,
+      duration: 500,
+      easing: "linear",
+    });
     return ()=> {
       // 清理动画防止内存泄漏
       anime.remove(".productintro-container");
       anime.remove(".productintro-container .product-planet-container");
       anime.remove(".productintro-container .introduce-to-group-container img");
+      anime.remove(".product-pointer-container img");
     }
   },[]);
 
@@ -88,10 +88,11 @@ function ProductIntro(props:any) {
       const itemIndex = itemArray.indexOf(imgDom.alt);
       const rotateStep = rotateArray[index][itemIndex];
       if (isFirst) {
+        anime.remove(".product-pointer-container img");
         anime({
           targets:".product-pointer-container img",
           autoplay: true,
-          opacity: [1,0],
+          opacity: 0,
           duration: 500,
           easing: "linear",
           complete: () => {
@@ -182,6 +183,7 @@ function ProductIntro(props:any) {
     },0);
     arrowRef.onclick = () => {
       setIsAnimeing(true);
+      anime.remove(".product-pointer-container img");
       changeAnimeTimeline.play();
     }
     // 滑动动画
