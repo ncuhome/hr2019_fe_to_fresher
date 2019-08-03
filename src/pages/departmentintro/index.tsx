@@ -40,6 +40,16 @@ export default function DepartmentsIntro(props: any) {
     props.history.push("/product");
   }
 
+  const safeSetIndex = (v:number) => {
+    const remainder = v % 5;
+    if (remainder < 0) {
+      setIndex(remainder+5);
+    }
+    else {
+      setIndex(remainder);
+    }
+  }
+
   const startAnime = (isNext: boolean) => {
     setIsAnimeing(true);
     const nextTimeline = anime.timeline({
@@ -98,7 +108,7 @@ export default function DepartmentsIntro(props: any) {
             modalApearAnime.play()
             setIsAnimeing(false);
           });
-          setIndex(index + 1);
+          safeSetIndex(index + 1);
           
           preTimeline.reverse();
           preTimeline.seek(preTimeline.duration);
@@ -111,7 +121,7 @@ export default function DepartmentsIntro(props: any) {
             modalApearAnime.play();
             setIsAnimeing(false);
           });
-          setIndex(index - 1);
+          safeSetIndex(index - 1);
 
           nextTimeline.reverse();
           nextTimeline.seek(nextTimeline.duration);
@@ -185,9 +195,9 @@ export default function DepartmentsIntro(props: any) {
       if (isScrolling === 0) {    //当为水平滚动时
         if (Number(duration) > 10) {
           //判断是左移还是右移，当偏移量大于10时执行
-          if (endPos.x > 10 && index !== 0) {
+          if (endPos.x > 10) {
             startAnime(false);
-          } else if (endPos.x < -10 && index !== 4) {
+          } else if (endPos.x < -10) {
             startAnime(true);
           }
         }
@@ -233,7 +243,7 @@ export default function DepartmentsIntro(props: any) {
               <p>{departments[index].subheading}</p>
             </div>
             <div className="introdution-container">
-              {departments[index].description.map((line: string, index: number) => (<p key={index}>{line}</p>))}
+              {departments[index].description.map((line: string, lineIndex: number) => (<p key={lineIndex}>{line}</p>))}
             </div>
             <div className="traits-contianer">
               特质：
@@ -254,8 +264,8 @@ export default function DepartmentsIntro(props: any) {
           </Link>
           </div>
         </div>
-        <div className="arrow-pre" onClick={handlePreClick} hidden={index === 0} />
-        <div className="arrow-next" onClick={handleNextClick} hidden={index === 4} />
+        <div className="arrow-pre" onClick={handlePreClick}/>
+        <div className="arrow-next" onClick={handleNextClick}/>
       </div>
       <BackArrow onClick={handleBackClick} />
     </div>

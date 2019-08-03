@@ -59,7 +59,7 @@ export default function JoinusForm(props:formType) {
         </select>
       </p>
       <p>
-        <label htmlFor="email">邮箱</label>
+        <label htmlFor="email">电子邮箱</label>
         <input
           type="email"
           name="email"

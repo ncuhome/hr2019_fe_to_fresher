@@ -78,6 +78,7 @@
 .application-container #xiaojiayuan {
   position: absolute;
   bottom: 0;
-  width: 100%;
+  width: 80%;
+  margin: 0 10% 8%;
   z-index: 0;
 }
