@@ -97,11 +97,12 @@ function Home(props:any) {
         processValue={processValue}
       />
       <div className="home-guide-container" onClick={handleClick}>
-        <p>点击进入星系</p>
+        <div className="arrow"/>
+        <div>点击进入星系</div>
       </div>
       <div className="home-introduction-container">
         <p className="home-introduction-headline">ABOUT NCUHOME</p>
-        {indexText.map((line,index) => (<p key={index}>{line}</p>))}
+        <div>{indexText.map((line,index) => (<p key={index}>{line}</p>))}</div>
       </div>
       <div className="home-hidden-container">
         <p>欢迎来到NCUHOME的世界</p>
