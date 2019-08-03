@@ -64,7 +64,7 @@ const Application = (props: any) => {
   }
 
   const handleBackClick = () => {
-    props.history.push("/group");
+    props.history.push("/department");
   }
 
   const handleQRcodeClick = () => {

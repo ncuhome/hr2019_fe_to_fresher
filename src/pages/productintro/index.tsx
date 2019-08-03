@@ -132,7 +132,7 @@ function ProductIntro(props:any) {
       complete: () => {
         if (!changeAnimeTimeline.reversed) {
           setIsAnimeing(false);
-          props.history.push("/group");
+          props.history.push("/department");
         }
       }
     },"1000");
