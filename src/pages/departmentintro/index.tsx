@@ -8,7 +8,7 @@ import "./style.css";
 const { useState, useEffect } = React;
 const { departments } = config;
 
-const ncuhomePlanet = require("../../assets/png/ncuhome_planet.png")
+const ncuhomePlanet = require("../../assets/png/ncuhome_planet.png");
 const managePlanet = require("../../assets/png/introduce_manage_planet.png");
 const omPlanet = require("../../assets/png/introduce_om_planet.png");
 const pmPlanet = require("../../assets/png/introduce_pm_planet.png");
@@ -54,7 +54,7 @@ export default function DepartmentsIntro(props: any) {
     setIsAnimeing(true);
     const nextTimeline = anime.timeline({
       autoplay: false,
-      duration: 1000,
+      duration: 600,
       easing: "easeInOutQuad",
       direction: "normal",
     });
@@ -71,7 +71,7 @@ export default function DepartmentsIntro(props: any) {
 
     const preTimeline = anime.timeline({
       autoplay: false,
-      duration: 1000,
+      duration: 800,
       easing: "easeInOutQuad",
       direction: "normal",
     });
@@ -89,14 +89,14 @@ export default function DepartmentsIntro(props: any) {
     // 介绍文字显示消失用reserve不知为何会闪一下，只好写两个
     const modalApearAnime = anime({
       targets: ".modal-container",
-      opacity: [0, 0.85],
-      duration: 1000,
+      opacity: [0, 1],
+      duration: 600,
       easing: "linear",
     })
     const modalDisapearAnime = anime({
       targets: ".modal-container",
-      opacity: [0.85, 0],
-      duration: 1000,
+      opacity: [1, 0],
+      duration: 600,
       easing: "linear",
     });
 
@@ -151,8 +151,8 @@ export default function DepartmentsIntro(props: any) {
       easing: "linear",
     },"+=0")
     .add({
-      targets: ".groupintro-container .modal-container",
-      opacity: [0,0.85],
+      targets: ".groupintro-container .modal-container ",
+      opacity: [0,1],
       duration: 1000,
       easing: "linear",
     },"+=0");
