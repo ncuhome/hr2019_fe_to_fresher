@@ -15,6 +15,7 @@ const other = require('../../assets/png/products/other.png');
 const US = require('../../assets/png/products/US.png');
 
 const arrowDown = require('../../assets/svg/product_arrow_down.svg');
+const pointerImg = require('../../assets/svg/pointer.svg');
 
 const itemArray = ["iNCU", "NCUOS", "mainSite", "other", "US"];
 const rotateArray = [
@@ -29,6 +30,7 @@ function ProductIntro(props:any) {
   const [ index, setIndex ] = useState(0);
   const [ rotatedValue, setRotatedValue ] = useState(360);
   const [ isAnimeing, setIsAnimeing ] = useState(false);
+  const [ isFirst, setIsFirst ] = useState(true);
   
   useEffect(() => {
     // 设置产品图片位置、角度
@@ -44,12 +46,31 @@ function ProductIntro(props:any) {
       rotate: 360,
       duration: 3000,
       easing: "easeOutElastic",
+      complete: () => {
+        anime({
+          targets:".product-pointer-container img",
+          autoplay: true,
+          opacity: [0,1],
+          duration: 500,
+          easing: "linear",
+        })
+      }
     });
     const arrowAnime = anime({
       targets: ".productintro-container .introduce-to-group-container img",
       translateY: "-8px",
       loop: true,
       direction: "alternate",
+      easing: "easeInOutQuad"
+    });
+    const pointerAnime = anime({
+      targets: ".product-pointer-container img",
+      duration: 1000,
+      loop: true,
+      direction: "alternate",
+      rotate: ["140deg","150deg"],
+      translateY: "-10px",
+      translateX: "15px",
       easing: "easeInOutQuad"
     });
     return ()=> {
@@ -66,7 +87,18 @@ function ProductIntro(props:any) {
       const imgDom:any = event.target;
       const itemIndex = itemArray.indexOf(imgDom.alt);
       const rotateStep = rotateArray[index][itemIndex];
-      console.log(rotatedValue);
+      if (isFirst) {
+        anime({
+          targets:".product-pointer-container img",
+          autoplay: true,
+          opacity: [1,0],
+          duration: 500,
+          easing: "linear",
+          complete: () => {
+            setIsFirst(false);
+          }
+        })
+      }
       if ( itemIndex === index && isAnimeing ) {
         event.preventDefault();
       }
@@ -94,7 +126,7 @@ function ProductIntro(props:any) {
         child.removeEventListener("click",handleItemClick);
       });
     }
-  },[ index, rotatedValue, isAnimeing ]);
+  },[ index, rotatedValue, isAnimeing, isFirst ]);
 
   useEffect(() => {
     // 离场动画
@@ -239,6 +271,9 @@ function ProductIntro(props:any) {
           <img src={other} alt="other" id="product3" />
           <img src={US} alt="US" id="product4" />
         </div>
+      </div>
+      <div className="product-pointer-container">
+        <img src={pointerImg} />
       </div>
       <div className="introduce-to-group-container">
         <p>认识创造者们</p>
