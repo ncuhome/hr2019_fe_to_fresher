@@ -1,34 +1,53 @@
 .loading-container {
-  position: relative;
-  top: 12vh;
-  color: white;
+    position: relative;
+    top: 12vh;
+    color: white;
+    animation: wiggle 5.5s infinite ease;
+}
+
+@keyframes wiggle {
+    0% {
+        -webkit-transform: translate(0px, 0px) rotate(0deg)
+    }
+    24% {
+        -webkit-transform: translate(-1.5px, -2.5px) rotate(-.15deg)
+    }
+    48% {
+        -webkit-transform: translate(0.5px, -2.5px) rotate(.15deg)
+    }
+    72% {
+        -webkit-transform: translate(-2.5px, -0.5px) rotate(-.15deg)
+    }
+    100% {
+        -webkit-transform: translate(0, 0) rotate(0deg)
+    }
 }
 
 .loading-container .lottie-contianer {
-  position: relative;
-  margin: 0 15vw;
-  width: 70vw;
+    position: relative;
+    margin: 0 15vw;
+    width: 70vw;
 }
 
 .loading-container .lottie-contianer svg {
-  text-align: center;
+    text-align: center;
 }
 
 .loading-container .process-container {
-  display: inline-block;
-  position: absolute;
-  left: 53%;
-  top: 62%;
-  width: 40px;
-  transform: rotate(-50deg);
+    display: inline-block;
+    position: absolute;
+    left: 53%;
+    top: 62%;
+    width: 40px;
+    transform: rotate(-50deg);
 }
 
 .loading-container .process-container #loadingProcess {
-  width: 30px;
-  display: flex;
-  justify-content: center;
+    width: 30px;
+    display: flex;
+    justify-content: center;
 }
 
 .loading-container .process-container #loadingProcess::after {
-  content: "%";
+    content: "%";
 }
