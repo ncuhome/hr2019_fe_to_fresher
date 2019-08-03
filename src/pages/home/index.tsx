@@ -79,15 +79,15 @@ function Home(props:any) {
   },[ unmount ]);
 
   useEffect(() => {
+    const guideAppear = anime({
+      targets: ".home-guide-container",
+      autoplay: false,
+      duration: 1000,
+      opacity: [0,1],
+      easing: "linear",
+    });
     if (processValue === 100) {
-      console.log("success");
-      anime({
-        targets: ".home-guide-container",
-        autoplay: true,
-        duration: 1000,
-        opacity: [0,1],
-        easing: "linear"
-      });
+      guideAppear.play();
     }
   }, [ processValue ]);
 
