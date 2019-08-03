@@ -121,6 +121,7 @@ function ProductIntro(props:any) {
     },0)
     .add({
       targets: ".productintro-container .product-planet-container",
+      delay: 1000,
       scale: 3,
       // 防止设置scale将rotatate的值重置
       rotate: [rotatedValue,rotatedValue],
@@ -128,9 +129,10 @@ function ProductIntro(props:any) {
       left: "-800px",
       easing: "easeInQuart",
       duration: 3000,
-    },"1000")
+    },0)
     .add({
       targets: ".productintro-container",
+      delay: 1000,
       scale: 3,
       translateX: "-22vw",
       translateY: "25vh",
@@ -139,30 +141,29 @@ function ProductIntro(props:any) {
       endDelay:1000,
       complete: () => {
         if (!changeAnimeTimeline.reversed) {
-          // setIsAnimeing(false);
           props.history.push("/department");
         }
+        else {
+          setIsAnimeing(false);
+        }
       }
-    },"1000");
+    },0);
     arrowRef.onclick = () => {
       setIsAnimeing(true);
       changeAnimeTimeline.play();
     }
     // 滑动动画
-    let startPos: any, endPos: any, isScrolling: number;
+    let startPos: any, endPos: any, isScrolling: number, animeTime: number;
     // 处理滑动
     const handleTouch = (event: TouchEvent) => {
-      event.preventDefault();
       if (event.targetTouches.length > 1) return;
+      if (event.cancelable) event.preventDefault();
       const touch = event.targetTouches[0];
       endPos = { x: touch.pageX - startPos.x, y: touch.pageY - startPos.y };
       isScrolling = Math.abs(endPos.x) < Math.abs(endPos.y) ? 1 : 0;
       if (isScrolling === 1) {
-        if (changeAnimeTimeline.reversed) {
-          changeAnimeTimeline.reverse();
-        }
-        changeAnimeTimeline.pause();
-        changeAnimeTimeline.seek(-(endPos.y/10)*50);
+        animeTime = -(endPos.y/10)*50;
+        changeAnimeTimeline.seek(animeTime);
       }
     }
     const handleTouchEnd = (event: TouchEvent) => {
@@ -170,14 +171,17 @@ function ProductIntro(props:any) {
       if (isScrolling === 1) {    //当为竖直滚动时
         if (Number(duration) > 10 && endPos.y < -200) {
           changeAnimeTimeline.play();
-          if (changeAnimeTimeline.reversed) {
-            changeAnimeTimeline.reverse();
-          }
         }
         else {
-          changeAnimeTimeline.play();
-          if (!changeAnimeTimeline.reversed) {
+          changeAnimeTimeline.pause();
+          if (changeAnimeTimeline.reversed) {
+            changeAnimeTimeline.play();
+          }
+          else {
+            changeAnimeTimeline.seek(animeTime);
             changeAnimeTimeline.reverse();
+            changeAnimeTimeline.play();
+            setIsAnimeing(true);
           }
         }
       }
