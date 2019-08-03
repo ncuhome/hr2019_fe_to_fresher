@@ -1,21 +1,21 @@
-import * as React from 'react';
-import anime from 'animejs';
-import { Link } from 'react-router-dom';
-import BackArrow from '../../components/BackArrow';
-import config from '../../config';
-import './style.css';
+import * as React from "react";
+import anime from "animejs";
+import { Link } from "react-router-dom";
+import BackArrow from "../../components/BackArrow";
+import config from "../../config";
+import "./style.css";
 
 const { useState, useEffect } = React;
 const { departments } = config;
 
-const ncuhomePlanet = require('../../assets/png/ncuhome_planet.png')
-const pmPlanet = require('../../assets/png/introduce_pm_planet.png');
-const devPlanet = require('../../assets/png/introduce_dev_planet.png');
-const desighPlanet = require('../../assets/png/introduce_desigh_planet.png');
-const omPlanet = require('../../assets/png/introduce_om_planet.png');
-const managePlanet = require('../../assets/png/introduce_manage_planet.png');
+const ncuhomePlanet = require("../../assets/png/ncuhome_planet.png")
+const managePlanet = require("../../assets/png/introduce_manage_planet.png");
+const omPlanet = require("../../assets/png/introduce_om_planet.png");
+const pmPlanet = require("../../assets/png/introduce_pm_planet.png");
+const desighPlanet = require("../../assets/png/introduce_desigh_planet.png");
+const devPlanet = require("../../assets/png/introduce_dev_planet.png");
 
-const planetArray = [pmPlanet, devPlanet, desighPlanet, omPlanet, managePlanet];
+const planetArray = [managePlanet, omPlanet, pmPlanet, desighPlanet, managePlanet];
 
 let textRef: HTMLDivElement;
 
@@ -45,8 +45,8 @@ export default function GroupIntro(props: any) {
     const nextTimeline = anime.timeline({
       autoplay: false,
       duration: 1000,
-      easing: 'easeInOutQuad',
-      direction: 'normal',
+      easing: "easeInOutQuad",
+      direction: "normal",
     });
     nextTimeline.add({
       targets: ".next-planet-container",
@@ -62,8 +62,8 @@ export default function GroupIntro(props: any) {
     const preTimeline = anime.timeline({
       autoplay: false,
       duration: 1000,
-      easing: 'easeInOutQuad',
-      direction: 'normal',
+      easing: "easeInOutQuad",
+      direction: "normal",
     });
     preTimeline.add({
       targets: ".next-planet-container",
@@ -81,13 +81,13 @@ export default function GroupIntro(props: any) {
       targets: ".modal-container",
       opacity: [0, 0.85],
       duration: 1000,
-      easing: 'linear',
+      easing: "linear",
     })
     const modalDisapearAnime = anime({
       targets: ".modal-container",
       opacity: [0.85, 0],
       duration: 1000,
-      easing: 'linear',
+      easing: "linear",
     });
 
     // 介绍文字消失后promise
@@ -156,10 +156,15 @@ export default function GroupIntro(props: any) {
       autoplay: true,
       translateX: "-10px",
       direction: "alternate",
-      easing: 'easeInOutQuad'
+      easing: "easeInOutQuad"
     });
     return () => {
       document.body.removeEventListener("touchmove", handleTouch)
+      anime.remove(".joinus-container span");
+      anime.remove(".groupintro-orbits-mask");
+      anime.remove(".groupintro-container .next-planet-container,.ncuhome-planet-container,.now-planet-container");
+      anime.remove(".groupintro-container .modal-container");
+      anime.remove(".joinus-container span");
     }
   }, []);
 
