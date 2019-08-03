@@ -2,20 +2,23 @@ import * as React from 'react';
 import './style.css';
 
 export interface formType {
-  value:{
-    name:string
-    gender:string,
-    department:string,
-    email:string,
-    phone:string,
-    clazz:string,
-    introduction:string
-  },
+  name:string
+  gender:string,
+  department:string,
+  email:string,
+  phone:string,
+  clazz:string,
+  introduction:string,
+  reset:number,
+}
+
+interface propType {
+  value: formType,
   onChange: any,
   onSubmit: (event:React.FormEvent<HTMLFormElement>) => void
 }
 
-export default function JoinusForm(props:formType) {
+export default function JoinusForm(props:propType) {
 
   const { name,gender,department,email,phone, clazz,introduction} = props.value;
   const { onChange:handleChange, onSubmit:handleSubmit } = props;

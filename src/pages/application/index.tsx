@@ -3,7 +3,7 @@ import anime from 'animejs';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
 import BackArrow from '../../components/BackArrow';
-import JoinusForm from '../../components/JoinusForm/index';
+import JoinusForm, { formType } from '../../components/JoinusForm/index';
 import './style.css';
 
 const { useState, useEffect } = React;
@@ -23,7 +23,8 @@ const Application = (props: any) => {
     email: "",
     phone: "",
     clazz: "",
-    introduction:""
+    introduction:"",
+    reset: 0,
   });
   const [isUpper, setIsUpper] = useState(true);
   const [ncuhomeStyle, setNcuhomeStyle] = useState({});
@@ -35,10 +36,8 @@ const Application = (props: any) => {
     setFormValues(newValue);
   }
 
-  const handleSubmit = (event:React.FormEvent<HTMLFormElement>) => {
-    event.persist();
-    event.preventDefault();
-    axios.post('http://freshman.guoxy.top/api/freshman/signup',JSON.stringify(formValues), {
+  const handleSighUp = (value:formType) => {
+    axios.post('http://freshman.guoxy.top/api/freshman/signup',JSON.stringify(value), {
       headers: {
         'Content-Type': 'application/json',
       }
@@ -47,10 +46,22 @@ const Application = (props: any) => {
       if (data.status === 1) {
         window.alert("报名成功！");
       }
+      else if (data.status === -1) {
+        if (window.confirm("该手机已报名，是否修改信息？")) {
+          const newFormValue = {...formValues, reset:1};
+          handleSighUp(newFormValue);
+        }
+      }
       else {
-        window.alert(data.message);
+        window.alert(data.mmessage);
       }
     });
+  }
+
+  const handleSubmit = (event:React.FormEvent<HTMLFormElement>) => {
+    event.persist();
+    event.preventDefault();
+    handleSighUp(formValues);
   }
 
   const handleArrowClick = () => {
