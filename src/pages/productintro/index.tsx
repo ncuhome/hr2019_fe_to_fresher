@@ -139,7 +139,7 @@ function ProductIntro(props:any) {
       endDelay:1000,
       complete: () => {
         if (!changeAnimeTimeline.reversed) {
-          setIsAnimeing(false);
+          // setIsAnimeing(false);
           props.history.push("/department");
         }
       }
