@@ -41,7 +41,7 @@ export default function DepartmentsIntro(props: any) {
     }
   }
 
-  const handleBackClick = (e:MouseEvent) => {
+  const handleBackClick = (e:React.MouseEvent<HTMLDivElement>) => {
     props.history.push("/product");
   }
 
@@ -150,6 +150,12 @@ export default function DepartmentsIntro(props: any) {
       easing: "linear",
     })
     .add({
+      targets: ".back-arrow-container",
+      opacity: [0,1],
+      duration: 1000,
+      easing: "linear",
+    })
+    .add({
       targets: ".groupintro-container .next-planet-container,.ncuhome-planet-container,.now-planet-container",
       opacity: [0,1],
       duration: 1000,
@@ -228,6 +234,7 @@ export default function DepartmentsIntro(props: any) {
 
   return (
     <div className="groupintro-container">
+      <BackArrow onClick={handleBackClick} />
       <div className="groupintro-orbits-mask">
         <img src={orbits}/>
       </div>
@@ -276,7 +283,6 @@ export default function DepartmentsIntro(props: any) {
         <img src={changeArrow} className="arrow-pre" onClick={handlePreClick}/>
         <img src={changeArrow} className="arrow-next" onClick={handleNextClick}/>
       </div>
-      <BackArrow onClick={handleBackClick} />
     </div>
   )
 }
