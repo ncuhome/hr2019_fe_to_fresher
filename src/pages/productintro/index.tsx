@@ -41,12 +41,15 @@ function ProductIntro(props:any) {
       child.style["left"] = `${32.5+37.5*Math.cos((90-deg)*Math.PI/180)}vw`;
       child.style["transform"] = `rotate(${deg}deg)`;
     });
-    const startAnime = anime({
+    const startAnimeTimeline = anime.timeline({
+      autoplay:true,
+    });
+    startAnimeTimeline.add({
       targets: ".productintro-container .product-planet-container",
       rotate: [220,360],
       duration: 3400,
       easing: "easeOutElastic",
-    });
+    },0);
     const arrowAnime = anime({
       targets: ".productintro-container .introduce-to-group-container img",
       translateY: "-8px",

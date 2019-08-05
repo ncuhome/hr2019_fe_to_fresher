@@ -142,7 +142,12 @@ export default function DepartmentsIntro(props: any) {
     document.body.addEventListener("touchmove", handleTouch, { passive:false });
     // 开场动画
     setIsAnimeing(true);
-    const startTimeline = anime.timeline();
+    const startTimeline = anime.timeline({
+      autoplay: true,
+      complete: ()=>{
+        setIsAnimeing(false);
+      }
+    });
     startTimeline.add({
       targets: ".groupintro-orbits-mask",
       opacity: [0,1],
@@ -167,9 +172,6 @@ export default function DepartmentsIntro(props: any) {
       duration: 1000,
       easing: "linear",
     },"+=0");
-    startTimeline.finished.then(() => {
-      setIsAnimeing(false);
-    })
     // Join Us 箭头动画
     const joinusArrowAnime = anime({
       targets: ".joinus-container span",
@@ -181,11 +183,12 @@ export default function DepartmentsIntro(props: any) {
     });
     return () => {
       document.body.removeEventListener("touchmove", handleTouch)
-      anime.remove(".joinus-container span");
-      anime.remove(".groupintro-orbits-mask");
-      anime.remove(".groupintro-container .next-planet-container,.ncuhome-planet-container,.now-planet-container");
-      anime.remove(".groupintro-container .modal-container");
-      anime.remove(".joinus-container span");
+      startTimeline.pause();
+      anime.running.forEach((instance) => {
+        instance.animatables.forEach((animatable:any)=>{
+          anime.remove(animatable.target);
+        });
+      });
     }
   }, []);
 
@@ -251,7 +254,7 @@ export default function DepartmentsIntro(props: any) {
         <div className="modal-container-background">
           <div className="introduction-text-container" ref={Ref => textRef = Ref}>
             <div className="headline-container">
-              <p>{departments[index].name} 组</p>
+              <p>{departments[index].name}组</p>
             </div>
             <div className="subheading-container">
               <p>{departments[index].subheading}</p>
@@ -260,12 +263,14 @@ export default function DepartmentsIntro(props: any) {
               {departments[index].description.map((line: string, lineIndex: number) => (<p key={lineIndex}>{line}</p>))}
             </div>
             <div className="traits-contianer">
-              特质：
-              {departments[index].traits.map((trait: string, traitIndex: number) => {
-                return (traitIndex+1) === departments[index].traits.length ? 
-                (<span key={traitIndex}>{trait}</span>) :
-                (<React.Fragment key={traitIndex}><span>{trait}</span>、</React.Fragment>);
-              })}
+              <span>特质：</span>
+              <div className="traits-display-container">
+                {departments[index].traits.map((trait: string, traitIndex: number) => {
+                  return (traitIndex+1) === departments[index].traits.length ? 
+                  (<span key={traitIndex}>{trait}</span>) :
+                  (<React.Fragment key={traitIndex}><span>{trait}</span>&nbsp;&nbsp;</React.Fragment>);
+                })}
+              </div>
             </div>
           </div>
           <div className="joinus-container">

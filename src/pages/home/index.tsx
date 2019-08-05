@@ -26,13 +26,13 @@ function Home(props:any) {
       });
       changeAnime.add({
         targets: ".loading-container,.home-guide-container,.home-introduction-container",
-        duration: 2000,
+        duration: 1200,
         opacity: [1,0],
         easing: "linear"
       })
       .add({
         targets: ".home-hidden-container",
-        duration: 2000,
+        duration: 500,
         opacity: [0,1],
         easing: "linear",
         endDelay: 1000,
@@ -50,7 +50,12 @@ function Home(props:any) {
     const handleTouch = (e:TouchEvent) => { e.preventDefault(); };
     document.body.addEventListener("touchmove", handleTouch, { passive:false });
     return () => {
-      document.body.removeEventListener("touchmove", handleTouch)
+      document.body.removeEventListener("touchmove", handleTouch);
+      anime.running.forEach((instance) => {
+        instance.animatables.forEach((animatable:any)=>{
+          anime.remove(animatable.target);
+        });
+      });
     }
   },[]);
 
