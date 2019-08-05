@@ -106,8 +106,8 @@
 
 .product-pointer-container {
   position: absolute;
-  right: 12vw;
-  bottom: 43vh;
+  right: 12%;
+  top: 12%;
   transform: rotate(140deg);
   opacity: 0;
   z-index: 1;

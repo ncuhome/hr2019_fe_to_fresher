@@ -9,6 +9,7 @@ import './style.css';
 const { useState, useEffect } = React;
 
 const xiaojiayuan = require('../../assets/png/xiaojiayuan.png');
+const QRcode = require('../../assets/png/QRcode.png');
 const ncuhome = require('../../assets/png/ncuhome_planet.png');
 const arrowUp = require('../../assets/svg/form_arrow_up.svg');
 
@@ -221,7 +222,8 @@ const Application = (props: any) => {
         </div>
         <JoinusForm value={formValues} onChange={handleChange} onSubmit={handleSubmit} />
       </div>
-      <img src={xiaojiayuan} alt="小家园" id="xiaojiayuan" onClick={handleQRcodeClick} />
+      <img src={QRcode} alt="二维码" id="QRcode" onClick={handleQRcodeClick} />
+      <img src={xiaojiayuan} alt="小家园" id="xiaojiayuan"  />
     </div>
   )
 }

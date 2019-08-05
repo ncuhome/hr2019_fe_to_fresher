@@ -75,10 +75,18 @@
   text-align: center;
 }
 
+.application-container #QRcode {
+  position: absolute;
+  bottom: 2.5%;
+  left: 16%;
+  width: 30%;
+  z-index: 0;
+}
+
 .application-container #xiaojiayuan {
   position: absolute;
-  bottom: 0;
-  width: 80%;
-  margin: 0 10% 8%;
+  bottom: 3.5%;
+  right: 18%;
+  width: 30%;
   z-index: 0;
 }
