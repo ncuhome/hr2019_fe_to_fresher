@@ -48,15 +48,17 @@
   background-color: rgba(41, 41, 41, 1);
   /* visibility: hidden; */
   z-index: 1;
+  border: 1px solid #333333;
 }
 
 .application-container .form-container .divide-line {
   display: block;
   width: 22.4vw;
-  height: 8px;
+  height: 9px;
   margin: 17px auto 16px;
   border-radius: 19px;
-  background-color: rgba(25, 25, 25, 1);
+  border: 1px solid #333333;
+  background: center top/100% space url('../../assets/jpg/space.jpg') fixed;
 }
 
 .application-container .form-container .headline-container {

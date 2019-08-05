@@ -80,6 +80,16 @@
 .form-container .form .radio-container label {
   padding-right: 0;
   font-size: 13px;
+  transition: color .4s ease;
+}
+
+.line {
+  bottom: 0;
+  width: 23px;
+  height: 3px;
+  border-radius: 1.5px;
+  background: #72ADFF;
+  transition: transform .4s ease, background .4s ease;
 }
 
 .form-container .form .radio-container span {
