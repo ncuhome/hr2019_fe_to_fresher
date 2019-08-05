@@ -49,13 +49,7 @@ function ProductIntro(props:any) {
       rotate: [220,360],
       duration: 3400,
       easing: "easeOutElastic",
-    },0)
-    .add({
-      targets: ".product-introduce-container",
-      duration: 500,
-      opacity: [0,1],
-      easing: "linear",
-    },"1500");
+    },0);
     const arrowAnime = anime({
       targets: ".productintro-container .introduce-to-group-container img",
       translateY: "-8px",
