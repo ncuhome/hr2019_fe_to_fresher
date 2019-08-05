@@ -49,7 +49,7 @@ export default function JoinusForm(props:propType) {
             <label htmlFor="female" style={{color: isMale ? '#9F9F9F' : null}}>女</label>
             <input type="radio" name="gender" id="female" value="女" onClick={handleChange} />
           </span>
-          <div className="line" style={{
+          <span className="gender-underline" style={{
             transform: !isMale ? 'translateX(81px)' : 'translateX(50px)',
             background: !isMale ? '#FF7272' : '#72ADFF'}}/>
         </span>

@@ -83,7 +83,8 @@
   transition: color .4s ease;
 }
 
-.line {
+.form-container .form .gender-underline {
+  display: block;
   bottom: 0;
   width: 23px;
   height: 3px;
