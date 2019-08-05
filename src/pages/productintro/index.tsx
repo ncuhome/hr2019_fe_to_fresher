@@ -157,7 +157,7 @@ function ProductIntro(props:any) {
       targets: ".productintro-container .product-planet-container",
       delay: 700,
       scale: 3,
-      // 防止设置scale将rotatate的值重置
+      // 防止设置scale将rotate的值重置
       rotate: [rotatedValue,rotatedValue],
       bottom: "-600px",
       left: "-800px",
