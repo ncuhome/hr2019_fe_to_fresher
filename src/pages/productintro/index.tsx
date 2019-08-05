@@ -55,7 +55,7 @@ function ProductIntro(props:any) {
       easing: "easeInOutQuad"
     });
     const pointerAnime = anime({
-      targets: ".product-pointer-container img",
+      targets: ".product-pointer-container",
       duration: 1000,
       loop: true,
       direction: "alternate",
@@ -65,19 +65,20 @@ function ProductIntro(props:any) {
       easing: "easeInOutQuad"
     });
     anime({
-      targets:".product-pointer-container img",
+      targets:".product-pointer-container",
       autoplay: true,
       opacity: [0,1],
-      delay: 3000,
+      delay: 1500,
       duration: 500,
       easing: "linear",
     });
     return ()=> {
       // 清理动画防止内存泄漏
-      anime.remove(".productintro-container");
-      anime.remove(".productintro-container .product-planet-container");
-      anime.remove(".productintro-container .introduce-to-group-container img");
-      anime.remove(".product-pointer-container img");
+      anime.running.forEach((instance) => {
+        instance.animatables.forEach((animatable:any)=>{
+          anime.remove(animatable.target);
+        });
+      });
     }
   },[]);
 
@@ -88,9 +89,9 @@ function ProductIntro(props:any) {
       const itemIndex = itemArray.indexOf(imgDom.alt);
       const rotateStep = rotateArray[index][itemIndex];
       if (isFirst) {
-        anime.remove(".product-pointer-container img");
+        anime.remove(".product-pointer-container");
         anime({
-          targets:".product-pointer-container img",
+          targets:".product-pointer-container",
           autoplay: true,
           opacity: 0,
           duration: 500,
@@ -183,7 +184,8 @@ function ProductIntro(props:any) {
     },0);
     arrowRef.onclick = () => {
       setIsAnimeing(true);
-      anime.remove(".product-pointer-container img");
+      anime.remove(".product-pointer-container");
+      anime.set(".product-pointer-container",{opacity:0});
       changeAnimeTimeline.play();
     }
     // 滑动动画
@@ -265,6 +267,9 @@ function ProductIntro(props:any) {
         </div>
       </div>
       <div className="product-planet-container">
+        <div className="product-pointer-container">
+          <img src={pointerImg} />
+        </div>
         <img src={productPlanet} className="product-planet"/>
         <div className="product-item-container" ref={Ref=>{itemContainerRef=Ref}} >
           <img src={iNCU} alt="iNCU" id="product0" />
@@ -273,9 +278,6 @@ function ProductIntro(props:any) {
           <img src={other} alt="other" id="product3" />
           <img src={US} alt="US" id="product4" />
         </div>
-      </div>
-      <div className="product-pointer-container">
-        <img src={pointerImg} />
       </div>
       <div className="introduce-to-group-container">
         <p>认识创造者们</p>

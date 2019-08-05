@@ -104,13 +104,17 @@
   letter-spacing: 1px;
 }
 
-.product-pointer-container img {
+.product-pointer-container {
   position: absolute;
   right: 12vw;
-  bottom: 48vh;
-  width: 10vw;
+  bottom: 43vh;
   transform: rotate(140deg);
   opacity: 0;
+  z-index: 1;
+}
+
+.product-pointer-container img {
+  width: 10vw;
 }
 
 .introduce-to-group-container img {
