@@ -28,6 +28,7 @@ const Application = (props: any) => {
   });
   const [isUpper, setIsUpper] = useState(true);
   const [ncuhomeStyle, setNcuhomeStyle] = useState({});
+  const [isBackArrowHidden, setIsBackArrowHidden] = useState(false);
 
   const handleChange = (event:any):void => {
     const { name, value } = event.target;
@@ -98,11 +99,24 @@ const Application = (props: any) => {
       direction: "alternate",
       easing: 'easeInOutQuad'
     });
+    anime({
+      targets: ".back-arrow-container",
+      opacity: [0,1],
+      duration: 1000,
+      easing: "linear",
+    });
     setNcuhomeStyle({
       "marginBottom": `${newMarginBottom}px`,
       "transition": "1s all",
       ...ncuhomeStyle
     });
+    return () => {
+      anime.running.forEach((instance) => {
+        instance.animatables.forEach((animatable:any)=>{
+          anime.remove(animatable.target);
+        })
+      });
+    }
   },[]);
 
   useEffect(() => {
@@ -153,16 +167,39 @@ const Application = (props: any) => {
         disapearAnime.seek(disapearAnime.duration);
         disapearAnime.play();
       }
-    };
+      // 处理左上角返回箭头
+      if (scrollTop > (formRef.offsetTop+10) && !isBackArrowHidden) {
+        anime({
+          targets: ".back-arrow-container",
+          opacity: 0,
+          duration: 150,
+          easing: "linear",
+          complete: () => {
+            setIsBackArrowHidden(true);
+          }
+        });
+      }
+      else if (scrollTop <= (formRef.offsetTop+10) && isBackArrowHidden) {
+        anime({
+          targets: ".back-arrow-container",
+          opacity: 1,
+          duration: 150,
+          easing: "linear",
+          complete: () => {
+            setIsBackArrowHidden(false);
+          }
+        });
+      }
+    }
     window.addEventListener("scroll",handleScroll);
     return function cleanup() {
       window.removeEventListener("scroll",handleScroll);
-    };
-  },[ isUpper ]);
+    }
+  },[ isUpper, isBackArrowHidden ]);
 
   return (
     <div className="application-container">
-      <BackArrow onClick={handleBackClick} />
+      <BackArrow onClick={handleBackClick} isHidden={isBackArrowHidden}/>
       <div className="ncuhome-planet-container">
         <img src={ncuhome} className="ncuhome-planet" alt="ncuhome" />
       </div>
