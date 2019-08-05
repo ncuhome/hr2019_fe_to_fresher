@@ -117,10 +117,22 @@
   color: #BCBCBC;
   margin-bottom: 6px;
   letter-spacing: 2px;
+  white-space: nowrap;
+}
+
+@media(max-width:360px) {
+  .groupintro-container .modal-container .introduction-text-container .introdution-container {
+    font-size: 12px;
+  }
 }
 
 .groupintro-container .modal-container .introduction-text-container .traits-contianer {
   margin-top: 3vh;
+}
+
+.groupintro-container .modal-container .introduction-text-container .traits-display-container {
+  display: flex;
+  flex-wrap: wrap;
 }
 
 .groupintro-container .modal-container .introduction-text-container span {

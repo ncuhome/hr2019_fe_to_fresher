@@ -251,7 +251,7 @@ export default function DepartmentsIntro(props: any) {
         <div className="modal-container-background">
           <div className="introduction-text-container" ref={Ref => textRef = Ref}>
             <div className="headline-container">
-              <p>{departments[index].name} 组</p>
+              <p>{departments[index].name}组</p>
             </div>
             <div className="subheading-container">
               <p>{departments[index].subheading}</p>
@@ -260,12 +260,14 @@ export default function DepartmentsIntro(props: any) {
               {departments[index].description.map((line: string, lineIndex: number) => (<p key={lineIndex}>{line}</p>))}
             </div>
             <div className="traits-contianer">
-              特质：
-              {departments[index].traits.map((trait: string, traitIndex: number) => {
-                return (traitIndex+1) === departments[index].traits.length ? 
-                (<span key={traitIndex}>{trait}</span>) :
-                (<React.Fragment key={traitIndex}><span>{trait}</span>、</React.Fragment>);
-              })}
+              <span>特质：</span>
+              <div className="traits-display-container">
+                {departments[index].traits.map((trait: string, traitIndex: number) => {
+                  return (traitIndex+1) === departments[index].traits.length ? 
+                  (<span key={traitIndex}>{trait}</span>) :
+                  (<React.Fragment key={traitIndex}><span>{trait}</span>&nbsp;&nbsp;</React.Fragment>);
+                })}
+              </div>
             </div>
           </div>
           <div className="joinus-container">
