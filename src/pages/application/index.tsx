@@ -30,6 +30,7 @@ const Application = (props: any) => {
   const [formValues, setFormValues] = useState(defaultValue);
   const [isUpper, setIsUpper] = useState(true);
   const [ncuhomeStyle, setNcuhomeStyle] = useState({});
+  const [isSumbmiting, setIsSumbmiting] = useState(false);
   const [isBackArrowHidden, setIsBackArrowHidden] = useState(false);
 
   const handleChange = (event:any):void => {
@@ -59,13 +60,17 @@ const Application = (props: any) => {
       else {
         window.alert(data.mmessage);
       }
+      setIsSumbmiting(false); 
     });
   }
 
   const handleSubmit = (event:React.FormEvent<HTMLFormElement>) => {
     event.persist();
     event.preventDefault();
-    handleSighUp(formValues);
+    if (!isSumbmiting) {
+      setIsSumbmiting(true);
+      handleSighUp(formValues);
+    }
   }
 
   const handleArrowClick = () => {
