@@ -43,8 +43,8 @@ function ProductIntro(props:any) {
     });
     const startAnime = anime({
       targets: ".productintro-container .product-planet-container",
-      rotate: 360,
-      duration: 3000,
+      rotate: [220,360],
+      duration: 3400,
       easing: "easeOutElastic",
     });
     const arrowAnime = anime({
