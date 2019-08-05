@@ -23,19 +23,21 @@
 本项目采用 `react` && `typescript` && `es6+` 进行开发。
 使用 React 16.8 的新增特性 Hook 管理状态以及操作副作用
 
-动效方面使用`animejs`与`react-lottie`
+动效方面使用`animejs`与`lottie-web`实现
 
 相关文档地址:
   * [React](https://doc.react-china.org/) 
   * [TypeScript](https://www.tslang.cn/docs/)
   * [es6](http://es6.ruanyifeng.com/)
+  * [animejs](https://www.animejs.cn/)
 
 开发流程:
 
 ```bash
-  git clone ssh://git@git.ncuos.com:8082/southrock/hr2019_fe_tofresher.git # 克隆项目到本地
-  npm install # 安装相关依赖
-  npm start # 启动本地开发，在 http://localhost:3000可以预览效果
+  git clone ssh://git@git.ncuos.com:8082/southrock/hr2019_fe_to_fresher.git # 克隆项目到本地
+  npm install     # 安装相关依赖
+  npm start       # 启动本地开发，在 http://localhost:3000可以预览效果
+  npm run analyze # 启动打包分析
 ```
 
 ## 代码规范
