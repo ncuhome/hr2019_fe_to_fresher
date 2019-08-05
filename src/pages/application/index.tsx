@@ -16,7 +16,7 @@ let formRef:any;
 
 const Application = (props: any) => {
   const defaultDepartment = props.location.state || "行政";
-  const [formValues, setFormValues] = useState({
+  const defaultValue = localStorage.getItem("formValue") === null ? {
     name: "",
     gender: "男",
     department: defaultDepartment,
@@ -25,7 +25,8 @@ const Application = (props: any) => {
     clazz: "",
     introduction:"",
     reset: 0,
-  });
+  } : JSON.parse(localStorage.getItem("formValue"));
+  const [formValues, setFormValues] = useState(defaultValue);
   const [isUpper, setIsUpper] = useState(true);
   const [ncuhomeStyle, setNcuhomeStyle] = useState({});
   const [isBackArrowHidden, setIsBackArrowHidden] = useState(false);
@@ -34,6 +35,7 @@ const Application = (props: any) => {
     const { name, value } = event.target;
     const newValue:any = {...formValues};
     newValue[name] = value;
+    localStorage.setItem("formValue",JSON.stringify(newValue));
     setFormValues(newValue);
   }
 
@@ -45,7 +47,7 @@ const Application = (props: any) => {
     }).then((response) => {
       const { data } = response;
       if (data.status === 1) {
-        window.alert("报名成功！");
+        window.alert("bibi——报名讯号已被接收\n点击下方二维码开启招新群传送门，\n和创造者们会面吧~");
       }
       else if (data.status === -1) {
         if (window.confirm("该手机已报名，是否修改信息？")) {
