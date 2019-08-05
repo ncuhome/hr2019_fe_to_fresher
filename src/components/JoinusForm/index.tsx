@@ -40,15 +40,18 @@ export default function JoinusForm(props:propType) {
       </p>
       <p>
         <label htmlFor="gender">性别</label>
-        <span className="radio-container">
-          <label htmlFor="male">男</label>
-          <input type="radio" name="gender" id="male" value="男" defaultChecked onClick={handleChange} />
-          <span style={{visibility: (!isMale ? "hidden": "visible")}} />
-        </span>
-        <span className="radio-container">
-          <label htmlFor="female">女</label>
-          <input type="radio" name="gender" id="female" value="女" onClick={handleChange} />
-          <span style={{visibility: (isMale ? "hidden": "visible")}} />
+        <span>
+          <span className="radio-container">
+            <label htmlFor="male" style={{color: isMale ? null : '#9F9F9F'}}>男</label>
+            <input type="radio" name="gender" id="male" value="男" defaultChecked onClick={handleChange} />
+          </span>
+            <span className="radio-container">
+            <label htmlFor="female" style={{color: isMale ? '#9F9F9F' : null}}>女</label>
+            <input type="radio" name="gender" id="female" value="女" onClick={handleChange} />
+          </span>
+          <span className="gender-underline" style={{
+            transform: !isMale ? 'translateX(81px)' : 'translateX(50px)',
+            background: !isMale ? '#FF7272' : '#72ADFF'}}/>
         </span>
       </p>
       <p>
