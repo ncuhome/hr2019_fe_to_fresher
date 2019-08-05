@@ -138,31 +138,31 @@ function ProductIntro(props:any) {
     changeAnimeTimeline.add({
       targets: ".introduce-to-group-container",
       opacity: 0,
-      duration: 1000,
+      duration: 500,
       easing: "linear",
     },0)
     .add({
       targets: ".productintro-container .joinlink",
       opacity: 0,
-      duration: 1000,
+      duration: 500,
       easing: "linear",
     },0)
     .add({
       targets: ".product-introduce-container",
       opacity: 0,
-      duration: 1000,
+      duration: 500,
       easing: "linear"
     },0)
     .add({
       targets: ".productintro-container .product-planet-container",
-      delay: 1000,
+      delay: 700,
       scale: 3,
       // 防止设置scale将rotatate的值重置
       rotate: [rotatedValue,rotatedValue],
       bottom: "-600px",
       left: "-800px",
       easing: "easeInQuart",
-      duration: 3000,
+      duration: 1400,
     },0)
     .add({
       targets: ".productintro-container",
@@ -171,8 +171,9 @@ function ProductIntro(props:any) {
       translateX: "-22vw",
       translateY: "25vh",
       easing: "easeInQuart",
-      duration: 3000,
-      endDelay:1000,
+      opacity: [1,0],
+      duration: 1400,
+      endDelay: 100,
       complete: () => {
         if (!changeAnimeTimeline.reversed) {
           props.history.push("/department");
