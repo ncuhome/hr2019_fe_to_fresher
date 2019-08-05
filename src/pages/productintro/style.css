@@ -39,6 +39,7 @@
   flex-direction: column;
   justify-content: center;
   z-index: 1;
+  opacity: 0;
 }
 
 .productintro-container .product-introduce-container:before{
@@ -68,10 +69,17 @@
   font-size: 14px;
 }
 
+@media(max-width:360px) {
+  .productintro-container .product-introduce-container .product-description-container {
+    font-size: 12px;
+  }
+}
+
 .productintro-container .product-introduce-container .product-description-container p {
   margin-bottom: 1vh;
   letter-spacing: 1px;
   transform: translateZ(0);
+  white-space: nowrap;
 }
 
 .productintro-container .product-planet-container {
