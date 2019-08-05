@@ -142,7 +142,12 @@ export default function DepartmentsIntro(props: any) {
     document.body.addEventListener("touchmove", handleTouch, { passive:false });
     // 开场动画
     setIsAnimeing(true);
-    const startTimeline = anime.timeline();
+    const startTimeline = anime.timeline({
+      autoplay: true,
+      complete: ()=>{
+        setIsAnimeing(false);
+      }
+    });
     startTimeline.add({
       targets: ".groupintro-orbits-mask",
       opacity: [0,1],
@@ -167,9 +172,6 @@ export default function DepartmentsIntro(props: any) {
       duration: 1000,
       easing: "linear",
     },"+=0");
-    startTimeline.finished.then(() => {
-      setIsAnimeing(false);
-    })
     // Join Us 箭头动画
     const joinusArrowAnime = anime({
       targets: ".joinus-container span",
@@ -181,11 +183,12 @@ export default function DepartmentsIntro(props: any) {
     });
     return () => {
       document.body.removeEventListener("touchmove", handleTouch)
-      anime.remove(".joinus-container span");
-      anime.remove(".groupintro-orbits-mask");
-      anime.remove(".groupintro-container .next-planet-container,.ncuhome-planet-container,.now-planet-container");
-      anime.remove(".groupintro-container .modal-container");
-      anime.remove(".joinus-container span");
+      startTimeline.pause();
+      anime.running.forEach((instance) => {
+        instance.animatables.forEach((animatable:any)=>{
+          anime.remove(animatable.target);
+        });
+      });
     }
   }, []);
 
