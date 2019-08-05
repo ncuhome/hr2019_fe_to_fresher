@@ -62,6 +62,7 @@
   color: rgba(255, 255, 255, 0.85);
   font-size: 14px;
   z-index: 2;
+  opacity: 0;
 }
 
 .groupintro-container .modal-container:after {
@@ -151,17 +152,17 @@
 
 .groupintro-container .modal-container .arrow-next {
   position: absolute;
-  right: 1vw;
+  right: 2vw;
   top: 45%;
-  width: 15px;
-  height: 30px;
+  width: 20px;
+  height: 40px;
+  transform: rotate(180deg);
 }
 
 .groupintro-container .modal-container .arrow-pre {
   position: absolute;
-  left: 1vw;
+  left: 2vw;
   top: 45%;
-  width: 15px;
-  height: 30px;
-  transform: rotate(180deg);
+  width: 20px;
+  height: 40px;
 }
