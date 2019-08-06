@@ -14,7 +14,7 @@ import config from './config';
 const { useState, useEffect } = React;
 const { desktopQuery, gaTrackingCode } = config;
 
-ReactGA.initialize(gaTrackingCode,{ debug:true });
+ReactGA.initialize(gaTrackingCode);
 
 const Container = (props:{history:History,children?:any}) => {
 
