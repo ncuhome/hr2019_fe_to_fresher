@@ -162,4 +162,5 @@ export default {
       ],
     },
   ],
+  gaTrackingCode: "UA-80324378-13",
 };
