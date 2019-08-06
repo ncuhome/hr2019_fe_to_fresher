@@ -2,6 +2,7 @@ import * as React from 'react';
 import anime from 'animejs';
 import axios from 'axios';
 import { withRouter } from 'react-router-dom';
+import * as ReactGA from 'react-ga';
 import BackArrow from '../../components/BackArrow';
 import JoinusForm, { formType } from '../../components/JoinusForm/index';
 import './style.css';
@@ -49,15 +50,22 @@ const Application = (props: any) => {
     })
     .then((response) => {
       const { data, status, statusText } = response;
-      console.log(response);
       if (status === 200) {
         if (data.status === 1) {
           window.alert("bibi——报名讯号已被接收\n点击下方二维码开启招新群传送门，\n和创造者们会面吧~");
+          ReactGA.event({
+            category: "Application",
+            action: "Sigh Up success",
+          });
         }
         else if (data.status === -1) {
           if (window.confirm("该手机已报名，是否修改信息？")) {
             const newFormValue = {...formValues, reset:1};
             handleSighUp(newFormValue);
+            ReactGA.event({
+              category: "Application",
+              action: "Edit profile",
+            });
           }
         }
         else {
@@ -99,6 +107,10 @@ const Application = (props: any) => {
   }
 
   const handleQRcodeClick = () => {
+    ReactGA.event({
+      category: "Application",
+      action: "Join our welcome group by Click",
+    });
     window.location.href="https://jq.qq.com/?_wv=1027&k=5kst7Wj";
   }
 

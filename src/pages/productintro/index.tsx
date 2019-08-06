@@ -1,6 +1,7 @@
 import * as React from 'react';
 import anime from 'animejs';
 import { Link, withRouter } from 'react-router-dom';
+import * as ReactGA from 'react-ga';
 import config from '../../config';
 import './style.css';
 
@@ -91,6 +92,10 @@ function ProductIntro(props:any) {
       const imgDom:any = event.target;
       const itemIndex = itemArray.indexOf(imgDom.alt);
       const rotateStep = rotateArray[index][itemIndex];
+      ReactGA.event({
+        category: "Product",
+        action: "View one of our products"
+      });
       if (isFirst) {
         anime.remove(".product-pointer-container");
         anime({

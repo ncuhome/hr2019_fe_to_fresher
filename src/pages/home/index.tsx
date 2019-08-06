@@ -1,6 +1,7 @@
 import * as React from "react";
 import anime from 'animejs';
 import { withRouter } from "react-router";
+import * as ReactGA from 'react-ga';
 import LoadingAnime from "../../components/LoadingAnime";
 import loadImage from "../../image";
 import config from "../../config";
@@ -67,6 +68,7 @@ function Home(props:any) {
       opacity: [0,1],
       easing: "linear",
     });
+    let startTime:Date;
     const callback = (count:number,length:number) => {
       const value = Math.round((count/length)*100);
       // 解决组件销毁的时候对异步请求判断
@@ -75,8 +77,16 @@ function Home(props:any) {
       }
       else {
         setProcessValue(value);
+        if (value === 100) {
+          ReactGA.timing({
+            category: "Image",
+            variable: 'load',
+            value: (+(new Date()) - (+startTime)),
+          });
+        }
       }
     }
+    startTime = new Date();
     loadImage(callback);
     return () => {
       setUnmount(true);

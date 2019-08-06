@@ -1,6 +1,7 @@
 import * as React from "react";
 import anime from "animejs";
 import { Link } from "react-router-dom";
+import * as ReactGA from 'react-ga';
 import BackArrow from "../../components/BackArrow";
 import config from "../../config";
 import "./style.css";
@@ -57,6 +58,10 @@ export default function DepartmentsIntro(props: any) {
 
   const startAnime = (isNext: boolean) => {
     setIsAnimeing(true);
+    ReactGA.event({
+      category: "Department",
+      action: "View one of our departments"
+    });
     const nextTimeline = anime.timeline({
       autoplay: false,
       duration: 600,
