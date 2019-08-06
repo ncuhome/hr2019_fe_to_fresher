@@ -46,21 +46,32 @@ const Application = (props: any) => {
       headers: {
         'Content-Type': 'application/json',
       }
-    }).then((response) => {
-      const { data } = response;
-      if (data.status === 1) {
-        window.alert("bibi——报名讯号已被接收\n点击下方二维码开启招新群传送门，\n和创造者们会面吧~");
-      }
-      else if (data.status === -1) {
-        if (window.confirm("该手机已报名，是否修改信息？")) {
-          const newFormValue = {...formValues, reset:1};
-          handleSighUp(newFormValue);
+    })
+    .then((response) => {
+      const { data, status, statusText } = response;
+      console.log(response);
+      if (status === 200) {
+        if (data.status === 1) {
+          window.alert("bibi——报名讯号已被接收\n点击下方二维码开启招新群传送门，\n和创造者们会面吧~");
+        }
+        else if (data.status === -1) {
+          if (window.confirm("该手机已报名，是否修改信息？")) {
+            const newFormValue = {...formValues, reset:1};
+            handleSighUp(newFormValue);
+          }
+        }
+        else {
+          window.alert(data.message);
         }
       }
       else {
-        window.alert(data.mmessage);
+        window.alert(statusText);
       }
-      setIsSumbmiting(false); 
+      setIsSumbmiting(false);
+    })
+    .catch((data) => {
+      window.alert("网页有点问题~请稍后重试");
+      setIsSumbmiting(false);
     });
   }
 
