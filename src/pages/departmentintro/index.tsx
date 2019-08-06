@@ -25,7 +25,7 @@ const planetArray = [managePlanet, omPlanet, pmPlanet, desighPlanet, devPlanet];
 
 let textRef: HTMLDivElement;
 
-export default function DepartmentsIntro(props: any) {
+const DepartmentsIntro = (props: any) => {
 
   const [index, setIndex] = useState(0);
   const [isAnimeing, setIsAnimeing] = useState(false);
@@ -296,3 +296,5 @@ export default function DepartmentsIntro(props: any) {
     </div>
   )
 }
+
+export default DepartmentsIntro;

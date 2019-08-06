@@ -10,7 +10,7 @@ import "./style.css";
 const { useState, useEffect } = React;
 const { indexText } = config;
 
-function Home(props:any) {
+const Home = (props:any) => {
 
   const [ isAnimeing, setIsAnimeing ] = useState(false);
   const [ processValue, setProcessValue ] = useState(0);

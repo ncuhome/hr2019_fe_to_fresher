@@ -18,7 +18,7 @@ interface propType {
   onSubmit: (event:React.FormEvent<HTMLFormElement>) => void
 }
 
-export default function JoinusForm(props:propType) {
+const JoinusForm = (props:propType) => {
 
   const { name,gender,department,email,phone, clazz,introduction} = props.value;
   const { onChange:handleChange, onSubmit:handleSubmit } = props;
@@ -114,3 +114,5 @@ export default function JoinusForm(props:propType) {
     </form>
   )
 }
+
+export default JoinusForm;

@@ -1,4 +1,4 @@
-export default function loadImage(cb:any) {
+const loadImage = (cb:any) => {
   // 使用上下文
   let count:number = 0;
   const pictures = require.context('./assets/',true, /\.(svg|jpg|png)$/);
@@ -10,3 +10,5 @@ export default function loadImage(cb:any) {
   });
   return ;
 }
+
+export default loadImage;

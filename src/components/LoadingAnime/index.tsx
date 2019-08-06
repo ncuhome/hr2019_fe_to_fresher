@@ -9,7 +9,7 @@ interface propType {
 
 let lottieRef:HTMLDivElement;
 
-export default function LoadingAnime(props:propType) {
+const LoadingAnime = (props:propType) => {
   
   const { processValue } = props;
 
@@ -36,3 +36,5 @@ export default function LoadingAnime(props:propType) {
     </div>
   )
 }
+
+export default LoadingAnime;
