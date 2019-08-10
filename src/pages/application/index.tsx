@@ -43,7 +43,7 @@ const Application = (props: any) => {
   }
 
   const handleSighUp = (value:formType) => {
-    axios.post('http://freshman.guoxy.top/api/freshman/signup',JSON.stringify(value), {
+    axios.post('https://2019hr.ncuos.com/api/freshman/signup',JSON.stringify(value), {
       headers: {
         'Content-Type': 'application/json',
       }
