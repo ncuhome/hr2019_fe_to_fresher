@@ -13,7 +13,7 @@ import config from './config';
 
 
 const { useState, useEffect } = React;
-const { desktopQuery, gaTrackingCode } = config;
+const { mobileQuery, gaTrackingCode } = config;
 
 ReactGA.initialize(gaTrackingCode);
 
@@ -41,20 +41,20 @@ const RouteContainer = withRouter(Container);
 
 const App = () => {
 
-  const [ isMobile, setIsMobile ] = useState(true);
+  const [ isMobile, setIsMobile ] = useState(false);
 
   useEffect(() => {
     const handler = {
       match: () => {
-        setIsMobile(false);
+        setIsMobile(true);
       },
       unmatch: () => {
-        setIsMobile(true);
+        setIsMobile(false);
       }
     };
-    enquire.register(desktopQuery, handler);
+    enquire.register(mobileQuery, handler);
     return () => {
-      enquire.unregister(desktopQuery, handler);
+      enquire.unregister(mobileQuery, handler);
     };
   },[ isMobile ]);
 
