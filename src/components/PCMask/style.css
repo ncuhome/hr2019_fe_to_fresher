@@ -1,0 +1,26 @@
+.PCMask-container {
+  width: 100vw;
+  height: 100vh;
+  background: url('../PCMask/pc_mask_background.jpg') no-repeat center/cover;
+  display: flex;
+  justify-content: center;
+}
+
+.PCMask-Site-QRcode {
+  text-align: center;
+  margin: auto 50px;
+  width: 200px;
+  height: 400px;
+
+}
+
+.PCMask-Site-QRcode p {
+  text-align: center;
+  font-size: 24px;
+
+}
+
+.PCMask-Site-QRcode img {
+  display: inline-block;
+  width: 80%;
+}

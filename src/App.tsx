@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Route, withRouter } from "react-router-dom";
 import { History } from 'history';
 import enquire from 'enquire.js';
 import * as ReactGA from 'react-ga';
+import PCMask from '././components/PCMask';
 import Home from './pages/home';
 import ProductIntro from './pages/productintro';
 import DepartmentsIntro from './pages/departmentintro';
@@ -68,7 +69,7 @@ const App = () => {
     </Router>
   ) :
   (
-    <div>请使用移动端打开</div>
+    <PCMask />
   )
 };
 
