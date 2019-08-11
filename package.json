@@ -38,17 +38,16 @@
   },
   "dependencies": {
     "@types/animejs": "^2.0.2",
-    "@types/enquire.js": "^2.1.2",
     "@types/react": "^16.8.23",
     "@types/react-dom": "^16.8.4",
     "@types/react-router-dom": "^4.3.4",
     "animejs": "^3.1.0",
     "axios": "^0.19.0",
-    "enquire.js": "^2.1.6",
     "lottie-web": "^5.5.7",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-ga": "^2.6.0",
+    "react-media": "^1.9.2",
     "react-router": "^5.0.1",
     "react-router-dom": "^5.0.1"
   }

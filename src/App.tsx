@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { BrowserRouter as Router, Route, withRouter } from "react-router-dom";
 import { History } from 'history';
-import enquire from 'enquire.js';
+import Media from 'react-media';
 import * as ReactGA from 'react-ga';
 import PCMask from '././components/PCMask';
 import Home from './pages/home';
@@ -40,36 +40,23 @@ const Container = (props:{history:History,children?:any}) => {
 const RouteContainer = withRouter(Container);
 
 const App = () => {
-
-  const [ isMobile, setIsMobile ] = useState(false);
-
-  useEffect(() => {
-    const handler = {
-      match: () => {
-        setIsMobile(true);
-      },
-      unmatch: () => {
-        setIsMobile(false);
+  return (
+    <Media query={mobileQuery}>
+      {matches => 
+        matches ? (
+          <Router>
+            <RouteContainer>
+              <Route exact path="/" component={Home} />
+              <Route path="/product" component={ProductIntro} />
+              <Route path="/department" component={DepartmentsIntro} />
+              <Route path="/application" component={Application} />
+            </RouteContainer>
+          </Router>
+        ) : (
+          <PCMask />
+        )
       }
-    };
-    enquire.register(mobileQuery, handler);
-    return () => {
-      enquire.unregister(mobileQuery, handler);
-    };
-  },[ isMobile ]);
-
-  return isMobile ? (
-    <Router>
-      <RouteContainer>
-        <Route exact path="/" component={Home} />
-        <Route path="/product" component={ProductIntro} />
-        <Route path="/department" component={DepartmentsIntro} />
-        <Route path="/application" component={Application} />
-      </RouteContainer>
-    </Router>
-  ) :
-  (
-    <PCMask />
+    </Media>  
   )
 };
 
