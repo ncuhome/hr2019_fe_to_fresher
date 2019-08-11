@@ -12,18 +12,14 @@ config.module.rules[2] = {
     {
       loader: MiniCssExtractPlugin.loader,
       options: {
-      // only enable hot in development
-      hmr: process.env.NODE_ENV === 'development',
-      // if hmr does not work, this is a forceful method.
-      reloadAll: true,
+        publicPath: "../",
       },
     },
     'css-loader',
   ],
 };
 config.plugins.push(new MiniCssExtractPlugin({
-  filename: '[name].css',
-  chunkFilename: '[id].css',
+  filename: '[name].css'
 }));
 
 if (process.env.npm_config_report) {
