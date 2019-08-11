@@ -38,6 +38,7 @@
 }
 
 .form-container .form label {
+  display: inline-block;
   padding-right: 18px;
 }
 

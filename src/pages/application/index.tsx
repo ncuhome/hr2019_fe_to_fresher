@@ -22,7 +22,7 @@ const Application = (props: any) => {
     name: "",
     gender: "男",
     department: defaultDepartment,
-    email: "",
+    qq: "",
     phone: "",
     clazz: "",
     introduction:"",
@@ -43,7 +43,7 @@ const Application = (props: any) => {
   }
 
   const handleSighUp = (value:formType) => {
-    axios.post('https://2019hr.ncuos.com/api/freshman/signup',JSON.stringify(value), {
+    axios.post('/api/freshman/signup',JSON.stringify(value), {
       headers: {
         'Content-Type': 'application/json',
       }

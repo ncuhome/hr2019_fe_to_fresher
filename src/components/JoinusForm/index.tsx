@@ -5,7 +5,7 @@ export interface formType {
   name:string
   gender:string,
   department:string,
-  email:string,
+  qq:string,
   phone:string,
   clazz:string,
   introduction:string,
@@ -20,7 +20,7 @@ interface propType {
 
 const JoinusForm = (props:propType) => {
 
-  const { name,gender,department,email,phone, clazz,introduction} = props.value;
+  const { name,gender,department,qq,phone, clazz,introduction} = props.value;
   const { onChange:handleChange, onSubmit:handleSubmit } = props;
 
   const isMale = (gender === '男') ? true : false;
@@ -65,12 +65,12 @@ const JoinusForm = (props:propType) => {
         </select>
       </p>
       <p>
-        <label htmlFor="email">电子邮箱</label>
+        <label htmlFor="qq" style={{width: "46px"}}>QQ</label>
         <input
-          type="email"
-          name="email"
-          id="email"
-          value={email}
+          type="text"
+          name="qq"
+          id="qq"
+          value={qq}
           onChange={handleChange}
           required={true}
         />
