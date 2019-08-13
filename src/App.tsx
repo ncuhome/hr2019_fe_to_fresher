@@ -1,6 +1,5 @@
 import * as React from 'react';
-import { BrowserRouter as Router, Route, withRouter } from "react-router-dom";
-import { History } from 'history';
+import { BrowserRouter as Router, Route, withRouter, RouteComponentProps } from 'react-router-dom';
 import Media from 'react-media';
 import * as ReactGA from 'react-ga';
 import PCMask from '././components/PCMask';
@@ -17,7 +16,7 @@ const { mobileQuery, gaTrackingCode } = config;
 
 ReactGA.initialize(gaTrackingCode);
 
-const Container = (props:{history:History,children?:any}) => {
+const Container = (props: RouteComponentProps & {children?: JSX.Element[] | JSX.Element}) => {
 
   const { history } = props;
 
@@ -28,21 +27,21 @@ const Container = (props:{history:History,children?:any}) => {
     });
     return () => {
       unlisten();
-    }
-  },[]);
+    };
+  }, []);
 
   return (
-    <React.Fragment>
+    <>
       {props.children}
-    </React.Fragment>
-  )
-}
+    </>
+  );
+};
 const RouteContainer = withRouter(Container);
 
 const App = () => {
   return (
     <Media query={mobileQuery}>
-      {matches => 
+      {matches => (
         matches ? (
           <Router>
             <RouteContainer>
@@ -54,10 +53,9 @@ const App = () => {
           </Router>
         ) : (
           <PCMask />
-        )
-      }
-    </Media>  
-  )
+        ))}
+    </Media>
+  );
 };
 
 export default App;

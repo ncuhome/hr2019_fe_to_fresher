@@ -1,28 +1,28 @@
-import * as React from "react";
-import lottie from "lottie-web/build/player/lottie_light";
-import animationData from "./setting";
-import "./style.css";
+import * as React from 'react';
+import lottie from 'lottie-web/build/player/lottie_light';
+import animationData from './setting';
+import './style.css';
 
-interface propType {
-  processValue: number,
+interface PropType {
+  processValue: number;
 }
 
-let lottieRef:HTMLDivElement;
+let lottieRef: HTMLDivElement;
 
-const LoadingAnime = (props:propType) => {
-  
+const LoadingAnime = (props: PropType) => {
+
   const { processValue } = props;
 
-  React.useEffect( () => {
+  React.useEffect(() => {
     lottie.loadAnimation({
       container: lottieRef,
       // 使用svg会使图片加载两次，一次是lottie的preload，一次是把图片添加到dom上，还没找到办法解决
       renderer: 'svg',
       loop: true,
       autoplay: true,
-      animationData: animationData,
+      animationData: animationData
     });
-  },[])
+  }, []);
 
   return (
     <div className="loading-container">
@@ -34,7 +34,7 @@ const LoadingAnime = (props:propType) => {
         <span id="loadingProcess">{processValue}</span>
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default LoadingAnime;

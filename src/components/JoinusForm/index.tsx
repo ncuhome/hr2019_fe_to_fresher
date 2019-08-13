@@ -1,27 +1,32 @@
 import * as React from 'react';
 import './style.css';
 
-export interface formType {
-  name:string
-  gender:string,
-  department:string,
-  qq:string,
-  phone:string,
-  clazz:string,
-  introduction:string,
-  reset:number,
+export interface FormType {
+  name: string;
+  gender: string;
+  department: string;
+  qq: string;
+  phone: string;
+  clazz: string;
+  introduction: string;
+  reset: number;
+  [propName: string]: string | number | undefined;
 }
 
-interface propType {
-  value: formType,
-  onChange: any,
-  onSubmit: (event:React.FormEvent<HTMLFormElement>) => void
+interface PropType {
+  value: FormType;
+  onChange: (event:
+    React.ChangeEvent<HTMLSelectElement> |
+    React.ChangeEvent<HTMLInputElement> |
+    React.MouseEvent<HTMLInputElement, MouseEvent> |
+    React.ChangeEvent<HTMLTextAreaElement>) => void;
+  onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 }
 
-const JoinusForm = (props:propType) => {
+const JoinusForm = (props: PropType) => {
 
-  const { name,gender,department,qq,phone, clazz,introduction} = props.value;
-  const { onChange:handleChange, onSubmit:handleSubmit } = props;
+  const { name, gender, department, qq, phone, clazz, introduction } = props.value;
+  const { onChange: handleChange, onSubmit: handleSubmit } = props;
 
   const isMale = (gender === '男') ? true : false;
 
@@ -42,16 +47,18 @@ const JoinusForm = (props:propType) => {
         <label htmlFor="gender">性别</label>
         <span>
           <span className="radio-container">
-            <label htmlFor="male" style={{color: isMale ? null : '#9F9F9F'}}>男</label>
+            <label htmlFor="male" style={{ color: isMale ? null : '#9F9F9F' }}>男</label>
             <input type="radio" name="gender" id="male" value="男" defaultChecked onClick={handleChange} />
           </span>
-            <span className="radio-container">
-            <label htmlFor="female" style={{color: isMale ? '#9F9F9F' : null}}>女</label>
+          <span className="radio-container">
+            <label htmlFor="female" style={{ color: isMale ? '#9F9F9F' : null }}>女</label>
             <input type="radio" name="gender" id="female" value="女" onClick={handleChange} />
           </span>
           <span className="gender-underline" style={{
             transform: !isMale ? 'translateX(81px)' : 'translateX(50px)',
-            background: !isMale ? '#FF7272' : '#72ADFF'}}/>
+            background: !isMale ? '#FF7272' : '#72ADFF'
+          }}
+          />
         </span>
       </p>
       <p>
@@ -65,7 +72,7 @@ const JoinusForm = (props:propType) => {
         </select>
       </p>
       <p>
-        <label htmlFor="qq" style={{width: "46px"}}>QQ</label>
+        <label htmlFor="qq" style={{ width: '46px' }}>QQ</label>
         <input
           type="text"
           name="qq"
@@ -100,7 +107,7 @@ const JoinusForm = (props:propType) => {
       <p>
         <label htmlFor="introduction">自我介绍</label>
       </p>
-      <textarea 
+      <textarea
         name="introduction"
         id="introduction"
         placeholder="可以说说自己的爱好，特长和有趣的经历哦~ PS:还可以说说选择该组的理由呢！"
@@ -109,10 +116,10 @@ const JoinusForm = (props:propType) => {
         required={true}
       />
       <div className="btn-container">
-        <input type="submit" value="提交"/>
+        <input type="submit" value="提交" />
       </div>
     </form>
-  )
-}
+  );
+};
 
 export default JoinusForm;
