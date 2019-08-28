@@ -15,7 +15,7 @@
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  margin: 2vh 4vw;
+  margin: 2vh 4vw 2vh 0;
   width: 25vw;
   height: 5vh;
   background: rgba(42, 42, 42, 1);
@@ -127,4 +127,43 @@
 .introduce-to-group-container img {
   position: fixed;
   bottom: 0.5vh;
+}
+
+.group-modal-container {
+  position: absolute;
+  top: 10vh;
+  text-align: center;
+  height: 80vh;
+  width: 100vw;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.group-modal-container:before {
+  content: ' ';
+  margin: 0 10vw;
+  border-radius: 16px;
+  position: absolute;
+  top: 0;left: 0;right: 0;bottom: 0;
+  z-index: 0;
+  background-color: rgba(21, 21, 21, .85);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.group-modal-container:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+
+.group-modal-container .QRcode-text-container {
+  transform: translateZ(0);
+}
+
+.group-modal-container .QRcode-text-container img {
+  width: 60%;
 }

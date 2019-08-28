@@ -14,6 +14,7 @@ const NCUOS = require('../../assets/png/products/NCUOS.png');
 const mainSite = require('../../assets/png/products/mainSite.png');
 const other = require('../../assets/png/products/other.png');
 const US = require('../../assets/png/products/US.png');
+const QRcode = require('../../assets/jpg/QRcode.jpg');
 
 const arrowDown = require('../../assets/svg/product_arrow_down.svg');
 const pointerImg = require('../../assets/svg/pointer.svg');
@@ -273,7 +274,10 @@ function ProductIntro(props: RouteComponentProps) {
 
   return (
     <div className="productintro-container">
-      <div className="joinlink-container">
+      <div className="joinlink-container" onClick={() => {}}>
+        <span className="joinlink">
+          招新群
+        </span>
         <span className="joinlink">
           <Link to="/application">报名直达</Link>
         </span>
@@ -300,6 +304,16 @@ function ProductIntro(props: RouteComponentProps) {
       <div className="introduce-to-group-container">
         <p>认识创造者们</p>
         <img src={arrowDown} alt="向下" ref={(myRef) => { arrowRef = myRef }} />
+      </div>
+      <div className="group-modal-container">
+        <div className="QRcode-text-container">
+          <p>2019家园工作室招新QQ群</p>
+          <img src={QRcode} alt="二维码" />
+          <p>群号895644214</p>
+          <p>扫描或点击</p>
+          <p>资料&解答&关于我们</p>
+          <p>欢迎来玩</p>
+        </div>
       </div>
     </div>
   );

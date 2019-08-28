@@ -102,6 +102,7 @@ const JoinusForm = (props: PropType) => {
           value={clazz}
           onChange={handleChange}
           required={true}
+          placeholder="XX专业XX班"
         />
       </p>
       <p>
@@ -110,7 +111,7 @@ const JoinusForm = (props: PropType) => {
       <textarea
         name="introduction"
         id="introduction"
-        placeholder="可以说说自己的爱好，特长和有趣的经历哦~ PS:还可以说说选择该组的理由呢！"
+        placeholder="包括但不限于你的爱好、特长、经历与想法。丰富的自我介绍，能使我们更快更好地了解你，在笔面试前就吸引我们的注意喔~"
         value={introduction}
         onChange={handleChange}
         required={true}
