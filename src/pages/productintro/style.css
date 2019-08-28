@@ -129,16 +129,24 @@
   bottom: 0.5vh;
 }
 
-.group-modal-container {
+.QRcode-modal-container {
   position: absolute;
-  top: 10vh;
-  text-align: center;
-  height: 80vh;
+  top: 0;
+  height: 100vh;
   width: 100vw;
   color: rgba(255, 255, 255, 0.85);
 }
 
-.group-modal-container:before {
+.QRcode-modal-background {
+  position: absolute;
+  top: 0;
+  top: 0;
+  margin: 10vh 0;
+  height: 80vh;
+  text-align: center;
+}
+
+.QRcode-modal-background:before {
   content: ' ';
   margin: 0 10vw;
   border-radius: 16px;
@@ -150,7 +158,7 @@
   backdrop-filter: blur(10px);
 }
 
-.group-modal-container:after {
+.QRcode-modal-background:after {
   content: "";
   position: absolute;
   top: 0;
@@ -160,10 +168,27 @@
   z-index: -1;
 }
 
-.group-modal-container .QRcode-text-container {
+.QRcode-modal-container .QRcode-modal-background .QRcode-text-container {
+  position: relative;
+  margin: 0 10vw;
+  padding-top: 20%;
   transform: translateZ(0);
+  line-height: 21px;
 }
 
-.group-modal-container .QRcode-text-container img {
-  width: 60%;
+.QRcode-modal-container .QRcode-modal-background .QRcode-text-container #modal-close-btn {
+  display: inline-block;
+  position: absolute;
+  right: 0;
+  top: 1px;
+  margin: 10px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.QRcode-modal-container .QRcode-modal-background .QRcode-text-container #modal-close-btn img {
+  width: 25px;
+}
+
+.QRcode-modal-container .QRcode-modal-background .QRcode-text-container #qrcode-img {
+  width: 50%;
 }

@@ -18,6 +18,7 @@ const QRcode = require('../../assets/jpg/QRcode.jpg');
 
 const arrowDown = require('../../assets/svg/product_arrow_down.svg');
 const pointerImg = require('../../assets/svg/pointer.svg');
+const closeCircle = require('../../assets/svg/close_circle.svg');
 
 const itemArray = ['iNCU', 'NCUOS', 'mainSite', 'other', 'US'];
 const rotateArray = [
@@ -33,6 +34,15 @@ function ProductIntro(props: RouteComponentProps) {
   const [rotatedValue, setRotatedValue] = useState(360);
   const [isAnimeing, setIsAnimeing] = useState(false);
   const [isFirst, setIsFirst] = useState(true);
+  const [isShowModal, setIsShowModal] = useState(false);
+
+  const handleQRcodeClcik = () => {
+    ReactGA.event({
+      category: 'ProductIntro',
+      action: 'Join our welcome group by Click'
+    });
+    window.location.href = 'https://jq.qq.com/?_wv=1027&k=5kst7Wj';
+  };
 
   useEffect(() => {
     // 设置产品图片位置、角度
@@ -248,7 +258,7 @@ function ProductIntro(props: RouteComponentProps) {
       const touch = event.targetTouches[0];
       startPos = { x: touch.pageX, y: touch.pageY, time: Number(new Date()) };
       isScrolling = 0;
-      if (!isAnimeing) {
+      if (!isAnimeing && !isShowModal) {
         document.body.addEventListener('touchmove', handleTouch, { passive: false });
         document.body.addEventListener('touchend', handleTouchEnd);
       }
@@ -257,7 +267,7 @@ function ProductIntro(props: RouteComponentProps) {
     return () => {
       document.body.removeEventListener('touchstart', handleTouchStart);
     };
-  }, [isAnimeing, rotatedValue]);
+  }, [isAnimeing, rotatedValue, isShowModal]);
 
   useEffect(() => {
     const selectedPlanetAnime = anime({
@@ -274,8 +284,8 @@ function ProductIntro(props: RouteComponentProps) {
 
   return (
     <div className="productintro-container">
-      <div className="joinlink-container" onClick={() => {}}>
-        <span className="joinlink">
+      <div className="joinlink-container">
+        <span className="joinlink" onClick={() => { setIsShowModal(true) }}>
           招新群
         </span>
         <span className="joinlink">
@@ -305,14 +315,17 @@ function ProductIntro(props: RouteComponentProps) {
         <p>认识创造者们</p>
         <img src={arrowDown} alt="向下" ref={(myRef) => { arrowRef = myRef }} />
       </div>
-      <div className="group-modal-container">
-        <div className="QRcode-text-container">
-          <p>2019家园工作室招新QQ群</p>
-          <img src={QRcode} alt="二维码" />
-          <p>群号895644214</p>
-          <p>扫描或点击</p>
-          <p>资料&解答&关于我们</p>
-          <p>欢迎来玩</p>
+      <div className="QRcode-modal-container" hidden={!isShowModal} >
+        <div className="QRcode-modal-background">
+          <div className="QRcode-text-container">
+            <i id="modal-close-btn" onClick={() => { setIsShowModal(false) }}><img src={closeCircle} /></i>
+            <p>2019家园工作室招新QQ群</p>
+            <img src={QRcode} alt="二维码" id="qrcode-img" onClick={handleQRcodeClcik} />
+            <p>群号895644214</p>
+            <p>扫描或点击</p>
+            <p>资料&解答&关于我们</p>
+            <p>欢迎来玩</p>
+          </div>
         </div>
       </div>
     </div>
