@@ -2,8 +2,8 @@ const path = require('path');
 const htmlWebpackPlugin = require('html-webpack-plugin')
 
 const paths = {
-  src: path.resolve(__dirname, "src"),
-  build: path.resolve(__dirname, "build"),
+  src: path.resolve(__dirname, "../src"),
+  build: path.resolve(__dirname, "../build"),
 };
 
 const devPaths = {
