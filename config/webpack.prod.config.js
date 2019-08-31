@@ -6,7 +6,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 config.mode = 'production';
-config.devtool = "source-map";
+// config.devtool = "source-map";
 config.module.rules[2] = { 
   test: /\.css$/, 
   use: [
