@@ -17,7 +17,6 @@ const arrowUp = require('../../assets/svg/form_arrow_up.svg');
 let formRef: HTMLDivElement;
 
 const Application = (props: RouteComponentProps) => {
-  console.log(props);
   const defaultDepartment = props.location.state || '行政';
   const defaultValue = localStorage.getItem('formValue') === null ? {
     name: '',

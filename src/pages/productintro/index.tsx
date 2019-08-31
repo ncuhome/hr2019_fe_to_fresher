@@ -92,7 +92,7 @@ function ProductIntro(props: RouteComponentProps) {
       anime.running.forEach((instance: AnimeInstance) => {
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         instance.animatables.forEach((animatable: any) => {
-          console.log(animatable);
+          // console.log(animatable);
           anime.remove(animatable.target);
         });
       });
