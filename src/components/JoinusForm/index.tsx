@@ -32,8 +32,10 @@ const JoinusForm = (props: PropType) => {
 
   return (
     <form action="" className="form" onSubmit={handleSubmit}>
-      <p>
-        <label htmlFor="name">姓名</label>
+      <div className="joinus-form-row">
+        <div className="joinus-label-container">
+          <label htmlFor="name">姓名</label>
+        </div>
         <input
           type="text"
           name="name"
@@ -42,10 +44,12 @@ const JoinusForm = (props: PropType) => {
           onChange={handleChange}
           required={true}
         />
-      </p>
-      <p>
-        <label htmlFor="gender">性别</label>
-        <span>
+      </div>
+      <div className="joinus-form-row">
+        <div className="joinus-label-container">
+          <label htmlFor="gender">性别</label>
+        </div>
+        <span style={{ display: 'inline-block' }}>
           <span className="radio-container">
             <label htmlFor="male" style={{ color: isMale ? null : '#9F9F9F' }}>男</label>
             <input type="radio" name="gender" id="male" value="男" defaultChecked onClick={handleChange} />
@@ -55,14 +59,16 @@ const JoinusForm = (props: PropType) => {
             <input type="radio" name="gender" id="female" value="女" onClick={handleChange} />
           </span>
           <span className="gender-underline" style={{
-            transform: !isMale ? 'translateX(81px)' : 'translateX(50px)',
+            transform: !isMale ? 'translateX(78px)' : 'translateX(5px)',
             background: !isMale ? '#FF7272' : '#72ADFF'
           }}
           />
         </span>
-      </p>
-      <p>
-        <label htmlFor="department">组别</label>
+      </div>
+      <div className="joinus-form-row">
+        <div className="joinus-label-container">
+          <label htmlFor="department">组别</label>
+        </div>
         <select name="department" id="department" value={department} onChange={handleChange}>
           <option value="行政">行政组</option>
           <option value="运营">运营组</option>
@@ -70,9 +76,11 @@ const JoinusForm = (props: PropType) => {
           <option value="设计">设计组</option>
           <option value="研发">研发组</option>
         </select>
-      </p>
-      <p>
-        <label htmlFor="qq" style={{ width: '46px' }}>QQ</label>
+      </div>
+      <div className="joinus-form-row">
+        <div className="joinus-label-container">
+          <label htmlFor="qq">QQ</label>
+        </div>
         <input
           type="text"
           name="qq"
@@ -81,9 +89,11 @@ const JoinusForm = (props: PropType) => {
           onChange={handleChange}
           required={true}
         />
-      </p>
-      <p>
-        <label htmlFor="phone">手机号码</label>
+      </div>
+      <div className="joinus-form-row">
+        <div className="joinus-label-container">
+          <label htmlFor="phone">手机</label>
+        </div>
         <input
           type="tel"
           pattern="^[1]([3-9])[0-9]{9}$"
@@ -92,9 +102,11 @@ const JoinusForm = (props: PropType) => {
           onChange={handleChange}
           required={true}
         />
-      </p>
-      <p>
-        <label htmlFor="clazz">专业班级</label>
+      </div>
+      <div className="joinus-form-row">
+        <div className="joinus-label-container">
+          <label htmlFor="clazz">班级</label>
+        </div>
         <input
           type="text"
           name="clazz"
@@ -102,12 +114,14 @@ const JoinusForm = (props: PropType) => {
           value={clazz}
           onChange={handleChange}
           required={true}
-          placeholder="XX专业XX班"
+          placeholder="（例：自动化191）"
         />
-      </p>
-      <p>
-        <label htmlFor="introduction">自我介绍</label>
-      </p>
+      </div>
+      <div className="joinus-form-row">
+        <div className="joinus-label-container">
+          <label htmlFor="introduction">自我介绍</label>
+        </div>
+      </div>
       <textarea
         name="introduction"
         id="introduction"
