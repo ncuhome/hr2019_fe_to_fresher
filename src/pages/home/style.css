@@ -10,7 +10,7 @@
   justify-content: center;
   align-items: center;
   position: absolute;
-  bottom: 30vh;
+  bottom: 24vh;
   color: rgba(221, 221, 221, 1);
   font-size: 16px;
   width: 50vw;
@@ -51,11 +51,12 @@
 }
 
 .home-introduction-container div {
+  width: 100vw;
   text-align: center;
   margin-bottom: 1px;
   line-height: 16px;
-  font-size: 12px;
-  transform: scale(.88);
+  font-size: 3.5vw;
+  white-space: nowrap;
 }
 
 

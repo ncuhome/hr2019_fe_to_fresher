@@ -114,7 +114,7 @@ const Home = (props: RouteComponentProps) => {
         <div>点击进入星系</div>
       </div>
       <div className="home-introduction-container">
-        <p className="home-introduction-headline">ABOUT NCUHOME</p>
+        {/* <p className="home-introduction-headline">ABOUT NCUHOME</p> */}
         <div>{indexText.map((line, index) => (<p key={index}>{line}</p>))}</div>
       </div>
       <div className="home-hidden-container">
