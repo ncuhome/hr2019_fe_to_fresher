@@ -21,7 +21,7 @@ const devPlanet = require('../../assets/png/introduce_dev_planet.png');
 
 const orbits = require('../../assets/png/introduce_orbits.png');
 
-const planetArray = [managePlanet, omPlanet, pmPlanet, desighPlanet, devPlanet];
+const planetArray = [pmPlanet, managePlanet, omPlanet, desighPlanet, devPlanet];
 
 let textRef: HTMLDivElement;
 
