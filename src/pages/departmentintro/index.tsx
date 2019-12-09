@@ -25,7 +25,7 @@ const planetArray = [pmPlanet, managePlanet, omPlanet, desighPlanet, devPlanet];
 
 let textRef: HTMLDivElement;
 
-const DepartmentsIntro = (props: RouteComponentProps) => {
+const DepartmentsIntro: React.FC<RouteComponentProps> = (props) => {
 
   const [index, setIndex] = useState(0);
   const [isAnimeing, setIsAnimeing] = useState(false);

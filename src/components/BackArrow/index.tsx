@@ -8,7 +8,7 @@ interface PropType {
   onClick: (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => void;
 }
 
-const BackArrow = (props: PropType) => {
+const BackArrow: React.FC<PropType> = props => {
   const { isHidden = false } = props;
   return (
     <div className="back-arrow-container" onClick={props.onClick} hidden={isHidden}>

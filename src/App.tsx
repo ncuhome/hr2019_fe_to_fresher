@@ -16,7 +16,7 @@ const { mobileQuery, gaTrackingCode } = config;
 
 ReactGA.initialize(gaTrackingCode);
 
-const Container = (props: RouteComponentProps & {children?: JSX.Element[] | JSX.Element}) => {
+const Container: React.FC<RouteComponentProps> = props => {
 
   const { history } = props;
 
@@ -38,7 +38,7 @@ const Container = (props: RouteComponentProps & {children?: JSX.Element[] | JSX.
 };
 const RouteContainer = withRouter(Container);
 
-const App = () => {
+const App: React.FC = () => {
   return (
     <Media query={mobileQuery}>
       {matches => (

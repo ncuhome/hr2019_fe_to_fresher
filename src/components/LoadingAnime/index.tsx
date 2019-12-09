@@ -9,7 +9,7 @@ interface PropType {
 
 let lottieRef: HTMLDivElement;
 
-const LoadingAnime = (props: PropType) => {
+const LoadingAnime: React.FC<PropType> = (props) => {
 
   const { processValue } = props;
 

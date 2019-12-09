@@ -28,7 +28,7 @@ const rotateArray = [
 let itemContainerRef: HTMLDivElement;
 let arrowRef: HTMLImageElement;
 
-function ProductIntro(props: RouteComponentProps) {
+const ProductIntro: React.FC<RouteComponentProps> = props => {
 
   const [index, setIndex] = useState(0);
   const [rotatedValue, setRotatedValue] = useState(360);
@@ -330,6 +330,6 @@ function ProductIntro(props: RouteComponentProps) {
       </div>
     </div>
   );
-}
+};
 
 export default withRouter(ProductIntro);

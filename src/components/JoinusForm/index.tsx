@@ -23,7 +23,7 @@ interface PropType {
   onSubmit: (event: React.FormEvent<HTMLFormElement>) => void;
 }
 
-const JoinusForm = (props: PropType) => {
+const JoinusForm: React.FC<PropType> = props => {
 
   const { name, gender, department, qq, phone, clazz, introduction } = props.value;
   const { onChange: handleChange, onSubmit: handleSubmit } = props;

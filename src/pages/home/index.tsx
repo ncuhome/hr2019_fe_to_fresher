@@ -10,7 +10,7 @@ import './style.css';
 const { useState, useEffect } = React;
 const { indexText } = config;
 
-const Home = (props: RouteComponentProps) => {
+const Home: React.FC<RouteComponentProps> = props => {
 
   const [isAnimeing, setIsAnimeing] = useState(false);
   const [processValue, setProcessValue] = useState(0);

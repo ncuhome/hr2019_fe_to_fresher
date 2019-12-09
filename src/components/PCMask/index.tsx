@@ -3,7 +3,7 @@ import './style.css';
 
 const SiteQRcode = require('./SiteQRcode.png');
 
-const PCMask = () => {
+const PCMask: React.FC = () => {
   return (
     <div className="PCMask-container">
       <div className="PCMask-Site-QRcode">
