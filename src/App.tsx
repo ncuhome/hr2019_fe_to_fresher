@@ -7,6 +7,7 @@ import Home from './pages/home';
 import ProductIntro from './pages/productintro';
 import DepartmentsIntro from './pages/departmentintro';
 import Application from './pages/application';
+import Success from './pages/success'
 import './App.css';
 import config from './config';
 
@@ -49,6 +50,7 @@ const App: React.FC = () => {
               <Route path="/product" component={ProductIntro} />
               <Route path="/department" component={DepartmentsIntro} />
               <Route path="/application" component={Application} />
+              <Route path="/success" component={Success} />
             </RouteContainer>
           </Router>
         ) : (
