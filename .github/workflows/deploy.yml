@@ -27,6 +27,6 @@ jobs:
         folder: build
         accessKeyId: ${{ secrets.ACCESSKEYID }}
         accessKeySecret: ${{ secrets.ACCESSKEYSECRET }}
-        bucket: 2020hr-ncuhome
+        bucket: cube-game
         endpoint: oss-cn-hangzhou.aliyuncs.com
         skipSetting: true
