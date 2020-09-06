@@ -291,7 +291,7 @@ const DepartmentsIntro: React.FC<RouteComponentProps> = (props) => {
             </span>
             <Link to={{
               pathname: '/application',
-              state: departments[index].name
+              state: `${departments[index].name}组`
             }}>
               JOIN US
             </Link>
