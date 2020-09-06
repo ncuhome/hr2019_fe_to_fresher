@@ -14,7 +14,7 @@ const NCUOS = require('../../assets/png/products/NCUOS.png');
 const mainSite = require('../../assets/png/products/mainSite.png');
 const other = require('../../assets/png/products/other.png');
 const US = require('../../assets/png/products/US.png');
-const QRcode = require('../../assets/jpg/QRcode.jpg');
+const QRcode = require('../../assets/png/qr.png');
 
 const arrowDown = require('../../assets/svg/product_arrow_down.svg');
 const pointerImg = require('../../assets/svg/pointer.svg');
@@ -41,7 +41,7 @@ const ProductIntro: React.FC<RouteComponentProps> = props => {
       category: 'ProductIntro',
       action: 'Join our welcome group by Click'
     });
-    window.location.href = 'https://jq.qq.com/?_wv=1027&k=5kst7Wj';
+    window.location.href = 'https://qm.qq.com/cgi-bin/qm/qr?k=dvvO-DkJMmfFeiMtK4I_sHCkYbqLbjao&authKey=YZl1jgj93dm0iJ5UonAg1BrNcd1TGcaTXidG8MY9mHRlWNA/IgfWisGuMJa1ImpD&noverify=0';
   };
 
   useEffect(() => {
@@ -319,9 +319,9 @@ const ProductIntro: React.FC<RouteComponentProps> = props => {
         <div className="QRcode-modal-background">
           <div className="QRcode-text-container">
             <i id="modal-close-btn" onClick={() => { setIsShowModal(false) }}><img src={closeCircle} /></i>
-            <p>2019家园工作室招新QQ群</p>
+            <p>2020家园工作室招新QQ群</p>
             <img src={QRcode} alt="二维码" id="qrcode-img" onClick={handleQRcodeClcik} />
-            <p>群号895644214</p>
+            <p>群号1150346484</p>
             <p>扫描或点击</p>
             <p>资料&解答&关于我们</p>
             <p>欢迎来玩</p>

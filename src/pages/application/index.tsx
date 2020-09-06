@@ -111,7 +111,7 @@ const Application: React.FC<RouteComponentProps> = props => {
       category: 'Application',
       action: 'Join our welcome group by Click'
     });
-    window.location.href = 'https://jq.qq.com/?_wv=1027&k=5kst7Wj';
+    window.location.href = 'https://qm.qq.com/cgi-bin/qm/qr?k=dvvO-DkJMmfFeiMtK4I_sHCkYbqLbjao&authKey=YZl1jgj93dm0iJ5UonAg1BrNcd1TGcaTXidG8MY9mHRlWNA/IgfWisGuMJa1ImpD&noverify=0';
   };
 
   useEffect(() => {
