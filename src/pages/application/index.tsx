@@ -17,7 +17,7 @@ const arrowUp = require('../../assets/svg/form_arrow_up.svg');
 let formRef: HTMLDivElement;
 
 const Application: React.FC<RouteComponentProps> = props => {
-  const defaultDepartment = props.location.state || '行政';
+  const defaultDepartment = props.location.state || '行政组';
   const defaultValue = localStorage.getItem('formValue') === null ? {
     name: '',
     gender: '男',
