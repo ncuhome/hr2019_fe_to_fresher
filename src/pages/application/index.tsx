@@ -21,11 +21,11 @@ const Application: React.FC<RouteComponentProps> = props => {
   const defaultValue = localStorage.getItem('formValue') === null ? {
     name: '',
     gender: '男',
-    department: defaultDepartment,
+    group: defaultDepartment,
     qq: '',
     phone: '',
-    clazz: '',
-    introduction: '',
+    student_id: '',
+    intro: '',
     reset: 0
   } : JSON.parse(localStorage.getItem('formValue'));
   const [formValues, setFormValues] = useState(defaultValue);
@@ -43,37 +43,32 @@ const Application: React.FC<RouteComponentProps> = props => {
   };
 
   const handleSighUp = (value: FormType) => {
-    axios.post('/api/freshman/signup', JSON.stringify(value), {
+    axios.post('https://2020hr-api.ncuos.com/sign_up', JSON.stringify(value), {
       headers: {
         'Content-Type': 'application/json'
       }
     })
       .then((response) => {
+        console.log(response)
         const { data, status, statusText } = response;
+        console.log(status)
         if (status === 200) {
-          if (data.status === 1) {
+          if (data.status === 0) {
             window.alert('bibi——报名讯号已被接收\n点击下方二维码开启招新群传送门，\n和创造者们会面吧~');
             ReactGA.event({
               category: 'Application',
               action: 'Sigh Up success'
             });
           }
-          else if (data.status === -1) {
-            if (window.confirm('该手机已报名，是否修改信息？')) {
-              const newFormValue = { ...formValues, reset: 1 };
-              handleSighUp(newFormValue);
-              ReactGA.event({
-                category: 'Application',
-                action: 'Edit profile'
-              });
-            }
+          else if (data.status === 1) {
+            window.alert(data.msg);
           }
           else {
-            window.alert(data.message);
+            window.alert('未知错误, 请重试');
           }
         }
         else {
-          window.alert(statusText);
+          window.alert('未知错误，请重试');
         }
         setIsSumbmiting(false);
       })

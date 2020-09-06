@@ -4,11 +4,11 @@ import './style.css';
 export interface FormType {
   name: string;
   gender: string;
-  department: string;
+  group: string;
   qq: string;
   phone: string;
-  clazz: string;
-  introduction: string;
+  student_id: string;
+  intro: string;
   reset: number;
   [propName: string]: string | number | undefined;
 }
@@ -25,7 +25,7 @@ interface PropType {
 
 const JoinusForm: React.FC<PropType> = props => {
 
-  const { name, gender, department, qq, phone, clazz, introduction } = props.value;
+  const { name, gender, group, qq, phone, student_id, intro } = props.value;
   const { onChange: handleChange, onSubmit: handleSubmit } = props;
 
   const isMale = (gender === '男') ? true : false;
@@ -67,14 +67,14 @@ const JoinusForm: React.FC<PropType> = props => {
       </div>
       <div className="joinus-form-row">
         <div className="joinus-label-container">
-          <label htmlFor="department">组别</label>
+          <label htmlFor="group">组别</label>
         </div>
-        <select name="department" id="department" value={department} onChange={handleChange}>
-          <option value="行政">行政组</option>
-          <option value="运营">运营组</option>
-          <option value="产品">产品组</option>
-          <option value="设计">设计组</option>
-          <option value="研发">研发组</option>
+        <select name="group" id="group" value={group} onChange={handleChange}>
+          <option value="行政组">行政组</option>
+          <option value="运营组">运营组</option>
+          <option value="产品组">产品组</option>
+          <option value="设计组">设计组</option>
+          <option value="研发组">研发组</option>
         </select>
       </div>
       <div className="joinus-form-row">
@@ -105,16 +105,15 @@ const JoinusForm: React.FC<PropType> = props => {
       </div>
       <div className="joinus-form-row">
         <div className="joinus-label-container">
-          <label htmlFor="clazz">班级</label>
+          <label htmlFor="clazz">学号</label>
         </div>
         <input
           type="text"
-          name="clazz"
-          id="clazz"
-          value={clazz}
+          name="student_id"
+          id="student_id"
+          value={student_id}
           onChange={handleChange}
           required={true}
-          placeholder="（例：自动化191）"
         />
       </div>
       <div className="joinus-form-row">
@@ -123,10 +122,10 @@ const JoinusForm: React.FC<PropType> = props => {
         </div>
       </div>
       <textarea
-        name="introduction"
+        name="intro"
         id="introduction"
         placeholder="包括但不限于你的爱好、特长、经历与想法。丰富的自我介绍，能使我们更快更好地了解你，在笔面试前就吸引我们的注意喔~"
-        value={introduction}
+        value={intro}
         onChange={handleChange}
         required={true}
       />
