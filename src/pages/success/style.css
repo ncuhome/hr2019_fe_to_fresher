@@ -1,5 +1,73 @@
 .success-container {
   width: 100vw;
   height: 100vh;
+  padding: 5vh 5vw;
   background: center top/cover no-repeat url('../../assets/png/success-bg.png') fixed;
+  display: flex;
+  flex-direction: column;
+}
+
+.success-container .success-tip {
+  background: rgb(54, 54, 54);
+  width: 90vw;
+  height: 38.182vw;
+  padding: 5.455vw;
+  padding-left: 6.182vw;
+  border-radius: 20px;
+  box-shadow: 0 0 9px 0 rgb(255, 255, 255, 0.07);
+}
+
+.success-container .success-tip > div {
+  display: flex;
+  justify-content: space-between;
+}
+
+.success-container .success-tip > div > .content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.success-container .success-tip > div > .content > div > h1 {
+  color: rgb(255, 255, 255, 0.83);
+  font-size: 5vw;
+  font-weight: 400;
+}
+
+.success-container .success-tip > div > .content > div > p {
+  color: rgb(255, 255, 255, 0.83);
+  font-size: 2.5vw;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.success-container .success-tip > div > .content > div > p > img {
+  width: 3vw;
+}
+
+.success-container .success-tip > div > .content > p {
+  color: rgb(185, 181, 181, 0.74);
+  font-size: 2vw;
+}
+
+.success-container .success-tip > div > img {
+  width: 24.545vw;
+  height: 24.545vw;
+  margin: 2vw 0;
+  border-radius: 20px;
+  box-shadow: 0 2px 4px rgb(0, 0, 0, 0.5);
+}
+
+.success-container > .msg {
+  background: rgb(0, 0, 0, 0.66);
+  border-radius: 20px;
+  margin-top: 30px;
+  padding: 6.182vw;
+  flex: 1;
+}
+
+.success-container > .msg > h2 {
+  color: rgb(255, 255, 255, 0.83);
+  font-size: 16px;
 }
