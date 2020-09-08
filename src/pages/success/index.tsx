@@ -87,7 +87,9 @@ const Success: React.FC = () => {
               乘客 ID ： TRAPPIST-1b-74282
             </p>
           </div>
-          <img src={landing} alt="着陆" />
+          <a href="https://jq.qq.com/?_wv=1027&k=rA9xZO2R">
+            <img src={landing} alt="着陆" />
+          </a>
         </div>
       </div>
       <div className="msg">

@@ -54,7 +54,7 @@
   font-size: 2vw;
 }
 
-.success-container .success-tip > div > img {
+.success-container .success-tip > div > a >  img {
   width: 24.545vw;
   height: 24.545vw;
   margin: 0 0;
