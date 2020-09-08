@@ -79,7 +79,6 @@ const Success: React.FC = () => {
               <h1>申请成功！</h1>
               <p>
                 点击加入贵宾席 等待登船
-                &nbsp;&nbsp;
                 <img src={arrow} alt="箭头" />
               </p>
             </div>

@@ -46,6 +46,7 @@
 
 .success-container .success-tip > div > .content > div > p > img {
   width: 3vw;
+  margin-left: 6px;
 }
 
 .success-container .success-tip > div > .content > p {
