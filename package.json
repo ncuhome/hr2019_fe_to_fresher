@@ -58,5 +58,13 @@
     "react-media": "^1.9.2",
     "react-router": "^5.0.1",
     "react-router-dom": "^5.0.1"
-  }
+  },
+  "browserslist": [
+    "defaults",
+    "not ie < 11",
+    "last 2 versions",
+    "> 1%",
+    "iOS 13",
+    "last 3 iOS versions"
+  ]
 }
