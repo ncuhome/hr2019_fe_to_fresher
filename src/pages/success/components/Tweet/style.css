@@ -16,6 +16,7 @@
 .tweet-container > div {
   padding: 3.2vw;
   padding-bottom: 2vw;
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -28,8 +29,14 @@
 
 .tweet-container > div > p {
   color: #898989;
-  font-size: 6px;
+  font-size: 12px;
+  white-space: nowrap;
+  transform: scale(0.82);
+  -webkit-transform: scale(0.82);
   margin: 0;
+  position: absolute;
+  left: 0;
+  bottom: 2vw;
 }
 
 .tweet-container > div > p > img {
