@@ -16,6 +16,11 @@ const cover_work = require('../../assets/png/success_cover-1.png')
 const zhihu_icon = require('../../assets/svg/zhihu-icon.svg')
 const cover_mario = require('../../assets/png/success_cover-2.png')
 const bilibili_icon = require('../../assets/svg/bilibili-icon.svg')
+const cover_hackthon = require('../../assets/jpg/success_cover-hackthon.jpg')
+const cover_think = require('../../assets/jpg/success_cover-think.jpg')
+const wechat_icon = require('../../assets/png/wechat-icon.png')
+const cover_4years = require('../../assets/jpg/success_cover-4years.jpg')
+const yuque_icon = require('../../assets/png/yuque-icon.png')
 
 const Tweets: TweetType[] = [
   {
@@ -31,6 +36,27 @@ const Tweets: TweetType[] = [
     title: '在南昌大学家园工作室工作是怎样一种体验？',
     author_icon: bilibili_icon,
     author: '来自家园工作室的小破站'
+  },
+  {
+    href: 'https://mp.weixin.qq.com/s/WV4S1nVBPXmfiHYlbdQqXA',
+    cover: cover_hackthon,
+    title: '校园黑客马拉松，一次想法与技术的竞技',
+    author_icon: wechat_icon,
+    author: '来自南昌大学家园网'
+  },
+  {
+    href: 'https://ncuhome.yuque.com/books/share/e98759b8-1561-41a0-a80a-db3f3a65b727?#',
+    cover: cover_4years,
+    title: '家园四年，成长与变革',
+    author_icon: yuque_icon,
+    author: '来自已经毕业的子健学长'
+  },
+  {
+    href: 'https://mp.weixin.qq.com/s/2MunnuqFJ440fzWhOnwLzA',
+    cover: cover_think,
+    title: '家园人谈实习，毕业去哪儿',
+    author_icon: wechat_icon,
+    author: '来自南昌大学家园网'
   }
 ]
 
