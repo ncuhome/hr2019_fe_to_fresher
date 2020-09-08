@@ -1,9 +1,12 @@
 import * as React from 'react';
 import { RouteComponentProps } from 'react-router-dom';
 import './style.css'
+import Tweet from './components/Tweet'
 
 const landing = require('../../assets/png/success_landing.png')
 const arrow = require('../../assets/svg/success_arrow.svg')
+const cover_1 = require('../../assets/png/success_cover-1.png')
+const zhihu_icon = require('../../assets/svg/zhihu-icon.svg')
 
 const Success: React.FC<RouteComponentProps> = () => {
   return (
@@ -28,6 +31,12 @@ const Success: React.FC<RouteComponentProps> = () => {
       </div>
       <div className="msg">
         <h2>宇宙漫游指北</h2>
+        <Tweet
+          cover={cover_1}
+          title='在南昌大学家园工作室工作是怎样一种体验？'
+          author_icon={zhihu_icon}
+          author='来自知乎er的回答'
+        />
       </div>
     </div>
   )
