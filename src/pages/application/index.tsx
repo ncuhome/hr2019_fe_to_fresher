@@ -54,14 +54,18 @@ const Application: React.FC<RouteComponentProps> = props => {
         console.log(status)
         if (status === 200) {
           if (data.status === 0) {
-            window.alert('bibi——报名讯号已被接收\n点击下方二维码开启招新群传送门，\n和创造者们会面吧~');
             ReactGA.event({
               category: 'Application',
               action: 'Sigh Up success'
             });
+            props.history.push('/success');
           }
           else if (data.status === 1) {
             window.alert(data.msg);
+          }
+          else if (data.status === 2) {
+            window.alert('信息修改成功！');
+            props.history.push('/success');
           }
           else {
             window.alert('未知错误, 请重试');
