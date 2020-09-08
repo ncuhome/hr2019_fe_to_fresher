@@ -68,6 +68,7 @@
   margin-top: 30px;
   padding: 6.182vw;
   flex: 1;
+  overflow: scroll;
 }
 
 .success-container > .msg > h2 {
