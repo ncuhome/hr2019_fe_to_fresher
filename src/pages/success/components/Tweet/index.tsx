@@ -2,6 +2,7 @@ import * as React from 'react';
 import './style.css'
 
 interface PropType {
+  href: string;
   cover: string;
   title: string;
   author_icon: string;
@@ -9,9 +10,9 @@ interface PropType {
 }
 
 const Tweet: React.FC<PropType> = (props) => {
-  const { cover, title, author_icon, author } = props;
+  const { href, cover, title, author_icon, author } = props;
   return (
-    <div className="tweet-container">
+    <a href={href} className="tweet-container">
       <img
         src={cover}
         alt="封面"
@@ -24,7 +25,7 @@ const Tweet: React.FC<PropType> = (props) => {
           {author}
         </p>
       </div>
-    </div>
+    </a>
   )
 }
 
