@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { RouteComponentProps } from 'react-router-dom';
 import './style.css'
 import Tweet from './components/Tweet'
 
@@ -10,7 +9,7 @@ const zhihu_icon = require('../../assets/svg/zhihu-icon.svg')
 const cover_2 = require('../../assets/png/success_cover-2.png')
 const bilibili_icon = require('../../assets/svg/bilibili-icon.svg')
 
-const Success: React.FC<RouteComponentProps> = () => {
+const Success: React.FC = () => {
   return (
     <div className="success-container" >
       <div className="success-tip" >
