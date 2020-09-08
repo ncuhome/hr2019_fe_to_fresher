@@ -7,6 +7,8 @@ const landing = require('../../assets/png/success_landing.png')
 const arrow = require('../../assets/svg/success_arrow.svg')
 const cover_1 = require('../../assets/png/success_cover-1.png')
 const zhihu_icon = require('../../assets/svg/zhihu-icon.svg')
+const cover_2 = require('../../assets/png/success_cover-2.png')
+const bilibili_icon = require('../../assets/svg/bilibili-icon.svg')
 
 const Success: React.FC<RouteComponentProps> = () => {
   return (
@@ -32,10 +34,18 @@ const Success: React.FC<RouteComponentProps> = () => {
       <div className="msg">
         <h2>宇宙漫游指北</h2>
         <Tweet
+          href='https://www.zhihu.com/question/61745974'
           cover={cover_1}
           title='在南昌大学家园工作室工作是怎样一种体验？'
           author_icon={zhihu_icon}
           author='来自知乎er的回答'
+        />
+        <Tweet
+          href='https://www.bilibili.com/video/BV1a441167tw'
+          cover={cover_2}
+          title='在南昌大学家园工作室工作是怎样一种体验？'
+          author_icon={bilibili_icon}
+          author='来自家园工作室的小破站'
         />
       </div>
     </div>
