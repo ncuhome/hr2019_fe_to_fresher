@@ -1,6 +1,17 @@
 import * as React from 'react';
 import './style.css'
 import Tweet from './components/Tweet'
+import landing from '../../assets/png/success_landing.png'
+import arrow from '../../assets/svg/success_arrow.svg'
+import cover_work from '../../assets/png/success_cover-1.png'
+import zhihu_icon from '../../assets/svg/zhihu-icon.svg'
+import cover_mario from '../../assets/png/success_cover-2.png'
+import bilibili_icon from '../../assets/svg/bilibili-icon.svg'
+import cover_hackthon from '../../assets/jpg/success_cover-hackthon.jpg'
+import cover_think from '../../assets/jpg/success_cover-think.jpg'
+import wechat_icon from '../../assets/png/wechat-icon.png'
+import cover_4years from '../../assets/jpg/success_cover-4years.jpg'
+import yuque_icon from '../../assets/png/yuque-icon.png'
 
 interface TweetType {
   href: string;
@@ -10,17 +21,6 @@ interface TweetType {
   author: string;
 }
 
-const landing = require('../../assets/png/success_landing.png')
-const arrow = require('../../assets/svg/success_arrow.svg')
-const cover_work = require('../../assets/png/success_cover-1.png')
-const zhihu_icon = require('../../assets/svg/zhihu-icon.svg')
-const cover_mario = require('../../assets/png/success_cover-2.png')
-const bilibili_icon = require('../../assets/svg/bilibili-icon.svg')
-const cover_hackthon = require('../../assets/jpg/success_cover-hackthon.jpg')
-const cover_think = require('../../assets/jpg/success_cover-think.jpg')
-const wechat_icon = require('../../assets/png/wechat-icon.png')
-const cover_4years = require('../../assets/jpg/success_cover-4years.jpg')
-const yuque_icon = require('../../assets/png/yuque-icon.png')
 
 const Tweets: TweetType[] = [
   {
