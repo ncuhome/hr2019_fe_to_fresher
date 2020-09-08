@@ -6,13 +6,12 @@ import * as ReactGA from 'react-ga';
 import BackArrow from '../../components/BackArrow';
 import JoinusForm, { FormType } from '../../components/JoinusForm/index';
 import './style.css';
+import xiaojiayuan from '../../assets/png/xiaojiayuan.png';
+import QRcode from '../../assets/png/QRcode.png';
+import ncuhome from '../../assets/png/ncuhome_planet.png';
+import arrowUp from '../../assets/svg/form_arrow_up.svg';
 
 const { useState, useEffect } = React;
-
-const xiaojiayuan = require('../../assets/png/xiaojiayuan.png');
-const QRcode = require('../../assets/png/QRcode.png');
-const ncuhome = require('../../assets/png/ncuhome_planet.png');
-const arrowUp = require('../../assets/svg/form_arrow_up.svg');
 
 let formRef: HTMLDivElement;
 
