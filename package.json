@@ -32,6 +32,8 @@
     "less": "^3.9.0",
     "less-loader": "^5.0.0",
     "mini-css-extract-plugin": "^0.8.0",
+    "postcss": "^7.0.32",
+    "postcss-loader": "^4.0.1",
     "source-map-loader": "^0.2.4",
     "style-loader": "^0.23.1",
     "ts-loader": "^6.0.4",
@@ -48,6 +50,7 @@
     "@types/react-dom": "^16.8.4",
     "@types/react-router-dom": "^4.3.4",
     "animejs": "^3.1.0",
+    "autoprefixer": "^9.8.6",
     "axios": "^0.19.0",
     "lottie-web": "^5.5.7",
     "react": "^16.8.6",
@@ -56,5 +59,13 @@
     "react-media": "^1.9.2",
     "react-router": "^5.0.1",
     "react-router-dom": "^5.0.1"
-  }
+  },
+  "browserslist": [
+    "defaults",
+    "not ie < 11",
+    "last 2 versions",
+    "> 1%",
+    "iOS 13",
+    "last 3 iOS versions"
+  ]
 }

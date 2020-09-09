@@ -38,11 +38,12 @@ module.exports = {
           options: { presets: ["react", "es2015"] }
         }],
       },
-      { 
-        test: /\.css$/, 
+      {
+        test: /\.css$/,
         use: [
-          'style-loader',
-          'css-loader'
+          "style-loader",
+          "css-loader",
+          "postcss-loader"
         ],
       },
       {
