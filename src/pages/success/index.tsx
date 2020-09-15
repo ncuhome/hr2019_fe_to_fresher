@@ -8,10 +8,10 @@ import zhihu_icon from '../../assets/svg/zhihu-icon.svg'
 import cover_mario from '../../assets/png/success_cover-2.png'
 import bilibili_icon from '../../assets/svg/bilibili-icon.svg'
 import cover_hackthon from '../../assets/jpg/success_cover-hackthon.jpg'
-import cover_think from '../../assets/jpg/success_cover-think.jpg'
 import wechat_icon from '../../assets/png/wechat-icon.png'
 import cover_4years from '../../assets/jpg/success_cover-4years.jpg'
 import yuque_icon from '../../assets/png/yuque-icon.png'
+import cover_internship from '../../assets/jpg/success_cover-internship.jpg'
 
 interface TweetType {
   href: string;
@@ -52,8 +52,8 @@ const Tweets: TweetType[] = [
     author: '来自已经毕业的子健学长'
   },
   {
-    href: 'https://mp.weixin.qq.com/s/2MunnuqFJ440fzWhOnwLzA',
-    cover: cover_think,
+    href: 'https://mp.weixin.qq.com/s/YEgZ3hpNZiN2_CGM58t9Cg',
+    cover: cover_internship,
     title: '家园人谈实习，毕业去哪儿',
     author_icon: wechat_icon,
     author: '来自南昌大学家园网'
