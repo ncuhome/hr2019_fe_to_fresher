@@ -86,7 +86,8 @@ const Application: React.FC<RouteComponentProps> = props => {
     event.preventDefault();
     if (!isSumbmiting) {
       setIsSumbmiting(true);
-      handleSighUp(formValues);
+      alert('报名通道已关闭！');
+      /* handleSighUp(formValues); */
     }
   };
 
