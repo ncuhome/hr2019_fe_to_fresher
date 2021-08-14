@@ -41,7 +41,7 @@ const ProductIntro: React.FC<RouteComponentProps> = props => {
       category: 'ProductIntro',
       action: 'Join our welcome group by Click'
     });
-    window.location.href = 'https://qm.qq.com/cgi-bin/qm/qr?k=dvvO-DkJMmfFeiMtK4I_sHCkYbqLbjao&authKey=YZl1jgj93dm0iJ5UonAg1BrNcd1TGcaTXidG8MY9mHRlWNA/IgfWisGuMJa1ImpD&noverify=0';
+    window.location.href = 'https://qm.qq.com/cgi-bin/qm/qr?k=6AH9HIi3BxjQAw6BJruv7utQ3HZe52R2&jump_from=webapi';
   };
 
   useEffect(() => {
@@ -319,9 +319,9 @@ const ProductIntro: React.FC<RouteComponentProps> = props => {
         <div className="QRcode-modal-background">
           <div className="QRcode-text-container">
             <i id="modal-close-btn" onClick={() => { setIsShowModal(false) }}><img src={closeCircle} /></i>
-            <p>2020家园工作室招新QQ群</p>
+            <p>2021家园工作室招新QQ群</p>
             <img src={QRcode} alt="二维码" id="qrcode-img" onClick={handleQRcodeClcik} />
-            <p>群号1150346484</p>
+            <p>群号650152492</p>
             <p>扫描或点击</p>
             <p>资料&解答&关于我们</p>
             <p>欢迎来玩</p>
