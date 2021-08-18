@@ -24,7 +24,6 @@ interface PropType {
 }
 
 const JoinusForm: React.FC<PropType> = props => {
-
   const { name, gender, group, qq, phone, student_id, intro } = props.value;
   const { onChange: handleChange, onSubmit: handleSubmit } = props;
 
@@ -75,6 +74,7 @@ const JoinusForm: React.FC<PropType> = props => {
           <option value="产品组">产品组</option>
           <option value="设计组">设计组</option>
           <option value="研发组">研发组</option>
+          <option value="游戏组">游戏组</option>
         </select>
       </div>
       <div className="joinus-form-row">

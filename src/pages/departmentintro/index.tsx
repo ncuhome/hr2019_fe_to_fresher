@@ -18,10 +18,11 @@ const omPlanet = require('../../assets/png/introduce_om_planet.png');
 const pmPlanet = require('../../assets/png/introduce_pm_planet.png');
 const desighPlanet = require('../../assets/png/introduce_desigh_planet.png');
 const devPlanet = require('../../assets/png/introduce_dev_planet.png');
+const gamePlanet = require('../../assets/png/introduce_game_planet.png')
 
 const orbits = require('../../assets/png/introduce_orbits.png');
 
-const planetArray = [pmPlanet, managePlanet, omPlanet, desighPlanet, devPlanet];
+const planetArray = [pmPlanet, managePlanet, omPlanet, desighPlanet, devPlanet, gamePlanet];
 
 let textRef: HTMLDivElement;
 
@@ -47,9 +48,9 @@ const DepartmentsIntro: React.FC<RouteComponentProps> = (props) => {
   };
 
   const safeSetIndex = (v: number) => {
-    const remainder = v % 5;
+    const remainder = v % 6;
     if (remainder < 0) {
-      setIndex(remainder + 5);
+      setIndex(remainder + 6);
     }
     else {
       setIndex(remainder);
@@ -254,7 +255,7 @@ const DepartmentsIntro: React.FC<RouteComponentProps> = (props) => {
         <img src={orbits} />
       </div>
       <div className="next-planet-container">
-        <img src={planetArray[(index + 1) % 5]} alt="下一个星球" />
+        <img src={planetArray[(index + 1) % 6]} alt="下一个星球" />
       </div>
       <div className="ncuhome-planet-container">
         <img src={ncuhomePlanet} alt="家园星球" />
