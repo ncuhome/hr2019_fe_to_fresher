@@ -150,10 +150,11 @@
 
 .groupintro-container .modal-container .joinus-container span {
   display: inline-block;
-  height: 20px;
+  height: 22px;
   width: 20px;
   position: absolute;
   left: 34vw;
+  
 }
 
 .groupintro-container .modal-container .joinus-container a {
