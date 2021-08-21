@@ -42,7 +42,8 @@ const Application: React.FC<RouteComponentProps> = props => {
   };
 
   const handleSighUp = (value: FormType) => {
-    axios.post('https://2020hr-api.ncuos.com/sign_up', JSON.stringify(value), {
+
+    axios.post('https://2021hr.ncuos.com/api/user/', JSON.stringify(value), {
       headers: {
         'Content-Type': 'application/json'
       }
@@ -52,17 +53,20 @@ const Application: React.FC<RouteComponentProps> = props => {
         const { data, status, statusText } = response;
         console.log(status)
         if (status === 200) {
-          if (data.status === 0) {
+          if (data.code === 0) {
             ReactGA.event({
               category: 'Application',
               action: 'Sigh Up success'
             });
             props.history.push('/success');
           }
-          else if (data.status === 1) {
+          else if (data.code === 1) {
             window.alert(data.msg);
           }
-          else if (data.status === 2) {
+          else if(data.code === 6){
+            window.alert('学号与姓名不匹配')
+          }
+          else if (data.code === 9) {
             window.alert('信息修改成功！');
             props.history.push('/success');
           }
@@ -76,6 +80,8 @@ const Application: React.FC<RouteComponentProps> = props => {
         setIsSumbmiting(false);
       })
       .catch((data) => {
+        console.log(data)
+        
         window.alert('网页有点问题~请稍后重试');
         setIsSumbmiting(false);
       });
@@ -86,8 +92,8 @@ const Application: React.FC<RouteComponentProps> = props => {
     event.preventDefault();
     if (!isSumbmiting) {
       setIsSumbmiting(true);
-      alert('报名通道已关闭！');
-      /* handleSighUp(formValues); */
+      // alert('报名通道已关闭！');
+      handleSighUp(formValues);
     }
   };
 

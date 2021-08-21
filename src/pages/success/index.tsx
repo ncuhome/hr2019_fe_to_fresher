@@ -86,7 +86,7 @@ const Success: React.FC = () => {
               乘客 ID ： TRAPPIST-1b-74282
             </p>
           </div>
-          <a href="https://jq.qq.com/?_wv=1027&k=rA9xZO2R">
+          <a href="https://qm.qq.com/cgi-bin/qm/qr?k=6AH9HIi3BxjQAw6BJruv7utQ3HZe52R2&jump_from=webapi">
             <img src={landing} alt="着陆" />
           </a>
         </div>
