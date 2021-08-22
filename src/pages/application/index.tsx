@@ -63,9 +63,7 @@ const Application: React.FC<RouteComponentProps> = props => {
           else if (data.code === 1) {
             window.alert(data.msg);
           }
-          else if(data.code === 6){
-            window.alert('学号与姓名不匹配')
-          }
+
           else if (data.code === 9) {
             window.alert('信息修改成功！');
             props.history.push('/success');
@@ -80,9 +78,12 @@ const Application: React.FC<RouteComponentProps> = props => {
         setIsSumbmiting(false);
       })
       .catch((data) => {
-        console.log(data)
-        
-        window.alert('网页有点问题~请稍后重试');
+        if (data.response.data.code === 6) {
+          window.alert('学号与姓名不匹配')
+        }
+        else {
+          window.alert('网页有点问题~请稍后重试');
+        }
         setIsSumbmiting(false);
       });
   };
@@ -126,7 +127,7 @@ const Application: React.FC<RouteComponentProps> = props => {
     // 以下参数与布局和图片尺寸有关
     const extHeightByHeight = Number(heightDif);
     const extHeightByWidth: number = (window.innerWidth * 0.75) > 400 ? (-120 * 229 / 280) : (-widthDif * 0.75 * 229 / 280);
-    const newMarginBottom: number =  +160 + extHeightByWidth + extHeightByHeight;
+    const newMarginBottom: number = +160 + extHeightByWidth + extHeightByHeight;
     const arrowAnime = anime({
       targets: '.application-container .icon-container img',
       translateY: ['-40', '-50'],
