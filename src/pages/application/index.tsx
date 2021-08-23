@@ -43,7 +43,7 @@ const Application: React.FC<RouteComponentProps> = props => {
 
   const handleSighUp = (value: FormType) => {
 
-    axios.post('https://2021hr.ncuos.com/api/user/', JSON.stringify(value), {
+    axios.post('https://2021hrapi.ncuos.com/api/user/', JSON.stringify(value), {
       headers: {
         'Content-Type': 'application/json'
       }
