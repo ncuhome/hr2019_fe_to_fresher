@@ -42,7 +42,11 @@ const Application: React.FC<RouteComponentProps> = props => {
   };
 
   const handleSighUp = (value: FormType) => {
-
+    if (value.student_id.length != 10) {
+      window.alert('请输入正确的学号')
+      setIsSumbmiting(false);
+      return
+    }
     axios.post('https://2021hrapi.ncuos.com/api/user/', JSON.stringify(value), {
       headers: {
         'Content-Type': 'application/json'
@@ -80,8 +84,8 @@ const Application: React.FC<RouteComponentProps> = props => {
       .catch((data) => {
         if (data.response.data.code === 6) {
           window.alert('学号与姓名不匹配')
-        } 
-        else if(data.response.data.code === 10){
+        }
+        else if (data.response.data.code === 10) {
           window.alert('已经晋级禁止修改')
         }
         else {
