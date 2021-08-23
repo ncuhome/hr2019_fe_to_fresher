@@ -76,3 +76,20 @@
   color: rgb(255, 255, 255, 0.83);
   font-size: 16px;
 }
+
+.toOptional-container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* position: absolute; */
+  /* bottom: 67vh; */
+  color: rgba(221, 221, 221, 1);
+  font-size: 3.733vw;
+  width: 30vw;
+  margin: -8.8vw  auto auto 45vw;
+  height: 34px;
+  border-radius: 19px;
+  border: 1px solid #d1d1d1;
+  z-index: 99;
+  background: rgba(29, 29, 29, 0.78);
+}

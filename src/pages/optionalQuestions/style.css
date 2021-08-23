@@ -1,0 +1,8 @@
+.optional-container{
+    width: 100vw;
+    height: 100vh;
+    padding: 5vh 5vw;
+    background: center top/cover no-repeat url('../../assets/png/success-bg.png') fixed;
+    display: flex;
+    flex-direction: column;
+}

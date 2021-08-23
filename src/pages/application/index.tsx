@@ -80,6 +80,9 @@ const Application: React.FC<RouteComponentProps> = props => {
       .catch((data) => {
         if (data.response.data.code === 6) {
           window.alert('学号与姓名不匹配')
+        } 
+        else if(data.response.data.code === 10){
+          window.alert('已经晋级禁止修改')
         }
         else {
           window.alert('网页有点问题~请稍后重试');

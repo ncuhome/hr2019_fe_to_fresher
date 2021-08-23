@@ -12,6 +12,7 @@ import wechat_icon from '../../assets/png/wechat-icon.png'
 import cover_4years from '../../assets/jpg/success_cover-4years.jpg'
 import yuque_icon from '../../assets/png/yuque-icon.png'
 import cover_internship from '../../assets/jpg/success_cover-internship.jpg'
+import { RouteComponentProps, withRouter } from 'react-router';
 
 interface TweetType {
   href: string;
@@ -60,7 +61,7 @@ const Tweets: TweetType[] = [
   }
 ]
 
-const Success: React.FC = () => {
+const Success: React.FC<RouteComponentProps> = (props) => {
   const content = Tweets.map(tweet =>
     <Tweet
       href={tweet.href}
@@ -70,6 +71,9 @@ const Success: React.FC = () => {
       author={tweet.author}
     />
   )
+  const handleClick = () => {
+    props.history.push('/optionalQuestions')
+  }
   return (
     <div className="success-container" >
       <div className="success-tip" >
@@ -93,10 +97,15 @@ const Success: React.FC = () => {
       </div>
       <div className="msg">
         <h2>宇宙漫游指北</h2>
+        <div className="toOptional-container" onClick={handleClick}>
+          <div className="arrow" />
+          <div>自选问答</div>
+          
+        </div>
         {content}
       </div>
     </div>
   )
 };
 
-export default Success;
+export default withRouter(Success);

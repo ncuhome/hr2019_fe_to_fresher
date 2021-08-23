@@ -10,6 +10,7 @@ import Application from './pages/application';
 import Success from './pages/success'
 import './App.css';
 import config from './config';
+import optionalQuestions from './pages/optionalQuestions';
 
 
 const { useState, useEffect } = React;
@@ -51,6 +52,7 @@ const App: React.FC = () => {
               <Route path="/department" component={DepartmentsIntro} />
               <Route path="/application" component={Application} />
               <Route path="/success" component={Success} />
+              <Route path="/optionalQuestions" component={optionalQuestions} />
             </RouteContainer>
           </Router>
         ) : (
