@@ -47,6 +47,12 @@ const Application: React.FC<RouteComponentProps> = props => {
       setIsSumbmiting(false);
       return
     }
+    if(value.intro.length < 15){
+      window.alert('自我介绍需大于15字')
+      setIsSumbmiting(false);
+      return
+    }
+    
     axios.post('https://2021hrapi.ncuos.com/api/user/', JSON.stringify(value), {
       headers: {
         'Content-Type': 'application/json'
