@@ -41,27 +41,39 @@ const Application: React.FC<RouteComponentProps> = props => {
     setFormValues(newValue);
   };
 
-  const handleSighUp = (value: FormType) => {
+  const checkValue = (value: FormType) => {
     if (value.student_id.length != 10) {
       window.alert('请输入正确的学号')
       setIsSumbmiting(false);
-      return
+      return false
     }
-    if(value.intro.length < 15){
+    if (value.intro.length < 15) {
       window.alert('自我介绍需大于15字')
       setIsSumbmiting(false);
-      return
+      return false
     }
-    
+    const qqreg = new RegExp('^[1-9][0-9]{4,12}$')
+    if (!qqreg.test(value.qq)) {
+      window.alert('请输入正确的qq号')
+      setIsSumbmiting(false);
+      return false
+    }
+    return true
+  }
+
+  const handleSighUp = (value: FormType) => {
+
+    if (!checkValue(value)) { return }
+
     axios.post('https://2021hrapi.ncuos.com/api/user/', JSON.stringify(value), {
       headers: {
         'Content-Type': 'application/json'
       }
     })
       .then((response) => {
-        console.log(response)
+        // console.log(response)
         const { data, status, statusText } = response;
-        console.log(status)
+        // console.log(status)
         if (status === 200) {
           if (data.code === 0) {
             ReactGA.event({
