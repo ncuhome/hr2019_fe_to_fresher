@@ -50,11 +50,7 @@ const Home: React.FC<RouteComponentProps> = props => {
 
   useEffect(() => {
     // 埋点记录访客
-<<<<<<< Updated upstream
-    Axios.post('https://2021hrapi.ncuos.com/api/public/data/log')
-=======
     // Axios.post('https://2021hr.ncuos.com/api/public/data/log')
->>>>>>> Stashed changes
 
     const handleTouch = (e: TouchEvent) => { e.preventDefault() };
     document.body.addEventListener('touchmove', handleTouch, { passive: false });
