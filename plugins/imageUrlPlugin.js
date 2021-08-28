@@ -21,7 +21,7 @@ export const generateIndexFile = (isBuild = false) => {
     if (value && value.type !== "directory") {
       const url = isBuild ? `assets/${value.name}` : formatPath(
         path.relative(path.resolve(__dirname, ".."), value.path)
-      ) ;
+      );
       list.push(`/${url}`);
     }
   };

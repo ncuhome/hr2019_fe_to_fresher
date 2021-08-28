@@ -1,7 +1,7 @@
 /**
  * 图片资源预加载
  */
-const loadImage = (cb: Function) => {
+const loadImage = (cb: (count: number, length: number) => void) => {
   let count = 0;
 
   const increase = () => {
