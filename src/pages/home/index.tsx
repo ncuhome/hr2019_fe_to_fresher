@@ -6,7 +6,6 @@ import LoadingAnime from '../../components/LoadingAnime';
 import loadImage from '../../image';
 import config from '../../config';
 import './style.css';
-import Axios from 'axios';
 
 const { useState, useEffect } = React;
 const { indexText } = config;
