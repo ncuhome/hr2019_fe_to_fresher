@@ -9,18 +9,17 @@ import './style.css';
 const { useState, useEffect } = React;
 const { departments } = config;
 
-const joinusArrow = require('../../assets/svg/introduce_joinus.svg');
-const changeArrow = require('../../assets/svg/introduce_arrow.svg');
+import joinusArrow from '../../assets/svg/introduce_joinus.svg'
+import changeArrow from '../../assets/svg/introduce_arrow.svg'
 
-const ncuhomePlanet = require('../../assets/png/ncuhome_planet.png');
-const managePlanet = require('../../assets/png/introduce_manage_planet.png');
-const omPlanet = require('../../assets/png/introduce_om_planet.png');
-const pmPlanet = require('../../assets/png/introduce_pm_planet.png');
-const desighPlanet = require('../../assets/png/introduce_desigh_planet.png');
-const devPlanet = require('../../assets/png/introduce_dev_planet.png');
-const gamePlanet = require('../../assets/png/introduce_game_planet.png')
-
-const orbits = require('../../assets/png/introduce_orbits.png');
+import ncuhomePlanet from '../../assets/png/ncuhome_planet.png'
+import managePlanet from '../../assets/png/introduce_manage_planet.png'
+import omPlanet from '../../assets/png/introduce_om_planet.png'
+import pmPlanet from '../../assets/png/introduce_pm_planet.png'
+import desighPlanet from '../../assets/png/introduce_desigh_planet.png'
+import devPlanet from '../../assets/png/introduce_dev_planet.png'
+import gamePlanet from '../../assets/png/introduce_game_planet.png'
+import orbits from '../../assets/png/introduce_orbits.png'
 
 const planetArray = [pmPlanet, managePlanet, omPlanet, desighPlanet, devPlanet, gamePlanet];
 

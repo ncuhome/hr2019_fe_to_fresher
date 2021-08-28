@@ -1,7 +1,7 @@
 import * as React from 'react';
 import './style.css';
 
-const arrow = require('../../assets/svg/back_arrow.svg');
+import arrow from '../../assets/svg/back_arrow.svg'
 
 interface PropType {
   isHidden?: boolean;
