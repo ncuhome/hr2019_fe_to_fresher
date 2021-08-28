@@ -1,4 +1,4 @@
-const img_0 = require('./img_0.png');
+import img_0 from './img_0.png'
 
 export default {
   'v': '5.5.0',

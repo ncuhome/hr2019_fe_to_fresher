@@ -8,17 +8,17 @@ import './style.css';
 const { products } = config;
 const { useState, useEffect } = React;
 
-const productPlanet = require('../../assets/png/product_planet.png');
-const iNCU = require('../../assets/png/products/iNCU.png');
-const NCUOS = require('../../assets/png/products/NCUOS.png');
-const mainSite = require('../../assets/png/products/mainSite.png');
-const other = require('../../assets/png/products/other.png');
-const US = require('../../assets/png/products/US.png');
-const QRcode = require('../../assets/png/qr.png');
+import productPlanet from '../../assets/png/product_planet.png'
+import iNCU from '../../assets/png/products/iNCU.png'
+import NCUOS from '../../assets/png/products/NCUOS.png'
+import mainSite from '../../assets/png/products/mainSite.png'
+import other from '../../assets/png/products/other.png'
+import US from '../../assets/png/products/US.png'
+import QRcode from '../../assets/png/qr.png'
 
-const arrowDown = require('../../assets/svg/product_arrow_down.svg');
-const pointerImg = require('../../assets/svg/pointer.svg');
-const closeCircle = require('../../assets/svg/close_circle.svg');
+import arrowDown from '../../assets/svg/product_arrow_down.svg'
+import pointerImg from '../../assets/svg/pointer.svg'
+import closeCircle from '../../assets/svg/close_circle.svg'
 
 const itemArray = ['iNCU', 'NCUOS', 'mainSite', 'other', 'US'];
 const rotateArray = [

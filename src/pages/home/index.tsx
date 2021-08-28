@@ -6,7 +6,6 @@ import LoadingAnime from '../../components/LoadingAnime';
 import loadImage from '../../image';
 import config from '../../config';
 import './style.css';
-import Axios from 'axios';
 
 const { useState, useEffect } = React;
 const { indexText } = config;
@@ -50,7 +49,7 @@ const Home: React.FC<RouteComponentProps> = props => {
 
   useEffect(() => {
     // 埋点记录访客
-    Axios.post('https://2021hrapi.ncuos.com/api/public/data/log')
+    // Axios.post('https://2021hr.ncuos.com/api/public/data/log')
 
     const handleTouch = (e: TouchEvent) => { e.preventDefault() };
     document.body.addEventListener('touchmove', handleTouch, { passive: false });
