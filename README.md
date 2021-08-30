@@ -34,10 +34,10 @@
 开发流程:
 
 ```bash
-  git clone ssh://git@git.ncuos.com:8082/southrock/hr2019_fe_to_fresher.git # 克隆项目到本地
-  npm install     # 安装相关依赖
-  npm start       # 启动本地开发，在 http://localhost:3000可以预览效果
-  npm run analyze # 启动打包分析
+  git clone git@github.com:ncuhome/hr2019_fe_to_fresher.git # 克隆项目到本地
+  yarn                # 安装相关依赖
+  yarn vite --host    # 启动本地开发，在 http://localhost:3000可以预览效果
+  npm run analyze     # 启动打包分析
 ```
 
 ## 代码规范
