@@ -584,6 +584,11 @@ estree-walker@^2.0.1:
   resolved "https://registry.npmjs.org/estree-walker/-/estree-walker-2.0.2.tgz#52f010178c2a4c117a7757cfe942adb7d2da4cac"
   integrity sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w==
 
+events@^3.3.0:
+  version "3.3.0"
+  resolved "https://registry.npmjs.org/events/-/events-3.3.0.tgz#31a95ad0a924e2d2c419a813aeb2c4e878ea7400"
+  integrity sha512-mQw+2fkQbALzQ7V0MY0IqdnXNOeTtP4r0lN9z7AAawCXgqea7bDii20AYrIBrFd/Hx0M2Ocz6S111CaFkUcb0Q==
+
 follow-redirects@1.5.10:
   version "1.5.10"
   resolved "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.5.10.tgz#7b7a9f9aea2fdff36786a94ff643ed07f4ff5e2a"
@@ -764,87 +769,89 @@ lottie-web@^5.5.7:
   resolved "https://registry.npmjs.org/lottie-web/-/lottie-web-5.7.13.tgz#c4087e4742c485fc2c4034adad65d1f3fcd438b0"
   integrity sha512-6iy93BGPkdk39b0jRgJ8Zosxi8QqcMP5XcDvg1f0XAvEkke6EMCl6BUO4Lu78dpgvfG2tzut4QJ+0vCrfbrldQ==
 
-mincu-core@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.npmjs.org/mincu-core/-/mincu-core-1.2.2.tgz#bf59fcc27381b7f673f1beb7c927d4680a4dac9b"
-  integrity sha512-h7ul66hWo1NvWmLlBI5MTlIf6lxFT/lFoz+Dn/3YQZhPNkapLLkWyjUvUWR/6ISx8wjdUkNlSiKlhdQj+u5Srg==
+mincu-core@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.npmjs.org/mincu-core/-/mincu-core-1.2.3.tgz#c565e99bcf3bb04a47f17055654c9c8f5c045f66"
+  integrity sha512-aRvZnWRrXIXqjGK6R0vFKoHmA4P7mRnpdrADqNSnt0GxeO7HvwMJAUxCtaIFqWV+akC3FSRE7VnmdUrQhqnYjQ==
   dependencies:
+    events "^3.3.0"
     mincu-lib "^1.2.2"
 
-mincu-data@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.npmjs.org/mincu-data/-/mincu-data-1.2.2.tgz#b7d9dd900bcaf653295974d1a62e5f71ebb36882"
-  integrity sha512-d6Z69D6U8ibsONGXzfxC1Ut+6kKx/mf5pRfBC0rMJ7KOf4U3kn9PtVf3LXxKrNmzJsWNsZeoWqnNbj2guDPOeQ==
+mincu-data@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.npmjs.org/mincu-data/-/mincu-data-1.2.3.tgz#02c24b7f33d8e5958c838c2746245ac5ef022b58"
+  integrity sha512-+lHjqxbUs759Au8J9TQOiP6n0EryTi/SQmoZBj0H0eIurnz/pzeMGRekG8EVkiSTXb0Upl6Ec/fa8mgpy0aAaA==
   dependencies:
-    mincu-core "^1.2.2"
+    mincu-core "^1.2.3"
     mincu-lib "^1.2.2"
 
-mincu-debug@^1.2.1:
-  version "1.2.1"
-  resolved "https://registry.npmjs.org/mincu-debug/-/mincu-debug-1.2.1.tgz#4de8660b0a65b969a9fbd5c6552ad700d5c0ef03"
-  integrity sha512-epKjg/LgIU7CQhfBLb+3eiXOklMmQ6L6gYbrAWL9OvoPIGcMqXWNCG+a1eokKDTH+w8vuqsrJxsKVY1y1O+R7w==
+mincu-debug@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.npmjs.org/mincu-debug/-/mincu-debug-1.2.2.tgz#b048777f4b0065d520be015356e383665d52fb2c"
+  integrity sha512-tiaxzrd0scGcI43+Op9Dbnf1EH8XeynLqZ9cHrbN3IABpwLLFW0dPJQY3gTwj1JshQCwedr0QouzhOSQXwY6Gw==
   dependencies:
     chalk "^4.1.2"
     concurrently "^6.2.0"
     isomorphic-ws "^4.0.1"
-    mincu-lib "^1.2.1"
+    mincu-lib "^1.2.2"
     pretty-format "^27.0.6"
+    slash "3.0.0"
     ws "^8.0.0"
 
-mincu-event@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.npmjs.org/mincu-event/-/mincu-event-1.2.2.tgz#104ca4caff82aff8817bbb0cb19bf59a5bc6ef24"
-  integrity sha512-lLMl8Akk+/elcG8TCspmTqGOcJ4HNUMulwj4+iDQ5t9Ts03ijCAgFKm/x0q9RdceAlHwWNar2K/54RYYx9BMvA==
+mincu-event@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.npmjs.org/mincu-event/-/mincu-event-1.2.3.tgz#258fc37038f5eb185591f8513087b35e2d2e811e"
+  integrity sha512-mf6HuBLCuzJ4yCm+N4NXM4OQCJW5QOpCZDJ8AJlOf8g6TKyhAONenRVRv6/vygPS9nxlxGgSyHU2iESW+8BGzg==
   dependencies:
-    mincu-core "^1.2.2"
+    mincu-core "^1.2.3"
 
-mincu-hooks@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.npmjs.org/mincu-hooks/-/mincu-hooks-1.2.2.tgz#0c2dcf1c0dbd37c06a61afc93e5a3442d1f8dee8"
-  integrity sha512-uiDGSclZnik7PctnM53SK82UwjfE35zzwnKyjenpogVpZbYDnJxhDeRC3BhhaZF2youaZNT24Zz6x96BDYEx8Q==
+mincu-hooks@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.npmjs.org/mincu-hooks/-/mincu-hooks-1.2.3.tgz#e394a40bdc78cff66a820ea456680374cf8316fe"
+  integrity sha512-MMS4rIQK1+cZKKJRUQTTpjjymWkpF1ysh1m/QkhunthMmP3qgQRJoBDeCsIex1wlNh3SeaVc1z3vn3cZAsZGpQ==
   dependencies:
-    mincu-core "^1.2.2"
-    mincu-data "^1.2.2"
+    mincu-core "^1.2.3"
+    mincu-data "^1.2.3"
 
-mincu-lib@^1.2.1, mincu-lib@^1.2.2:
+mincu-lib@^1.2.2:
   version "1.2.2"
   resolved "https://registry.npmjs.org/mincu-lib/-/mincu-lib-1.2.2.tgz#354739d573cc311d39ac40ea2406163a95624012"
   integrity sha512-uwwjclz50QluruRvSvW8ELDanrD9zL6lP464+BT8S7pIFjvraz9Ecfbtn1Xz8SmKPt2RLY4Jx7b2l7qjhqd0Xg==
 
-mincu-network@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.npmjs.org/mincu-network/-/mincu-network-1.2.2.tgz#1a7a7692ef7f31d048c9f4a07777709402c91edb"
-  integrity sha512-oMiVIa3hzDRfgb2c5Ihn3C1nBM1ahq6VL92JlI2BiD0jvUSOxe+UNDknwvrjXmWJQzg1dHS/+f9OfQ59oQ+PhQ==
+mincu-network@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.npmjs.org/mincu-network/-/mincu-network-1.2.3.tgz#10ec6d4abcdc17c2807f500d7827bc88afc60898"
+  integrity sha512-vDxmh+/iRZG4+UPPzTGGPkmYw9XvIeWX50vfEVPHabdwMd3Vv94oLca+m1MEftQXajZUQdUDb2VNdmc8X8CZ/w==
   dependencies:
     axios "^0.21.1"
-    mincu-core "^1.2.2"
-    mincu-data "^1.2.2"
+    mincu-core "^1.2.3"
+    mincu-data "^1.2.3"
 
-mincu-react@^1.2.1:
-  version "1.2.2"
-  resolved "https://registry.npmjs.org/mincu-react/-/mincu-react-1.2.2.tgz#23d80567686664eb4276e258c15d48a255964b60"
-  integrity sha512-ddxPNoK0f1Gr+0oQ0KQP5iGXCac0cO3Vfnbsg7sC/NNb7ullDtreQGHTShOauHV7geqx3JPnLU+jp9PTetBb7A==
+mincu-react@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.npmjs.org/mincu-react/-/mincu-react-1.2.3.tgz#df40cd0daac312cb31aa2a6e6c41787d4b0d65f9"
+  integrity sha512-IDl7jvMiOa1U841/mTL6F87bC/y23JSqDM0tTyNNLfLE+KeDYQanPxdN2ajHGM1SksNxyxut3vLUuLC+T+a6hw==
   dependencies:
-    mincu-hooks "^1.2.2"
-    mincu-vanilla "^1.2.2"
+    mincu-hooks "^1.2.3"
+    mincu-vanilla "^1.2.3"
 
-mincu-ui@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.npmjs.org/mincu-ui/-/mincu-ui-1.2.2.tgz#ba15a1befd02bbc6f14daa9adb6dab828d655e79"
-  integrity sha512-0xX9mLaTSDVOPGustLdO6ACxvMOi3rvfELfRbc8ftbMmFt2oCEru2k9SetVurJchKwnN4Aqo9TWtM8ZBiq0oTg==
+mincu-ui@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.npmjs.org/mincu-ui/-/mincu-ui-1.2.3.tgz#b47ddeed5429c55da89587051d9585743434a37e"
+  integrity sha512-TDZQmIzaABKoFSER2hcCnEGAzvx/fMVACC0j9JKa/ftt3F19ja9+/qTlereI+ManfHBnDCBE6otZL2hgKuRZhQ==
   dependencies:
-    mincu-core "^1.2.2"
+    mincu-core "^1.2.3"
 
-mincu-vanilla@^1.2.2:
-  version "1.2.2"
-  resolved "https://registry.npmjs.org/mincu-vanilla/-/mincu-vanilla-1.2.2.tgz#c99194d43cbe5daaff83cbf9276813764d890f73"
-  integrity sha512-ILyVz45Dv61D8EnTqZw83PiGCKRTNjXvrnUZmCLf6fsNOpJCemzcYC6ciL/KkSUy1cjlUSaGFcqKmjxKI3/dzg==
+mincu-vanilla@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.npmjs.org/mincu-vanilla/-/mincu-vanilla-1.2.3.tgz#966013c3aab2d4ce77140c3456a18ce7909ca7e8"
+  integrity sha512-MPQx2FoYumW1Xtfc5sw2qXQjeGzWZl25SQCgZf5eV3pzWNm/LKOQpWS+HI6ODLvbwmUtgY0xQ0XktvlkowfYdw==
   dependencies:
-    mincu-core "^1.2.2"
-    mincu-data "^1.2.2"
-    mincu-event "^1.2.2"
-    mincu-network "^1.2.2"
-    mincu-ui "^1.2.2"
+    mincu-core "^1.2.3"
+    mincu-data "^1.2.3"
+    mincu-event "^1.2.3"
+    mincu-network "^1.2.3"
+    mincu-ui "^1.2.3"
 
 mini-create-react-context@^0.4.0:
   version "0.4.1"
@@ -1158,6 +1165,11 @@ shebang-regex@^1.0.0:
   version "1.0.0"
   resolved "https://registry.npmjs.org/shebang-regex/-/shebang-regex-1.0.0.tgz#da42f49740c0b42db2ca9728571cb190c98efea3"
   integrity sha1-2kL0l0DAtC2yypcoVxyxkMmO/qM=
+
+slash@3.0.0:
+  version "3.0.0"
+  resolved "https://registry.npmjs.org/slash/-/slash-3.0.0.tgz#6539be870c165adbd5240220dbe361f1bc4d4634"
+  integrity sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==
 
 source-map-js@^0.6.2:
   version "0.6.2"
