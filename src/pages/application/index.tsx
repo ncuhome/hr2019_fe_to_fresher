@@ -32,21 +32,24 @@ const Application: React.FC<RouteComponentProps> = props => {
   let defaultValue = localStorage.getItem('formValue') === null ? emptyFprm : JSON.parse(localStorage.getItem('formValue'));
 
   const isReady = useAppReady()
-  //在南大家园app中打开自动填写信息
-  if (isReady) {
-    const baseInfo = dataModule.appData.user.profile.entireProfile.base_info
-    const appInfoForm = {
-      name: baseInfo.xm,
-      gender: baseInfo.xb.mc,
-      group: defaultDepartment,
-      qq: baseInfo.qq,
-      phone: baseInfo.yddh,
-      student_id: baseInfo.xh,
-      intro: '',
-      reset: 0
+  useEffect(() => {
+    //在南大家园app中打开自动填写信息
+    if (isReady) {
+      const baseInfo = dataModule.appData.user.profile.entireProfile.base_info
+      const appInfoForm = {
+        name: baseInfo.xm,
+        gender: baseInfo.xb.mc,
+        group: defaultDepartment,
+        qq: baseInfo.qq,
+        phone: baseInfo.yddh,
+        student_id: baseInfo.xh,
+        intro: '',
+        reset: 0
+      }
+      defaultValue = isReady && defaultValue === emptyFprm ? appInfoForm : emptyFprm
     }
-    defaultValue = isReady && defaultValue === emptyFprm ? appInfoForm : emptyFprm
-  }
+  }, [])
+
 
   const [formValues, setFormValues] = useState(defaultValue);
   const [isUpper, setIsUpper] = useState(true);
