@@ -305,7 +305,7 @@ const Application: React.FC<RouteComponentProps> = props => {
           <span />
         </div>
         <div className="headline-container">
-          <p className="english-headline">Ncuhome Application Form</p>
+          <p className="english-headline">Ncuhome &nbsp;&nbsp; Application &nbsp; Form</p>
           <p className="headline">星球入驻申请单</p>
         </div>
         <JoinusForm value={formValues} onChange={handleChange} onSubmit={handleSubmit} />

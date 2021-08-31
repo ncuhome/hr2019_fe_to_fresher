@@ -1,3 +1,4 @@
+import anime from 'animejs';
 import * as React from 'react';
 import './style.css';
 
@@ -26,7 +27,20 @@ interface PropType {
 const JoinusForm: React.FC<PropType> = props => {
   const { name, gender, group, qq, phone, student_id, intro } = props.value;
   const { onChange: handleChange, onSubmit: handleSubmit } = props;
-
+  const lightOn = () => {
+    anime({
+      targets:'.light',
+      opacity:1,
+      duration:1080,
+    })
+  }
+  const lightOff=()=>{
+    anime({
+      targets:'.light',
+      opacity:0,
+      duration:1080,
+    })
+  }
   const isMale = (gender === '男') ? true : false;
 
   return (
@@ -116,16 +130,19 @@ const JoinusForm: React.FC<PropType> = props => {
           required={true}
         />
       </div>
-      <div className="joinus-form-row">
+      <div className="joinus-form-row joinus-form-intro">
         <div className="joinus-label-container">
           <label htmlFor="introduction">自我介绍</label>
         </div>
       </div>
+      <div className="light"></div>
       <textarea
         name="intro"
         id="introduction"
         placeholder="包括但不限于你的爱好、特长、经历与想法。丰富的自我介绍，能使我们更快更好地了解你，在笔面试前就吸引我们的注意喔~"
         value={intro}
+        onFocus={lightOn}
+        onBlur={lightOff}
         onChange={handleChange}
         required={true}
       />
