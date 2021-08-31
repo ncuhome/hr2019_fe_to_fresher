@@ -2,6 +2,8 @@ import * as React from 'react';
 import anime from 'animejs';
 import axios from 'axios';
 import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { useAppReady } from 'mincu-react'
+import { dataModule } from 'mincu-vanilla';
 import * as ReactGA from 'react-ga';
 import BackArrow from '../../components/BackArrow';
 import JoinusForm, { FormType } from '../../components/JoinusForm/index';
@@ -17,7 +19,7 @@ let formRef: HTMLDivElement;
 
 const Application: React.FC<RouteComponentProps> = props => {
   const defaultDepartment = props.location.state || '行政组';
-  const defaultValue = localStorage.getItem('formValue') === null ? {
+  const emptyFprm = {
     name: '',
     gender: '男',
     group: defaultDepartment,
@@ -26,7 +28,26 @@ const Application: React.FC<RouteComponentProps> = props => {
     student_id: '',
     intro: '',
     reset: 0
-  } : JSON.parse(localStorage.getItem('formValue'));
+  }
+  let defaultValue = localStorage.getItem('formValue') === null ? emptyFprm : JSON.parse(localStorage.getItem('formValue'));
+
+  const isReady = useAppReady()
+  //在南大家园app中打开自动填写信息
+  if (isReady) {
+    const baseInfo = dataModule.appData.user.profile.entireProfile.base_info
+    const appInfoForm = {
+      name: baseInfo.xm,
+      gender: baseInfo.xb.mc,
+      group: defaultDepartment,
+      qq: baseInfo.qq,
+      phone: baseInfo.yddh,
+      student_id: baseInfo.xh,
+      intro: '',
+      reset: 0
+    }
+    defaultValue = isReady && defaultValue === emptyFprm ? appInfoForm : emptyFprm
+  }
+
   const [formValues, setFormValues] = useState(defaultValue);
   const [isUpper, setIsUpper] = useState(true);
   const [ncuhomeStyle, setNcuhomeStyle] = useState({});
