@@ -34,12 +34,6 @@ jobs:
         echo build project
         yarn build
 
-    - name: Build project
-      run: |
-        echo install dependencies
-        yarn
-        echo build project
-        yarn build
     - name: aliyun-oss-website-action
       uses: fangbinwei/aliyun-oss-website-action@v1
       with:
