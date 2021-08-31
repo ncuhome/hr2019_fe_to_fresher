@@ -32,23 +32,21 @@ const Application: React.FC<RouteComponentProps> = props => {
   let defaultValue = localStorage.getItem('formValue') === null ? emptyFprm : JSON.parse(localStorage.getItem('formValue'));
 
   const isReady = useAppReady()
-  useEffect(() => {
-    //在南大家园app中打开自动填写信息
-    if (isReady) {
-      const baseInfo = dataModule.appData.user.profile.entireProfile.base_info
-      const appInfoForm = {
-        name: baseInfo.xm,
-        gender: baseInfo.xb.mc,
-        group: defaultDepartment,
-        qq: baseInfo.qq,
-        phone: baseInfo.yddh,
-        student_id: baseInfo.xh,
-        intro: '',
-        reset: 0
-      }
-      defaultValue = isReady && defaultValue === emptyFprm ? appInfoForm : emptyFprm
+  //在南大家园app中打开自动填写信息
+  if (isReady) {
+    const baseInfo = dataModule.appData.user.profile.entireProfile.base_info
+    const appInfoForm = {
+      name: baseInfo.xm,
+      gender: baseInfo.xb.mc,
+      group: defaultDepartment,
+      qq: baseInfo.qq,
+      phone: baseInfo.yddh,
+      student_id: baseInfo.xh,
+      intro: defaultValue.intro,
+      reset: 0
     }
-  }, [])
+    defaultValue =  appInfoForm
+  }
 
 
   const [formValues, setFormValues] = useState(defaultValue);
@@ -76,6 +74,12 @@ const Application: React.FC<RouteComponentProps> = props => {
       setIsSumbmiting(false);
       return false
     }
+    if (value.intro.length > 1000) {
+      window.alert('自我介绍需小于1000字')
+      setIsSumbmiting(false);
+      return false
+    }
+
     const qqreg = new RegExp('^[1-9][0-9]{4,12}$')
     if (!qqreg.test(value.qq)) {
       window.alert('请输入正确的qq号')
