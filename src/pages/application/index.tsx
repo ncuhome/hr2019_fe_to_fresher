@@ -91,7 +91,7 @@ const Application: React.FC<RouteComponentProps> = props => {
             props.history.push('/success');
           }
           else {
-            window.alert('未知错误, 请重试');
+            window.alert('网络有点问题~请稍后重试');
           }
         }
         else {
@@ -107,7 +107,7 @@ const Application: React.FC<RouteComponentProps> = props => {
           window.alert('已经晋级禁止修改')
         }
         else {
-          window.alert('网页有点问题~请稍后重试');
+          window.alert('网络有点问题~请稍后重试');
         }
         setIsSumbmiting(false);
       });
