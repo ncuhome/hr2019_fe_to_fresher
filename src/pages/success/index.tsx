@@ -99,8 +99,7 @@ const Success: React.FC<RouteComponentProps> = (props) => {
         <h2>宇宙漫游指北</h2>
         <div className="toOptional-container" onClick={handleClick}>
           <div className="arrow" />
-          <div>自选问答</div>
-          
+          <div>看看评论</div>
         </div>
         {content}
       </div>
