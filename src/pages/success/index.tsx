@@ -1,6 +1,7 @@
 import * as React from 'react';
 import './style.css'
 import Tweet from './components/Tweet'
+import BackArrow from '../../components/BackArrow';
 import landing from '../../assets/png/success_landing.png'
 import arrow from '../../assets/svg/success_arrow.svg'
 import cover_work from '../../assets/png/success_cover-1.png'
@@ -13,6 +14,7 @@ import cover_4years from '../../assets/jpg/success_cover-4years.jpg'
 import yuque_icon from '../../assets/png/yuque-icon.png'
 import cover_internship from '../../assets/jpg/success_cover-internship.jpg'
 import { RouteComponentProps, withRouter } from 'react-router';
+import anime from 'animejs';
 
 interface TweetType {
   href: string;
@@ -72,10 +74,41 @@ const Success: React.FC<RouteComponentProps> = (props) => {
     />
   )
   const handleClick = () => {
-    props.history.push('/optionalQuestions')
+    const toLeftTimeLine = anime.timeline({
+      autoplay: true
+    })
+    toLeftTimeLine.add({
+      targets: '.success-tip',
+      translateX: -400,
+      duration: 666,
+      easing: 'linear'
+    })
+      .add({
+        targets: '.msg',
+        translateX: -400,
+        duration: 666,
+        easing: 'linear'
+      }, '-=333')
+      .add({
+        targets: '.back-arrow-container',
+        opacity: [.5, 1],
+        translateX: [400, 0],
+        duration: 666,
+        easing: 'linear',
+        complete: () => {
+          anime.running.forEach((animatable: any) => {
+            anime.remove(animatable.target)
+            props.history.push('/optionalQuestions')
+          })
+        }
+      }, '-=666')
+
+
+    // props.history.push('/optionalQuestions')
   }
   return (
     <div className="success-container" >
+      <BackArrow onClick={() => { }} />
       <div className="success-tip" >
         <div>
           <div className="content">
