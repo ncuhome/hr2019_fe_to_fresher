@@ -1,4 +1,4 @@
-.optional-container{
+.commentsPage-container{
     width: 100vw;
     height: 100vh;
     padding: 5vh 5vw;
@@ -11,6 +11,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    opacity: 0;
 }
 .comment-container{
     opacity: .9;

@@ -98,7 +98,7 @@ const Success: React.FC<RouteComponentProps> = (props) => {
         complete: () => {
           anime.running.forEach((animatable: any) => {
             anime.remove(animatable.target)
-            props.history.push('/optionalQuestions')
+            props.history.push('/comments')
           })
         }
       }, '-=666')
@@ -130,7 +130,7 @@ const Success: React.FC<RouteComponentProps> = (props) => {
       </div>
       <div className="msg">
         <h2>宇宙漫游指北</h2>
-        <div className="toOptional-container" onClick={handleClick}>
+        <div className="toComments-container" onClick={handleClick}>
           <div className="arrow" />
           <div>看看评论</div>
         </div>

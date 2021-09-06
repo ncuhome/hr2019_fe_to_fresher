@@ -9,7 +9,7 @@ import BackArrow from '../../components/BackArrow';
 import './style.css'
 
 
-const OptionalQuestions: React.FC<RouteComponentProps> = props => {
+const comments: React.FC<RouteComponentProps> = props => {
     let commentsRef: HTMLDivElement
     let token: string
     const handleBackClick = () => {
@@ -44,6 +44,7 @@ const OptionalQuestions: React.FC<RouteComponentProps> = props => {
         t1.add({
             targets: '.comments-container',
             translateX: [300, 0],
+            opacity:[.5,1],
             duration: 666,
             easing: 'linear'
         })
@@ -83,11 +84,11 @@ const OptionalQuestions: React.FC<RouteComponentProps> = props => {
 
     return (
 
-        <div className='optional-container'>
+        <div className='commentsPage-container'>
             <BackArrow onClick={handleBackClick} />
             <div className="comments-container" ref={ref => { commentsRef = ref }}>{commentElement}</div>
         </div>
     )
 }
 
-export default withRouter(OptionalQuestions)
+export default withRouter(comments)
