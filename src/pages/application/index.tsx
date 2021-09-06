@@ -128,14 +128,21 @@ const Application: React.FC<RouteComponentProps> = props => {
         setIsSumbmiting(false);
       })
       .catch((data) => {
-        if (data.response.data.code === 6) {
+        const code = data.response.data.code
+        if (code === 11) {
+          window.alert('不在报名时间')
+        }
+        else if (code === 5) {
+          window.alert('QQ/电话 已被占用')
+        }
+        else if (code === 6) {
           window.alert('学号与姓名不匹配')
         }
-        else if (data.response.data.code === 10) {
+        else if (code === 10) {
           window.alert('已经晋级禁止修改')
         }
         else {
-          window.alert('网络有点问题~请稍后重试');
+          window.alert('网络有点问题~请稍后重试或使用南大家园app“加入我们”');
         }
         setIsSumbmiting(false);
       });
