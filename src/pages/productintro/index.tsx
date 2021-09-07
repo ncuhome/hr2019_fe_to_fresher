@@ -48,11 +48,12 @@ const ProductIntro: React.FC<RouteComponentProps> = props => {
 
   const isReady = useAppReady()
   const handleToProgress = () => {
-    if (isReady) {
-      props.history.push('/checkProgress')
-    } else {
-      alert('请在 南大家园app-生活-加入我们 中打开')
-    }
+    props.history.push('/checkProgress')
+    // if (isReady) {
+    //   props.history.push('/checkProgress')
+    // } else {
+    //   alert('请在 南大家园app-生活-加入我们 中打开')
+    // }
   } 
 
 
