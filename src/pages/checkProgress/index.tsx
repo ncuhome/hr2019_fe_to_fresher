@@ -17,18 +17,19 @@ const checkProgress:React.FC<RouteComponentProps> = props =>{
                 'Authorization': 'passport ' + token
             }
         }).then(res => {
-            alert(res.data.data.step)
+            // alert(res.data.data.step)
             setStep(res.data.data.step)
         })
 
 
-        let progressTextElement:HTMLElement
-        switch(step){
-            case 0:
-                progressTextElement = (
-                    <p>暂未报名</p>
-                )
-        }
+        // let progressTextElement:HTMLElement
+        // switch(step){
+        //     case 0:
+        //         progressTextElement = (
+        //             <p>暂未报名</p>
+        //         )
+        //         break
+        // }
         
 
         // 动画

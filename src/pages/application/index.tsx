@@ -16,7 +16,7 @@ import arrowUp from '../../assets/svg/form_arrow_up.svg';
 const { useState, useEffect } = React;
 
 let formRef: HTMLDivElement;
-
+const token = dataModule.appData.user.token
 const Application: React.FC<RouteComponentProps> = props => {
   const defaultDepartment = props.location.state || '行政组';
   const emptyFprm = {
@@ -45,7 +45,7 @@ const Application: React.FC<RouteComponentProps> = props => {
       intro: defaultValue.intro,
       reset: 0
     }
-    defaultValue =  appInfoForm
+    defaultValue = appInfoForm
   }
 
 
@@ -181,6 +181,19 @@ const Application: React.FC<RouteComponentProps> = props => {
   };
 
   useEffect(() => {
+    // 提示是否报名过
+    // axios({
+    //   method: 'GET',
+    //   url: 'https://2021hrapi.ncuos.com/api/user/',
+    //   headers: {
+    //     'Authorization': 'passport ' + token
+    //   }
+    // }).then(res => {
+    //   if(res.data.data.step===1){
+    //     alert('你已经报过名了噢，请等待后续通知~\n（再次提交可以更新信息）')
+    //   }
+    // })
+
     // 计算工作室名称下外边框大小使表单始终只露出标题与姓名栏
     const heightDif: number = window.innerHeight - 667;
     const widthDif: number = window.innerWidth - 375;

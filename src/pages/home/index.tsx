@@ -6,10 +6,12 @@ import LoadingAnime from '../../components/LoadingAnime';
 import loadImage from '../../image';
 import config from '../../config';
 import './style.css';
+import axios from 'axios';
+import { dataModule } from 'mincu-vanilla';
+import { useAppReady } from 'mincu-hooks';
 
 const { useState, useEffect } = React;
 const { indexText } = config;
-
 const Home: React.FC<RouteComponentProps> = props => {
 
   const [isAnimeing, setIsAnimeing] = useState(false);
@@ -47,9 +49,24 @@ const Home: React.FC<RouteComponentProps> = props => {
     }
   };
 
+  const isReady = useAppReady()
+  useEffect(()=>{
+    const token = dataModule.appData.user.token
+    axios({
+      method: 'GET',
+      url: 'https://2021hrapi.ncuos.com/api/user/',
+      headers: {
+        'Authorization': 'passport ' + token
+      }
+    }).then(res => {
+      if (res.data.data.step === 1) {
+        window.alert('你已经报过名了噢，可静待后续通知~\n（也可再次提交更改报名信息）')
+        // props.history.push('/checkProgress')
+      }
+    })
+  },[isReady])
+
   useEffect(() => {
-    // 埋点记录访客
-    // Axios.post('https://2021hr.ncuos.com/api/public/data/log')
 
     const handleTouch = (e: TouchEvent) => { e.preventDefault() };
     document.body.addEventListener('touchmove', handleTouch, { passive: false });
