@@ -90,6 +90,9 @@ const JoinusForm: React.FC<PropType> = props => {
           <option value="研发组">研发组</option>
           <option value="游戏组">游戏组</option>
         </select>
+        <div className="toGroupTest-container"> 
+          <a href="http://hrtest.ncuos.com/">&nbsp;&nbsp;&nbsp;点我测一测？</a>
+        </div>
       </div>
       <div className="joinus-form-row">
         <div className="joinus-label-container">

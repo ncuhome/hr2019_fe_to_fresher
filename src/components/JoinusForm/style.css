@@ -13,6 +13,14 @@
   text-align: right;
   white-space: nowrap;
 }
+.toGroupTest-container{
+  display: inline-block;
+}
+.toGroupTest-container a{
+  color: #FCDFA9;
+  opacity: .8;
+}
+
 .form-container .form input,
 select {
   border: none;
