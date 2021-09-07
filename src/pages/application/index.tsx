@@ -38,7 +38,7 @@ const Application: React.FC<RouteComponentProps> = props => {
     const appInfoForm = {
       name: baseInfo.xm,
       gender: baseInfo.xb.mc,
-      group: defaultDepartment,
+      group: defaultValue.group,
       qq: baseInfo.qq,
       phone: baseInfo.yddh,
       student_id: baseInfo.xh,
