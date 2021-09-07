@@ -8,9 +8,10 @@ import ProductIntro from './pages/productintro';
 import DepartmentsIntro from './pages/departmentintro';
 import Application from './pages/application';
 import Success from './pages/success'
+import comments from './pages/comments';
+import checkProgress from './pages/checkProgress';
 import './App.css';
 import config from './config';
-import comments from './pages/comments';
 
 
 const { useState, useEffect } = React;
@@ -53,6 +54,7 @@ const App: React.FC = () => {
               <Route path="/application" component={Application} />
               <Route path="/success" component={Success} />
               <Route path="/comments" component={comments} />
+              <Route path="/checkProgress" component={checkProgress} />
             </RouteContainer>
           </Router>
         ) : (

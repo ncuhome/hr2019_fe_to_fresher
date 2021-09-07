@@ -20,7 +20,7 @@ const comments: React.FC<RouteComponentProps> = props => {
     useEffect(() => {
         if (isReady) {
             token = dataModule.appData.user.token
-    
+
             axios({
                 method: 'GET',
                 url: 'https://2021hrapi.ncuos.com/api/user/',
@@ -30,21 +30,22 @@ const comments: React.FC<RouteComponentProps> = props => {
             }).then(res => {
                 setComments(res.data.data.comments)
             })
-        }else {
+        } else {
             setComments([{
                 ID: 1,
                 CreatedAt: "南大家园星球办公A区25469",
                 from: "",
                 content: "请于 南大家园app-生活-加入我们 中查收我们对你的留言"
-              }])
+            }])
         }
+
         const t1 = anime.timeline({
             autoplay: true
         });
         t1.add({
             targets: '.comments-container',
             translateX: [300, 0],
-            opacity:[.5,1],
+            opacity: [.5, 1],
             duration: 666,
             easing: 'linear'
         })
@@ -53,7 +54,7 @@ const comments: React.FC<RouteComponentProps> = props => {
                 opacity: 1,
                 duration: 0,
                 easing: 'linear'
-            },'-=666')
+            }, '-=666')
         return () => {
             anime.running.forEach((animatable: any) => {
                 anime.remove(animatable.target)
@@ -74,7 +75,7 @@ const comments: React.FC<RouteComponentProps> = props => {
             <div className='comment-container'>
                 &nbsp;<br />
                 &nbsp;{comment.content}&nbsp;<br /><br />
-                &nbsp;&nbsp;&nbsp;--{comment.from}<br/> 
+                &nbsp;&nbsp;&nbsp;--{comment.from}<br />
                 &nbsp;评论于{comment.CreatedAt}&nbsp;
                 <br />&nbsp;
             </div>

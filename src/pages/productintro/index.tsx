@@ -2,6 +2,7 @@ import * as React from 'react';
 import anime, { AnimeInstance } from 'animejs';
 import { Link, withRouter, RouteComponentProps } from 'react-router-dom';
 import * as ReactGA from 'react-ga';
+import { useAppReady } from 'mincu-react'
 import config from '../../config';
 import './style.css';
 
@@ -25,6 +26,7 @@ const rotateArray = [
   [0, 1, 2, -2, -1], [-1, 0, 1, 2, -2], [-2, -1, 0, 1, 2], [2, -2, -1, 0, 1], [1, 2, -2, -1, 0]
 ];
 
+
 let itemContainerRef: HTMLDivElement;
 let arrowRef: HTMLImageElement;
 
@@ -43,6 +45,16 @@ const ProductIntro: React.FC<RouteComponentProps> = props => {
     });
     window.location.href = 'https://qm.qq.com/cgi-bin/qm/qr?k=6AH9HIi3BxjQAw6BJruv7utQ3HZe52R2&jump_from=webapi';
   };
+
+  const isReady = useAppReady()
+  const handleToProgress = () => {
+    if (isReady) {
+      props.history.push('/checkProgress')
+    } else {
+      alert('请在 南大家园app-生活-加入我们 中打开')
+    }
+  } 
+
 
   useEffect(() => {
     // 设置产品图片位置、角度
@@ -269,6 +281,7 @@ const ProductIntro: React.FC<RouteComponentProps> = props => {
     };
   }, [isAnimeing, rotatedValue, isShowModal]);
 
+
   useEffect(() => {
     const selectedPlanetAnime = anime({
       targets: `.productintro-container .product-item-container #product${index}`,
@@ -291,6 +304,9 @@ const ProductIntro: React.FC<RouteComponentProps> = props => {
         <span className="joinlink">
           <Link to="/application">报名直达</Link>
         </span>
+        {/* <span className="joinlink" id='checklink' onClick={handleToProgress}>
+          进度查询
+        </span> */}
       </div>
       <div className="product-introduce-container">
         <p className="product-name">{products[index].name}</p>
