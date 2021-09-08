@@ -265,18 +265,18 @@ const Application: React.FC<RouteComponentProps> = props => {
       }, 0);
 
 
-      const fireOn = anime({
-        targets: '.g-fire-box',
-        opacity: 0.9,
-        autoplay: false,
-        easing: 'linear'
-      })
-      const fireOff = anime({
-        targets: '.g-fire-box',
-        opacity: 0,
-        autoplay: false,
-        easing: 'linear'
-      })
+    const fireOn = anime({
+      targets: '.g-fire-box',
+      opacity: 0.9,
+      autoplay: false,
+      easing: 'linear'
+    })
+    const fireOff = anime({
+      targets: '.g-fire-box',
+      opacity: 0,
+      autoplay: false,
+      easing: 'linear'
+    })
     const handleScroll = (e: Event) => {
       let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
       let windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
@@ -290,16 +290,16 @@ const Application: React.FC<RouteComponentProps> = props => {
           if (scrollTop + windowHeight >= scrollHeight - 100) {
             fireOn.play()
             if (distance > 0) {
-              xjyRef.style.transform='translatey(-'+distance+'px)'
+              xjyRef.style.transform = 'translatey(-' + distance + 'px)'
             }
           }
         }
       })
 
 
-      if (scrollTop + windowHeight < scrollHeight-100) {
+      if (scrollTop + windowHeight < scrollHeight - 100) {
         fireOff.play()
-        xjyRef.style.transform='translatey(0px)'
+        xjyRef.style.transform = 'translatey(0px)'
       }
       const halfCircleTop = 100 + window.innerHeight * 0.05;
       if ((scrollTop > halfCircleTop) && isUpper) {
@@ -365,11 +365,12 @@ const Application: React.FC<RouteComponentProps> = props => {
         <div className="headline-container">
           <p className="english-headline">Ncuhome &nbsp;&nbsp; Application &nbsp; Form</p>
           <p className="headline">星球入驻申请单</p>
+          <p className="deadline">报名将于2021年9月21日24时截止</p>
         </div>
         <JoinusForm value={formValues} onChange={handleChange} onSubmit={handleSubmit} />
       </div>
       <img src={QRcode} alt="二维码" id="QRcode" onClick={handleQRcodeClick} />
-      
+
       <div className="xjyContainer" ref={ref => { xjyRef = ref }}>
         <img src={xiaojiayuan} alt="小家园" id="xiaojiayuan" />
         <div className="g-fire-box">
