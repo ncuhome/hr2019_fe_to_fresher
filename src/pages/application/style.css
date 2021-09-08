@@ -85,10 +85,26 @@
   z-index: 0;
 }
 
-.application-container #xiaojiayuan {
+/* .application-container #xiaojiayuan {
   position: absolute;
   bottom: 3.5%;
   right: 18%;
   width: 30%;
   z-index: 0;
+} */
+.xjyContainer {
+  position: absolute;
+  right: 13.3333vw;
+  bottom: -8vw;
+  width: 30vw;
+  height: 74.6667vw;
+  z-index: 3;
+  transition: all .5s linear;
+  /* transform: translatey(-100px); */
+}
+
+#xiaojiayuan {
+  position: relative;
+  width: 100%;
+  z-index: 2;
 }

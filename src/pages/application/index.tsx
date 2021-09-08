@@ -8,6 +8,7 @@ import * as ReactGA from 'react-ga';
 import BackArrow from '../../components/BackArrow';
 import JoinusForm, { FormType } from '../../components/JoinusForm/index';
 import './style.css';
+import './fire.css';
 import xiaojiayuan from '../../assets/png/xiaojiayuan.png';
 import QRcode from '../../assets/png/QRcode.png';
 import ncuhome from '../../assets/png/ncuhome_planet.png';
@@ -16,6 +17,7 @@ import arrowUp from '../../assets/svg/form_arrow_up.svg';
 const { useState, useEffect } = React;
 
 let formRef: HTMLDivElement;
+let xjyRef: HTMLDivElement;
 const token = dataModule.appData.user.token
 const Application: React.FC<RouteComponentProps> = props => {
   const defaultDepartment = props.location.state || '行政组';
@@ -261,9 +263,45 @@ const Application: React.FC<RouteComponentProps> = props => {
         targets: '.application-container .ncuhome-container',
         opacity: [1, 0]
       }, 0);
+
+
+      const fireOn = anime({
+        targets: '.g-fire-box',
+        opacity: 0.9,
+        autoplay: false,
+        easing: 'linear'
+      })
+      const fireOff = anime({
+        targets: '.g-fire-box',
+        opacity: 0,
+        autoplay: false,
+        easing: 'linear'
+      })
     const handleScroll = (e: Event) => {
+      let scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
+      let windowHeight = document.documentElement.clientHeight || document.body.clientHeight;
+      let scrollHeight = document.documentElement.scrollHeight || document.body.scrollHeight;
+      // alert(scrollTop+'+'+windowHeight+'='+scrollHeight)
+      window.addEventListener('touchstart', e => {
+        const preY = e.targetTouches[0].pageY
+        window.ontouchmove = e1 => {
+          const nowY = e1.targetTouches[0].pageY
+          const distance = preY - nowY
+          if (scrollTop + windowHeight >= scrollHeight - 100) {
+            fireOn.play()
+            if (distance > 0) {
+              xjyRef.style.transform='translatey(-'+distance+'px)'
+            }
+          }
+        }
+      })
+
+
+      if (scrollTop + windowHeight < scrollHeight-100) {
+        fireOff.play()
+        xjyRef.style.transform='translatey(0px)'
+      }
       const halfCircleTop = 100 + window.innerHeight * 0.05;
-      const scrollTop = document.documentElement.scrollTop || document.body.scrollTop;
       if ((scrollTop > halfCircleTop) && isUpper) {
         setIsUpper(false);
         planetBiggerAnime.play();
@@ -331,7 +369,85 @@ const Application: React.FC<RouteComponentProps> = props => {
         <JoinusForm value={formValues} onChange={handleChange} onSubmit={handleSubmit} />
       </div>
       <img src={QRcode} alt="二维码" id="QRcode" onClick={handleQRcodeClick} />
-      <img src={xiaojiayuan} alt="小家园" id="xiaojiayuan" />
+      
+      <div className="xjyContainer" ref={ref => { xjyRef = ref }}>
+        <img src={xiaojiayuan} alt="小家园" id="xiaojiayuan" />
+        <div className="g-fire-box">
+          <div className="g-fire">
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+            <div className="g-ball"></div>
+          </div>
+        </div>
+      </div>
     </div>
   );
 };
