@@ -13,11 +13,11 @@ import { useAppReady } from 'mincu-hooks';
 const { useState, useEffect } = React;
 const { indexText } = config;
 const Home: React.FC<RouteComponentProps> = props => {
-
+  const isReady = useAppReady()
   const [isAnimeing, setIsAnimeing] = useState(false);
   const [processValue, setProcessValue] = useState(0);
   const [unmount, setUnmount] = useState(true);
-
+  
   const handleClick = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     setIsAnimeing(true);
     if (!isAnimeing) {
@@ -49,25 +49,28 @@ const Home: React.FC<RouteComponentProps> = props => {
     }
   };
 
-  const isReady = useAppReady()
+
+
+
   useEffect(()=>{
-    const token = dataModule.appData.user.token
-    axios({
-      method: 'GET',
-      url: 'https://2021hrapi.ncuos.com/api/user/',
-      headers: {
-        'Authorization': 'passport ' + token
-      }
-    }).then(res => {
-      if (res.data.data.step === 1) {
-        window.alert('你已经报过名了噢，可静待后续通知~\n（也可再次提交更改报名信息）')
-        // props.history.push('/checkProgress')
-      }
-    })
+    if(isReady){
+      const token = dataModule.appData.user.token
+      axios({
+        method: 'GET',
+        url: 'https://2021hrapi.ncuos.com/api/user/',
+        headers: {
+          'Authorization': 'passport ' + token
+        }
+      }).then(res => {
+        if (res.data.data.step === 1) {
+          window.alert('你已经报过名了噢，正在为你跳转到进度查询页面~\n（也可再次提交更改报名信息）')
+          props.history.push('/checkProgress')
+        }
+      })
+    }
   },[isReady])
 
   useEffect(() => {
-
     const handleTouch = (e: TouchEvent) => { e.preventDefault() };
     document.body.addEventListener('touchmove', handleTouch, { passive: false });
     return () => {

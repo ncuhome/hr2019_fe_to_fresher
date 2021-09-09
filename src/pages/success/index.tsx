@@ -132,7 +132,7 @@ const Success: React.FC<RouteComponentProps> = (props) => {
         <h2>宇宙漫游指北</h2>
         <div className="toComments-container" onClick={handleClick}>
           <div className="arrow" />
-          <div>看看评论</div>
+          <div>看看留言</div>
         </div>
         {content}
       </div>

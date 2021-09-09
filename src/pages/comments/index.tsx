@@ -13,7 +13,7 @@ const comments: React.FC<RouteComponentProps> = props => {
     let commentsRef: HTMLDivElement
     let token: string
     const handleBackClick = () => {
-        props.history.push('/success');
+        props.history.push('/checkProgress');
     };
     const [comments, setComments] = useState([])
     const isReady = useAppReady()

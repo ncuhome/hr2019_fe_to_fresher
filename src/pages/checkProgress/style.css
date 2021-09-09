@@ -18,24 +18,24 @@
     justify-content: space-between;
 }
 .progressBar-container span{
-    background-color: #fff;
     width: 5vw;
     height: 5vw;
     border-radius: 50%;
     z-index: 1;
+    background: rgb(54, 54, 54);
 }
 #progress1::after{
     content: '';
     width: 55vw;
     height: 5px;
-    background-color: #fff;
+    background-color: rgb(49, 49, 49);
     position: absolute;
     left: 5vw;
     top: 2vw;
 }
 
 .groupPic-container{
-    background: #000;
+    /* background: #000; */
     /* position: absolute;
     top: 46vw;
     left: 20vw; */
@@ -43,6 +43,12 @@
     margin-top: 45vw;
     width: 62vw;
     height: 62vw;
+    /* overflow: hidden; */
+}
+.groupPic-container img{
+    border-radius: 6vw;
+    width: 100%;
+    
 }
 
 .progressText-container{
@@ -59,4 +65,41 @@
 	line-height: 6vw;
 	letter-spacing: 0vw;
 	color: #f5f5f5;
+}
+
+.progressToJoinus{
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 25vw;
+    height: 5vh;
+    background: rgba(42, 42, 42, 1);
+    border: 1px solid rgba(35, 35, 35, 1);
+    border-radius: 22px;
+    color: rgba(191, 191, 191, 1);
+    font-size: 15px;
+    /* box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 26); */
+}
+.progressToJoinus a{
+    color: rgba(191, 191, 191, 1);
+    font-size: 15px;
+}
+
+.progressToComments{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgba(221, 221, 221, 1);
+    font-size: 3.733vw;
+    width: 30vw;
+    height: 34px;
+    border-radius: 19px;
+    border: 1px solid #d1d1d1;
+    z-index: 99;
+    background: rgba(29, 29, 29, 0.78);
+}
+.progressToComments a{
+    color: rgba(191, 191, 191, 1);
+    font-size: 15px;
+    line-height: 34px;
 }

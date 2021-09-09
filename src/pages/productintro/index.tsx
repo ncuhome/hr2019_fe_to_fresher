@@ -305,9 +305,9 @@ const ProductIntro: React.FC<RouteComponentProps> = props => {
         <span className="joinlink">
           <Link to="/application">报名直达</Link>
         </span>
-        {/* <span className="joinlink" id='checklink' onClick={handleToProgress}>
+        <span className="joinlink" id='checklink' onClick={handleToProgress}>
           进度查询
-        </span> */}
+        </span>
       </div>
       <div className="product-introduce-container">
         <p className="product-name">{products[index].name}</p>
