@@ -8,15 +8,28 @@ import { dataModule } from 'mincu-vanilla';
 import BackArrow from '../../components/BackArrow';
 import './style.css'
 
+function formatTime(date:Date) {
+    /* 从Date对象（标准时间格式）返回对应数据 */
+    var date = new Date(date);
+    let year = date.getFullYear();
+    let month = date.getMonth()+1;
+    let day = date.getDate();
+    let hour = date.getHours();
+    let minute = date.getMinutes();
+    let second = date.getSeconds();
+    return year + '年' + month + '月' + day+'日'+hour+'时'+minute+'分';
+    }
 
 const comments: React.FC<RouteComponentProps> = props => {
     let commentsRef: HTMLDivElement
     let token: string
+    const [comments, setComments] = useState([])
+    const isReady = useAppReady()
+    const [likes, setLikes] = useState(0)
+
     const handleBackClick = () => {
         props.history.push('/checkProgress');
     };
-    const [comments, setComments] = useState([])
-    const isReady = useAppReady()
     useEffect(() => {
         if (isReady) {
             token = dataModule.appData.user.token
@@ -29,11 +42,12 @@ const comments: React.FC<RouteComponentProps> = props => {
                 }
             }).then(res => {
                 setComments(res.data.data.comments)
+                setLikes(res.data.data.likes)
             })
         } else {
             setComments([{
                 ID: 1,
-                CreatedAt: "南大家园星球办公A区25469",
+                CreatedAt: new Date(),
                 from: "",
                 content: "请于 南大家园app-生活-加入我们 中查收我们对你的留言"
             }])
@@ -76,18 +90,27 @@ const comments: React.FC<RouteComponentProps> = props => {
                 &nbsp;<br />
                 &nbsp;{comment.content}&nbsp;<br /><br />
                 &nbsp;&nbsp;&nbsp;--{comment.from}<br />
-                &nbsp;评论于{comment.CreatedAt}&nbsp;
+                &nbsp;留言于{formatTime(comment.CreatedAt)}&nbsp;
                 <br />&nbsp;
             </div>
         ))
     )
-    const commentElement = JSON.stringify(comments) == JSON.stringify([]) ? emptyElement : existElement
+    const commentElement = JSON.stringify(comments) === JSON.stringify([]) ? emptyElement : existElement
 
+
+    const likesElement = (
+        <div className="likes-container" hidden={likes===0}>
+            获赞：{likes}❤
+        </div>
+    )
     return (
 
         <div className='commentsPage-container'>
             <BackArrow onClick={handleBackClick} />
-            <div className="comments-container" ref={ref => { commentsRef = ref }}>{commentElement}</div>
+            {likesElement}
+            <div className="comments-container" ref={ref => { commentsRef = ref }}>
+                {commentElement}
+            </div>
         </div>
     )
 }
