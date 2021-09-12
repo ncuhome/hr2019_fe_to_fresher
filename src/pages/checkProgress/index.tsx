@@ -6,15 +6,25 @@ import './style.css'
 import { dataModule } from "mincu-vanilla";
 import { useAppReady } from "mincu-hooks";
 import axios from "axios";
+
 import landing from '../../assets/png/success_landing.png'
+import managePlanet from '../../assets/png/introduce_manage_planet.png'
+import omPlanet from '../../assets/png/introduce_om_planet.png'
+import pmPlanet from '../../assets/png/introduce_pm_planet.png'
+import desighPlanet from '../../assets/png/introduce_desigh_planet.png'
+import devPlanet from '../../assets/png/introduce_dev_planet.png'
+import gamePlanet from '../../assets/png/introduce_game_planet.png'
+
 
 
 const checkProgress: React.FC<RouteComponentProps> = props => {
     const isReady = useAppReady()
+    const [groupPic,setGroupPic] = useState()
     const [step, setStep] = useState(-2)
-    const [checked, setChecked] = useState(false)
-    const [failed, setFailed] = useState(true)
-    //未通过为false
+    const [checked, setChecked] = useState(true)
+    const [failed, setFailed] = useState(false)
+    const [token,setToken] = useState('')
+    //被淘汰failed则为true
 
     const [progressTextElement, setText] = useState((
         <div className="progressText-container">
@@ -22,28 +32,76 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
         </div>
     ))
 
+    const handleCheckBtn = () => {
+        //待测试
+        axios({
+            method: 'patch',
+            url: 'https://2021hrapi.ncuos.com/api/user/',
+            headers: {
+                'Authorization': 'passport ' + token
+            }
+        }).then(res=>{
+            // alert(res.data.code)
+            if(res.data.code===0){
+                setChecked(true)
+            }
+        })
+    }
 
+    const handleGroupPic = (group)=>{
+        switch (group) {
+            case '行政组':
+                setGroupPic(managePlanet)
+                break;
+            case '运营组':
+                setGroupPic(omPlanet)
+                break;
+            case '设计组':
+                setGroupPic(desighPlanet)
+                break;
+            case '研发组':
+                setGroupPic(devPlanet)
+                break;
+            case '游戏组':
+                setGroupPic(gamePlanet)
+                break;
+            case '产品组':
+                setGroupPic(pmPlanet)
+                break;
+            default:
+                setGroupPic(landing)
+                break;
+        }
+    }
 
 
 
     useEffect(() => {
         if (isReady) {
-            const token = dataModule.appData.user.token
-            axios({
-                method: 'GET',
-                url: 'https://2021hrapi.ncuos.com/api/user/',
-                headers: {
-                    'Authorization': 'passport ' + token
-                }
-            }).then(res => {
-                setStep(res.data.data.step)
-                setFailed(res.data.data.failed)
-                setChecked(res.data.data.checked)
-            })
+            setToken(dataModule.appData.user.token)
+
         } else {
-            setStep(-1)//pc测试改这里
+            //pc测试改这里
+            setStep(-1)
+            setGroupPic(landing)
         }
     }, [isReady])
+
+    useEffect(()=>{
+        axios({
+            method: 'GET',
+            url: 'https://2021hrapi.ncuos.com/api/user/',
+            headers: {
+                'Authorization': 'passport ' + token
+            }
+        }).then(res => {
+            setStep(res.data.data.step)
+            setFailed(res.data.data.failed)
+            handleGroupPic(res.data.data.info.group)
+            // setChecked(res.data.data.checked)
+            // alert(checked)
+        })
+    },[token])
 
 
 
@@ -107,8 +165,9 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
                         <p>第一次面试约于9月24日进行</p>
                         <p>记得点击下面的按钮确认参加一面噢~</p>
                         <br />
-                        <div className="confirmBtn-container">
-                            &nbsp;确认继续&nbsp;
+                        <div className={"confirmBtn-container "+'check'+checked} onClick={handleCheckBtn}>
+                            <span hidden={checked}>&nbsp;确认继续&nbsp;</span>
+                            <span hidden={!checked}>&nbsp;已确认&nbsp;</span>
                         </div>
                     </div>
                 ))
@@ -141,21 +200,21 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
             opacity: 1,
             duration: 666,
         })
-        if(step===1 || step === 2){
+        if (step === 1 || step === 2) {
             t0.add({
                 targets: '#progressDot1',
                 background: '#c9780c',
             })
         }
-        if(step === 3){
+        if (step === 3) {
             t0.add({
-                targets:'#progressDot1',
-                background:'#2ed573',
+                targets: '#progressDot1',
+                background: '#2ed573',
             }).add({
                 //进度条颜色移动
             }).add({
-                targets:'#progressDot2',
-                background:'#c9780c'
+                targets: '#progressDot2',
+                background: '#c9780c'
             })
         }
     }, [step])
@@ -171,9 +230,10 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
             </div>
 
             <div className="groupPic-container">
-                <img src={landing} alt="" />
+                <img src={groupPic} alt="" />
             </div>
             {progressTextElement}
+
             {/* <div className="progressText-container">
                 <p>结果暂未公布</p>
                 <p>小家园接收不到信号o(TへTo)</p>

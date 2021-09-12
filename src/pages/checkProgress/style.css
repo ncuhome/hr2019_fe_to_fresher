@@ -115,3 +115,8 @@
     text-align: center;
     background: rgba(29, 29, 29, 0.78);
 }
+.checktrue{
+    border: 1px solid #2ed573;
+    color: #2ed573;
+    transition: all .5s;
+}
