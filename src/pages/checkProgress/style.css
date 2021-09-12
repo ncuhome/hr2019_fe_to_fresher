@@ -7,6 +7,7 @@
     padding: 5vh 5vw;
     display: flex;
     flex-direction: column;
+    overflow: scroll;
 }
 .progressBar-container{
     width: 60vw;
@@ -24,7 +25,7 @@
     z-index: 1;
     background: rgb(54, 54, 54);
 }
-#progress1::after{
+#progressDot1::after{
     content: '';
     width: 55vw;
     height: 5px;
@@ -92,9 +93,9 @@
     color: rgba(221, 221, 221, 1);
     font-size: 3.733vw;
     width: 30vw;
-    height: 34px;
-    border-radius: 19px;
+    height: 9.0667vw;
     border: 1px solid #d1d1d1;
+    border-radius: 5.0667vw;
     z-index: 99;
     background: rgba(29, 29, 29, 0.78);
 }
@@ -102,4 +103,15 @@
     color: rgba(191, 191, 191, 1);
     font-size: 15px;
     line-height: 34px;
+}
+
+.confirmBtn-container{
+    width: 26.6667vw;
+    height: 9vw;
+    line-height: 9vw;
+    border: 1px solid #c9780c;
+    border-radius: 4vw;
+    color: #c9780c;
+    text-align: center;
+    background: rgba(29, 29, 29, 0.78);
 }

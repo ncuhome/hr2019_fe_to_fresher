@@ -11,9 +11,9 @@ import landing from '../../assets/png/success_landing.png'
 
 const checkProgress: React.FC<RouteComponentProps> = props => {
     const isReady = useAppReady()
-    // let step = -1
     const [step, setStep] = useState(-2)
-    let failed = true
+    const [checked, setChecked] = useState(false)
+    const [failed, setFailed] = useState(true)
     //未通过为false
 
     const [progressTextElement, setText] = useState((
@@ -37,10 +37,11 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
                 }
             }).then(res => {
                 setStep(res.data.data.step)
-                failed = res.data.data.failed
+                setFailed(res.data.data.failed)
+                setChecked(res.data.data.checked)
             })
         } else {
-            setStep(-1)
+            setStep(-1)//pc测试改这里
         }
     }, [isReady])
 
@@ -86,16 +87,29 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
             case 2:
                 setText((
                     <div className="progressText-container">
-                        <p>结果暂未公布</p>
-                        <p>小家园接收不到信号o(TへTo)</p>
+                        <p>你已经成功报名啦٩(^ᴗ^)۶</p>
+                        <p>笔试约在9月22日进行</p>
+                        <p>请保持学习并等待后续通知</p>
+                        <p>加油(ง •_•)ง</p>
+                        <br />
+                        <div className="progressToComments">
+                            <div className="arrow" />
+                            <Link to='/comments'>看看留言</Link>
+                        </div>
                     </div>
                 ))
                 break;
             case 3:
                 setText((
                     <div className="progressText-container">
-                        <p>结果暂未公布</p>
-                        <p>小家园接收不到信号o(TへTo)</p>
+                        <p>恭喜你通过笔试(๑ơ ₃ ơ)♥</p>
+                        <p>向进入家园迈进了一大步</p>
+                        <p>第一次面试约于9月24日进行</p>
+                        <p>记得点击下面的按钮确认参加一面噢~</p>
+                        <br />
+                        <div className="confirmBtn-container">
+                            &nbsp;确认继续&nbsp;
+                        </div>
                     </div>
                 ))
                 break;
@@ -126,10 +140,24 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
             targets: '.back-arrow-container',
             opacity: 1,
             duration: 666,
-        }).add({
-            targets: '#progress' + step,
-            background: 'rgb(0,200,0)',
         })
+        if(step===1 || step === 2){
+            t0.add({
+                targets: '#progressDot1',
+                background: '#c9780c',
+            })
+        }
+        if(step === 3){
+            t0.add({
+                targets:'#progressDot1',
+                background:'#2ed573',
+            }).add({
+                //进度条颜色移动
+            }).add({
+                targets:'#progressDot2',
+                background:'#c9780c'
+            })
+        }
     }, [step])
 
 
@@ -137,9 +165,9 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
         <div className="checkProgress-container">
             <BackArrow onClick={() => { props.history.push('/product') }} />
             <div className="progressBar-container">
-                <span id='progress1'></span>
-                <span></span>
-                <span></span>
+                <span id='progressDot1'></span>
+                <span id='progressDot2'></span>
+                <span id='progressDot3'></span>
             </div>
 
             <div className="groupPic-container">
