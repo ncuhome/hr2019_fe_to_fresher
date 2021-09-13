@@ -16,7 +16,7 @@
     opacity: 0;
     width: 90%;
     scroll-behavior: smooth;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 .comment-container{
     opacity: .9;
