@@ -13,6 +13,7 @@ import xiaojiayuan from '../../assets/png/xiaojiayuan.png';
 import QRcode from '../../assets/png/QRcode.png';
 import ncuhome from '../../assets/png/ncuhome_planet.png';
 import arrowUp from '../../assets/svg/form_arrow_up.svg';
+import { toast } from 'react-toastify';
 
 const { useState, useEffect } = React;
 
@@ -67,24 +68,24 @@ const Application: React.FC<RouteComponentProps> = props => {
 
   const checkValue = (value: FormType) => {
     if (value.student_id.length != 10) {
-      window.alert('请输入正确的学号')
+      toast('请输入正确的学号');
       setIsSumbmiting(false);
       return false
     }
     if (value.intro.length < 15) {
-      window.alert('自我介绍需大于15字')
+      toast('自我介绍需大于15字')
       setIsSumbmiting(false);
       return false
     }
     if (value.intro.length > 1000) {
-      window.alert('自我介绍需小于1000字')
+      toast('自我介绍需小于1000字')
       setIsSumbmiting(false);
       return false
     }
 
     const qqreg = new RegExp('^[1-9][0-9]{4,12}$')
     if (!qqreg.test(value.qq)) {
-      window.alert('请输入正确的qq号')
+      toast('请输入正确的qq号')
       setIsSumbmiting(false);
       return false
     }
@@ -113,38 +114,38 @@ const Application: React.FC<RouteComponentProps> = props => {
             props.history.push('/success');
           }
           else if (data.code === 1) {
-            window.alert(data.msg);
+            toast(data.msg);
           }
 
           else if (data.code === 9) {
-            window.alert('信息修改成功！');
+            toast('信息修改成功！');
             props.history.push('/success');
           }
           else {
-            window.alert('网络有点问题~请稍后重试');
+            toast('网络有点问题~请稍后重试');
           }
         }
         else {
-          window.alert('未知错误，请重试');
+          toast('未知错误，请重试');
         }
         setIsSumbmiting(false);
       })
       .catch((data) => {
         const code = data.response.data.code
         if (code === 11) {
-          window.alert('不在报名时间')
+          toast('不在报名时间')
         }
         else if (code === 5) {
-          window.alert('QQ/电话 已被占用')
+          toast('QQ/电话 已被占用')
         }
         else if (code === 6) {
-          window.alert('学号与姓名不匹配')
+          toast('学号与姓名不匹配')
         }
         else if (code === 10) {
-          window.alert('已经晋级禁止修改')
+          toast('已经晋级禁止修改')
         }
         else {
-          window.alert('网络有点问题~请稍后重试或使用南大家园app“加入我们”');
+          toast('网络有点问题~请稍后重试或使用南大家园app“加入我们”');
         }
         setIsSumbmiting(false);
       });
@@ -362,7 +363,7 @@ const Application: React.FC<RouteComponentProps> = props => {
         <div className="divide-line">
           <span />
         </div>
-        <div className="headline-container">
+        <div className="headline-container" >
           <p className="english-headline">Ncuhome &nbsp;&nbsp; Application &nbsp; Form</p>
           <p className="headline">星球入驻申请单</p>
           <p className="deadline">报名将于2021年9月21日24时截止</p>

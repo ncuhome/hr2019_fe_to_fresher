@@ -9,6 +9,7 @@ import './style.css';
 import axios from 'axios';
 import { dataModule } from 'mincu-vanilla';
 import { useAppReady } from 'mincu-hooks';
+import { toast } from 'react-toastify';
 
 const { useState, useEffect } = React;
 const { indexText } = config;
@@ -63,7 +64,7 @@ const Home: React.FC<RouteComponentProps> = props => {
         }
       }).then(res => {
         if (res.data.data.step === 1) {
-          window.alert('你已经报过名了噢，正在为你跳转到进度查询页面~\n（也可再次提交更改报名信息）')
+          toast(' 你已经报过名了噢，已为你跳转到进度查询页面~ （也可返回再次提交报名表以更改报名信息）')
           props.history.push('/checkProgress')
         }
       })

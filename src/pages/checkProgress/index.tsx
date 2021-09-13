@@ -21,10 +21,10 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
     const isReady = useAppReady()
     const [groupPic,setGroupPic] = useState()
     const [step, setStep] = useState(-2)
-    const [checked, setChecked] = useState(true)
+    const [checked, setChecked] = useState(false)
     const [failed, setFailed] = useState(false)
-    const [token,setToken] = useState('')
     //被淘汰failed则为true
+    const [token,setToken] = useState('')
 
     const [progressTextElement, setText] = useState((
         <div className="progressText-container">

@@ -12,6 +12,8 @@ import comments from './pages/comments';
 import checkProgress from './pages/checkProgress';
 import './App.css';
 import config from './config';
+import { Slide, ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css'
 
 
 const { useState, useEffect } = React;
@@ -35,6 +37,20 @@ const Container: React.FC<RouteComponentProps> = props => {
 
   return (
     <>
+      <ToastContainer
+        position="top-center"
+        autoClose={3000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme={'dark'}
+        transition={Slide}
+        style={{textAlign:'center'}}
+      />
       {props.children}
     </>
   );
