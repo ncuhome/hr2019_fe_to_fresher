@@ -11,29 +11,33 @@
 }
 .progressBar-container{
     width: 60vw;
-    height: 4vw;
+    height: 5vw;
     position: absolute;
     left: 20vw;
     top: 20vw;
+    overflow: hidden;
+}
+.dots-container{
     display: flex;
     justify-content: space-between;
 }
-.progressBar-container span{
+.dots-container span{
     width: 5vw;
     height: 5vw;
+    background: rgb(54, 54, 54);
     border-radius: 50%;
     z-index: 1;
-    background: rgb(54, 54, 54);
 }
-#progressDot1::after{
-    content: '';
-    width: 55vw;
-    height: 5px;
-    background-color: rgb(49, 49, 49);
+.progressLine{
     position: absolute;
-    left: 5vw;
+    left: 2vw;
     top: 2vw;
+    width: 110vw;
+    height: 5px;
+    background:linear-gradient(to right, #43e97b 0%, #38f9d7 50%,#313131 50%);
+    transform: translateX(-55vw);
 }
+
 
 .groupPic-container{
     /* background: #000; */

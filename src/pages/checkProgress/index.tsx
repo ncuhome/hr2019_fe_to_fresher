@@ -19,12 +19,12 @@ import gamePlanet from '../../assets/png/introduce_game_planet.png'
 
 const checkProgress: React.FC<RouteComponentProps> = props => {
     const isReady = useAppReady()
-    const [groupPic,setGroupPic] = useState()
+    const [groupPic, setGroupPic] = useState()
     const [step, setStep] = useState(-2)
     const [checked, setChecked] = useState(false)
     const [failed, setFailed] = useState(false)
     //被淘汰failed则为true
-    const [token,setToken] = useState('')
+    const [token, setToken] = useState('')
 
     const [progressTextElement, setText] = useState((
         <div className="progressText-container">
@@ -40,15 +40,15 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
             headers: {
                 'Authorization': 'passport ' + token
             }
-        }).then(res=>{
+        }).then(res => {
             // alert(res.data.code)
-            if(res.data.code===0){
+            if (res.data.code === 0) {
                 setChecked(true)
             }
         })
     }
 
-    const handleGroupPic = (group)=>{
+    const handleGroupPic = (group) => {
         switch (group) {
             case '行政组':
                 setGroupPic(managePlanet)
@@ -82,12 +82,13 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
 
         } else {
             //pc测试改这里
-            setStep(-1)
-            setGroupPic(landing)
+            setStep(-1)//默认-1
+            setFailed(false)//默认false
+            setGroupPic(landing)//默认landing
         }
     }, [isReady])
 
-    useEffect(()=>{
+    useEffect(() => {
         axios({
             method: 'GET',
             url: 'https://2021hrapi.ncuos.com/api/user/',
@@ -101,7 +102,7 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
             // setChecked(res.data.data.checked)
             // alert(checked)
         })
-    },[token])
+    }, [token])
 
 
 
@@ -165,7 +166,7 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
                         <p>第一次面试约于9月24日进行</p>
                         <p>记得点击下面的按钮确认参加一面噢~</p>
                         <br />
-                        <div className={"confirmBtn-container "+'check'+checked} onClick={handleCheckBtn}>
+                        <div className={"confirmBtn-container " + 'check' + checked} onClick={handleCheckBtn}>
                             <span hidden={checked}>&nbsp;确认继续&nbsp;</span>
                             <span hidden={!checked}>&nbsp;已确认&nbsp;</span>
                         </div>
@@ -175,23 +176,44 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
             case 4:
                 setText((
                     <div className="progressText-container">
-                        <p>结果暂未公布</p>
-                        <p>小家园接收不到信号o(TへTo)</p>
+                        <p>恭喜你通过一面(๑ơ ₃ ơ)♥</p>
+                        <p>距离进入家园只剩最后一步</p>
+                        <p>第二次面试约于9月25日进行</p>
+                        <p>记得点击下面的按钮确认参加二面噢~</p>
+                        <br />
+                        <div className={"confirmBtn-container " + 'check' + checked} onClick={handleCheckBtn}>
+                            <span hidden={checked}>&nbsp;确认继续&nbsp;</span>
+                            <span hidden={!checked}>&nbsp;已确认&nbsp;</span>
+                        </div>
                     </div>
                 ))
+                break;
             case 5:
                 setText((
                     <div className="progressText-container">
-                        <p>结果暂未公布</p>
-                        <p>小家园接收不到信号o(TへTo)</p>
+                        <p>恭喜你成为家园工作室的一员！</p>
+                        <p>家园线下见面会欢迎你的到来...</p>
                     </div>
                 ))
                 break;
             default:
                 break;
         }
+        if (failed === true) {
+            setText((
+                <div className="progressText-container">
+                    <p>很遗憾,</p>
+                    <p>你与家园的本次旅程到此结束了,</p>
+                    <p>大学半秩时光，仍有无限可能。</p>
+                    <p>不要灰心，不必难过，</p>
+                    <p>我们一直在这里，期待与你再次相逢。</p>
+                    <p>祝好!</p>
+                </div>
+            ))
+        }
 
         // 动画
+        const finalColor = failed === true ? '#c14444' : '#c9780c'//被淘汰为红色
         const t0 = anime.timeline({
             autoplay: true
         })
@@ -203,7 +225,7 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
         if (step === 1 || step === 2) {
             t0.add({
                 targets: '#progressDot1',
-                background: '#c9780c',
+                background: finalColor,
             })
         }
         if (step === 3) {
@@ -211,12 +233,62 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
                 targets: '#progressDot1',
                 background: '#2ed573',
             }).add({
-                //进度条颜色移动
+                targets: '.progressLine',
+                translateX: ['-55vw', '-27.5vw'],
+                easing: 'linear',
+                duration: 500
             }).add({
                 targets: '#progressDot2',
-                background: '#c9780c'
+                background: finalColor
             })
         }
+        if (step === 4) {
+            t0.add({
+                targets: '#progressDot1',
+                background: '#2ed573',
+            }).add({
+                targets: '.progressLine',
+                translateX: ['-55vw', '-27.5vw'],
+                easing: 'linear',
+                duration: 500
+            }).add({
+                targets: '#progressDot2',
+                background: '#2ed573',
+                duration: 500
+            }).add({
+                targets: '.progressLine',
+                translateX: ['-27.5vw', '0vw'],
+                easing: 'linear',
+                duration: 500
+            }).add({
+                targets: '#progressDot3',
+                background: finalColor
+            })
+        }
+        if (step === 5) {
+            t0.add({
+                targets: '#progressDot1',
+                background: '#2ed573',
+            }).add({
+                targets: '.progressLine',
+                translateX: ['-55vw', '-27.5vw'],
+                easing: 'linear',
+                duration: 500
+            }).add({
+                targets: '#progressDot2',
+                background: '#2ed573',
+                duration: 500
+            }).add({
+                targets: '.progressLine',
+                translateX: ['-27.5vw', '0vw'],
+                easing: 'linear',
+                duration: 500
+            }).add({
+                targets: '#progressDot3',
+                background: '#2ed573'
+            })
+        }
+
     }, [step])
 
 
@@ -224,9 +296,12 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
         <div className="checkProgress-container">
             <BackArrow onClick={() => { props.history.push('/product') }} />
             <div className="progressBar-container">
-                <span id='progressDot1'></span>
-                <span id='progressDot2'></span>
-                <span id='progressDot3'></span>
+                <div className="dots-container">
+                    <span id='progressDot1'></span>
+                    <span id='progressDot2'></span>
+                    <span id='progressDot3'></span>
+                </div>
+                <div className="progressLine"></div>
             </div>
 
             <div className="groupPic-container">
