@@ -8,17 +8,22 @@ import { dataModule } from 'mincu-vanilla';
 import BackArrow from '../../components/BackArrow';
 import './style.css'
 
-function formatTime(date:Date) {
+function formatTime(date: Date) {
     /* 从Date对象（标准时间格式）返回对应数据 */
     var date = new Date(date);
     let year = date.getFullYear();
-    let month = date.getMonth()+1;
+    let month = date.getMonth() + 1;
     let day = date.getDate();
     let hour = date.getHours();
     let minute = date.getMinutes();
     let second = date.getSeconds();
-    return year + '年' + month + '月' + day+'日'+hour+'时'+minute+'分';
-    }
+    return year + '年' + month + '月' + day + '日' + hour + '时' + minute + '分';
+}
+
+function diffTime(oldtime, newtime) {
+    const diff = ((new Date(newtime).valueOf()) - ((new Date(oldtime)).valueOf()))
+    return (diff / 1000 / 60 / 60)
+}
 
 const comments: React.FC<RouteComponentProps> = props => {
     let commentsRef: HTMLDivElement
@@ -42,7 +47,10 @@ const comments: React.FC<RouteComponentProps> = props => {
                 }
             }).then(res => {
                 setComments(res.data.data.comments)
-                setLikes(res.data.data.likes)
+                if (diffTime(res.data.data.info.CreatedAt, new Date()) > 3) {
+                    //报名时间大于3小时，点赞数加一                     
+                    setLikes(res.data.data.likes + 1)
+                } else { setLikes(res.data.data.likes) }
             })
         } else {
             setComments([{
@@ -99,7 +107,7 @@ const comments: React.FC<RouteComponentProps> = props => {
 
 
     const likesElement = (
-        <div className="likes-container" hidden={likes===0}>
+        <div className="likes-container" hidden={likes === 0}>
             获赞：{likes}❤
         </div>
     )
