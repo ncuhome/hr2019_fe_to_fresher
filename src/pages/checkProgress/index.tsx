@@ -26,14 +26,7 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
     //被淘汰failed则为true
     const [token, setToken] = useState('')
 
-    const [progressTextElement, setText] = useState((
-        <div className="progressText-container">
-
-        </div>
-    ))
-
     const handleCheckBtn = () => {
-        //待测试
         axios({
             method: 'patch',
             url: 'https://2021hrapi.ncuos.com/api/user/',
@@ -41,7 +34,6 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
                 'Authorization': 'passport ' + token
             }
         }).then(res => {
-            // alert(res.data.code)
             if (res.data.code === 0) {
                 setChecked(true)
             }
@@ -99,26 +91,33 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
             setStep(res.data.data.step)
             setFailed(res.data.data.failed)
             handleGroupPic(res.data.data.info.group)
-            // setChecked(res.data.data.checked)
-            // alert(checked)
+            setChecked(res.data.data.checked)
         })
     }, [token])
 
-
-
-    useEffect(() => {
-        // alert(step)
+    const renderText = () => {
+        if (failed === true) {
+            return (
+                <div className="progressText-container">
+                    <p>很遗憾,</p>
+                    <p>你与家园的本次旅程到此结束了,</p>
+                    <p>大学半秩时光，仍有无限可能。</p>
+                    <p>不要灰心，不必难过，</p>
+                    <p>我们一直在这里，期待与你再次相逢。</p>
+                    <p>祝好!</p>
+                </div>
+            )
+        }
         switch (step) {
             case -1:
-                setText((
+                return (
                     <div className="progressText-container">
                         <p>请在南大家园app-生活-加入我们中打开</p>
                         <p>小家园接收不到信号o(TへTo)</p>
                     </div>
-                ))
-                break;
+                )
             case 0:
-                setText((
+                return (
                     <div className="progressText-container">
                         <p>你还没有报名喔</p>
                         <p>小家园期待你的加入 (*≧▽≦)</p>
@@ -126,10 +125,9 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
                             <Link to='/application'>报名直达</Link>
                         </div>
                     </div>
-                ))
-                break;
+                )
             case 1:
-                setText((
+                return (
                     <div className="progressText-container">
                         <p>你已经成功报名啦٩(^ᴗ^)۶</p>
                         <p>笔试约在9月22日进行</p>
@@ -141,10 +139,9 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
                             <Link to='/comments'>看看留言</Link>
                         </div>
                     </div>
-                ))
-                break;
+                )
             case 2:
-                setText((
+                return (
                     <div className="progressText-container">
                         <p>你已经成功报名啦٩(^ᴗ^)۶</p>
                         <p>笔试约在9月22日进行</p>
@@ -156,10 +153,9 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
                             <Link to='/comments'>看看留言</Link>
                         </div>
                     </div>
-                ))
-                break;
+                )
             case 3:
-                setText((
+                return (
                     <div className="progressText-container">
                         <p>恭喜你通过笔试(๑ơ ₃ ơ)♥</p>
                         <p>向进入家园迈进了一大步</p>
@@ -171,10 +167,9 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
                             <span hidden={!checked}>&nbsp;已确认&nbsp;</span>
                         </div>
                     </div>
-                ))
-                break;
+                )
             case 4:
-                setText((
+                return (
                     <div className="progressText-container">
                         <p>恭喜你通过一面(๑ơ ₃ ơ)♥</p>
                         <p>距离进入家园只剩最后一步</p>
@@ -186,32 +181,21 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
                             <span hidden={!checked}>&nbsp;已确认&nbsp;</span>
                         </div>
                     </div>
-                ))
-                break;
+                )
             case 5:
-                setText((
+                return (
                     <div className="progressText-container">
                         <p>恭喜你成为家园工作室的一员！</p>
                         <p>家园线下见面会欢迎你的到来...</p>
                     </div>
-                ))
-                break;
+                )
             default:
                 break;
         }
-        if (failed === true) {
-            setText((
-                <div className="progressText-container">
-                    <p>很遗憾,</p>
-                    <p>你与家园的本次旅程到此结束了,</p>
-                    <p>大学半秩时光，仍有无限可能。</p>
-                    <p>不要灰心，不必难过，</p>
-                    <p>我们一直在这里，期待与你再次相逢。</p>
-                    <p>祝好!</p>
-                </div>
-            ))
-        }
 
+    }
+
+    useEffect(() => {
         // 动画
         const finalColor = failed === true ? '#c14444' : '#c9780c'//被淘汰为红色
         const t0 = anime.timeline({
@@ -307,12 +291,7 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
             <div className="groupPic-container">
                 <img src={groupPic} alt="" />
             </div>
-            {progressTextElement}
-
-            {/* <div className="progressText-container">
-                <p>结果暂未公布</p>
-                <p>小家园接收不到信号o(TへTo)</p>
-            </div> */}
+            {renderText()}
         </div>
     )
 }
