@@ -98,7 +98,8 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
                 'Authorization': 'passport ' + token
             }
         }).then(res => {
-            setStep(res.data.data.step)
+            // setStep(res.data.data.step)
+            setStep(2)
             setFailed(res.data.data.failed)
             setGroup(res.data.data.info.group)
             handleGroupPic(res.data.data.info.group)
@@ -158,7 +159,7 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
                         <p>{group}笔试于9月22日18:30</p>
                         <p>在{place1}进行</p>
                         <p>加油(ง •_•)ง</p>
-                        <p>(有问题可以咨询小家园或群管理员噢)</p>
+                        <p>(请以短信为准)</p>
                         <br />
                         <div className="progressToComments">
                             <div className="arrow" />
