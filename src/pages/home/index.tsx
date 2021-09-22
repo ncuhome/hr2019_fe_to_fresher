@@ -63,8 +63,8 @@ const Home: React.FC<RouteComponentProps> = props => {
           'Authorization': 'passport ' + token
         }
       }).then(res => {
-        if (res.data.data.step === 1) {
-          toast(' 你已经报过名了噢，已为你跳转到进度查询页面~ （也可返回再次提交报名表以更改报名信息）')
+        if (res.data.data.step >= 1) {
+          toast(' 你已经报过名了噢，已为你跳转到进度查询页面~ ')
           props.history.push('/checkProgress')
         }
       })
