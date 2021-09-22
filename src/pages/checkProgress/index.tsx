@@ -19,12 +19,16 @@ import gamePlanet from '../../assets/png/introduce_game_planet.png'
 
 const checkProgress: React.FC<RouteComponentProps> = props => {
     const isReady = useAppReady()
+    const [group,setGroup] = useState('运营组')
     const [groupPic, setGroupPic] = useState()
     const [step, setStep] = useState(-2)
     const [checked, setChecked] = useState(false)
     const [failed, setFailed] = useState(false)
     //被淘汰failed则为true
     const [token, setToken] = useState('')
+    const [place1,setPlace1] = useState('信工楼E316')
+
+
 
     const handleCheckBtn = () => {
         axios({
@@ -40,25 +44,31 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
         })
     }
 
-    const handleGroupPic = (group) => {
+    const handleGroupPic = (group='运营组') => {
         switch (group) {
             case '行政组':
                 setGroupPic(managePlanet)
+                setPlace1('信工楼E445')
                 break;
             case '运营组':
                 setGroupPic(omPlanet)
+                setPlace1('信工楼E316')
                 break;
             case '设计组':
                 setGroupPic(desighPlanet)
+                setPlace1('信工楼E331')
                 break;
             case '研发组':
                 setGroupPic(devPlanet)
+                setPlace1('信工楼E414')
                 break;
             case '游戏组':
                 setGroupPic(gamePlanet)
+                setPlace1('信工楼E444')
                 break;
             case '产品组':
                 setGroupPic(pmPlanet)
+                setPlace1('信工楼E316')
                 break;
             default:
                 setGroupPic(landing)
@@ -90,6 +100,7 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
         }).then(res => {
             setStep(res.data.data.step)
             setFailed(res.data.data.failed)
+            setGroup(res.data.data.info.group)
             handleGroupPic(res.data.data.info.group)
             setChecked(res.data.data.checked)
         })
@@ -143,10 +154,11 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
             case 2:
                 return (
                     <div className="progressText-container">
-                        <p>你已经成功报名啦٩(^ᴗ^)۶</p>
-                        <p>笔试约在9月22日进行</p>
-                        <p>请保持学习并等待后续通知</p>
+                        <p>你已经进入笔试啦٩(^ᴗ^)۶</p>
+                        <p>{group}笔试于9月22日18:30</p>
+                        <p>在{place1}进行</p>
                         <p>加油(ง •_•)ง</p>
+                        <p>(有问题可以咨询小家园或群管理员噢)</p>
                         <br />
                         <div className="progressToComments">
                             <div className="arrow" />
