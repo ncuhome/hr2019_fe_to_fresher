@@ -54,6 +54,7 @@ const Home: React.FC<RouteComponentProps> = props => {
 
 
   useEffect(()=>{
+    // alert(isReady)
     if(isReady){
       const token = dataModule.appData.user.token
       axios({
@@ -64,7 +65,7 @@ const Home: React.FC<RouteComponentProps> = props => {
         }
       }).then(res => {
         if (res.data.data.step >= 1) {
-          toast(' 你已经报过名了噢，已为你跳转到进度查询页面~ ')
+          toast(' 你已经报过名了噢，正在为你跳转到进度查询页面~ ')
           props.history.push('/checkProgress')
         }
       })

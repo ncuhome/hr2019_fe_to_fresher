@@ -19,14 +19,14 @@ import gamePlanet from '../../assets/png/introduce_game_planet.png'
 
 const checkProgress: React.FC<RouteComponentProps> = props => {
     const isReady = useAppReady()
-    const [group,setGroup] = useState('运营组')
+    const [group, setGroup] = useState('运营组')
     const [groupPic, setGroupPic] = useState()
     const [step, setStep] = useState(-2)
     const [checked, setChecked] = useState(false)
     const [failed, setFailed] = useState(false)
     //被淘汰failed则为true
     const [token, setToken] = useState('')
-    const [place1,setPlace1] = useState('信工楼E316')
+    const [place1, setPlace1] = useState('信工楼E316')
 
 
 
@@ -44,7 +44,7 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
         })
     }
 
-    const handleGroupPic = (group='运营组') => {
+    const handleGroupPic = (group = '运营组') => {
         switch (group) {
             case '行政组':
                 setGroupPic(managePlanet)
@@ -98,8 +98,8 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
                 'Authorization': 'passport ' + token
             }
         }).then(res => {
-            // setStep(res.data.data.step)
-            setStep(2)
+            setStep(res.data.data.step)
+            // setStep(3)
             setFailed(res.data.data.failed)
             setGroup(res.data.data.info.group)
             handleGroupPic(res.data.data.info.group)
@@ -172,7 +172,8 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
                     <div className="progressText-container">
                         <p>恭喜你通过笔试(๑ơ ₃ ơ)♥</p>
                         <p>向进入家园迈进了一大步</p>
-                        <p>第一次面试约于9月24日进行</p>
+                        <p>第一次面试的时间和地点</p>
+                        <p>请关注私聊或短信通知哟</p>
                         <p>记得点击下面的按钮确认参加一面噢~</p>
                         <br />
                         <div className={"confirmBtn-container " + 'check' + checked} onClick={handleCheckBtn}>
