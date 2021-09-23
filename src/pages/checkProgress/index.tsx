@@ -14,6 +14,7 @@ import pmPlanet from '../../assets/png/introduce_pm_planet.png'
 import desighPlanet from '../../assets/png/introduce_desigh_planet.png'
 import devPlanet from '../../assets/png/introduce_dev_planet.png'
 import gamePlanet from '../../assets/png/introduce_game_planet.png'
+import { toast } from "react-toastify";
 
 
 
@@ -98,12 +99,14 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
                 'Authorization': 'passport ' + token
             }
         }).then(res => {
-            setStep(res.data.data.step)
-            // setStep(3)
             setFailed(res.data.data.failed)
             setGroup(res.data.data.info.group)
             handleGroupPic(res.data.data.info.group)
             setChecked(res.data.data.checked)
+            setStep(res.data.data.step)
+            // setStep(5)
+        }).catch(err=>{
+            // toast('正在获取进度信息')
         })
     }, [token])
 
@@ -211,7 +214,7 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
 
     useEffect(() => {
         // 动画
-        const finalColor = failed === true ? '#c14444' : '#c9780c'//被淘汰为红色
+        const finalColor = failed === true ? '#F7392E' : '#F59227'//被淘汰为红色
         const t0 = anime.timeline({
             autoplay: true
         })
