@@ -188,6 +188,7 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
             case 4:
                 return (
                     <div className="progressText-container">
+                        <p>(请以短信通知为准)</p>
                         <p>恭喜你通过一面(๑ơ ₃ ơ)♥</p>
                         <p>距离进入家园只剩最后一步</p>
                         <p>第二次面试约于9月25日进行</p>
@@ -202,6 +203,7 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
             case 5:
                 return (
                     <div className="progressText-container">
+                        <p>(请以短信通知为准)</p>
                         <p>恭喜你成为家园工作室的一员！</p>
                         <p>家园线下见面会欢迎你的到来...</p>
                     </div>
@@ -214,7 +216,7 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
 
     useEffect(() => {
         // 动画
-        const finalColor = failed === true ? '#F7392E' : '#F59227'//被淘汰为红色
+        const finalColor = failed === true ? '#F7392E' : '#FFF'//被淘汰为红色
         const t0 = anime.timeline({
             autoplay: true
         })
@@ -232,7 +234,7 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
         if (step === 3) {
             t0.add({
                 targets: '#progressDot1',
-                background: '#2ed573',
+                background: '#FFFFFF',
             }).add({
                 targets: '.progressLine',
                 translateX: ['-55vw', '-27.5vw'],
@@ -246,7 +248,7 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
         if (step === 4) {
             t0.add({
                 targets: '#progressDot1',
-                background: '#2ed573',
+                background: '#FFFFFF',
             }).add({
                 targets: '.progressLine',
                 translateX: ['-55vw', '-27.5vw'],
@@ -254,7 +256,7 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
                 duration: 500
             }).add({
                 targets: '#progressDot2',
-                background: '#2ed573',
+                background: '#FFFFFF',
                 duration: 500
             }).add({
                 targets: '.progressLine',
@@ -269,7 +271,7 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
         if (step === 5) {
             t0.add({
                 targets: '#progressDot1',
-                background: '#2ed573',
+                background: '#FFFFFF',
             }).add({
                 targets: '.progressLine',
                 translateX: ['-55vw', '-27.5vw'],
@@ -277,7 +279,7 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
                 duration: 500
             }).add({
                 targets: '#progressDot2',
-                background: '#2ed573',
+                background: '#FFFFFF',
                 duration: 500
             }).add({
                 targets: '.progressLine',
@@ -286,7 +288,7 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
                 duration: 500
             }).add({
                 targets: '#progressDot3',
-                background: '#2ed573'
+                background: '#FFFFFF'
             })
         }
 

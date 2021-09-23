@@ -34,7 +34,7 @@
     top: 2vw;
     width: 110vw;
     height: 5px;
-    background:linear-gradient(to right, #43e97b 0%, #38f9d7 50%,#313131 50%);
+    background:linear-gradient(to right, #4CA5EE 0%, #4CA5EE 50%,#313131 50%);
     transform: translateX(-55vw);
 }
 
