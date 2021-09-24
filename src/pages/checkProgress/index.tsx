@@ -162,7 +162,6 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
                         <p>{group}笔试于9月22日18:30</p>
                         <p>在{place1}进行</p>
                         <p>加油(ง •_•)ง</p>
-                        <p>(请以短信为准)</p>
                         <br />
                         <div className="progressToComments">
                             <div className="arrow" />
@@ -173,7 +172,7 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
             case 3:
                 return (
                     <div className="progressText-container">
-                        <p>恭喜你通过笔试(๑ơ ₃ ơ)♥</p>
+                        <p>恭喜你通过笔试٩(^ᴗ^)۶</p>
                         <p>向进入家园迈进了一大步</p>
                         <p>第一次面试的时间和地点</p>
                         <p>请关注私聊或短信通知哟</p>
@@ -188,8 +187,7 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
             case 4:
                 return (
                     <div className="progressText-container">
-                        <p>(请以短信通知为准)</p>
-                        <p>恭喜你通过一面(๑ơ ₃ ơ)♥</p>
+                        <p>恭喜你通过一面٩(^ᴗ^)۶</p>
                         <p>距离进入家园只剩最后一步</p>
                         <p>第二次面试约于9月25日进行</p>
                         <p>记得点击下面的按钮确认参加二面噢~</p>
@@ -203,7 +201,6 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
             case 5:
                 return (
                     <div className="progressText-container">
-                        <p>(请以短信通知为准)</p>
                         <p>恭喜你成为家园工作室的一员！</p>
                         <p>家园线下见面会欢迎你的到来...</p>
                     </div>
@@ -216,7 +213,7 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
 
     useEffect(() => {
         // 动画
-        const finalColor = failed === true ? '#F7392E' : '#FFF'//被淘汰为红色
+        const finalColor = failed === true ? '#F7392E' : '#666'//被淘汰为红色
         const t0 = anime.timeline({
             autoplay: true
         })
