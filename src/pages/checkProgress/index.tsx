@@ -97,6 +97,7 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
             url: 'https://2021hrapi.ncuos.com/api/user/',
             headers: {
                 'Authorization': 'passport ' + token
+                // 'Authorization': ''
             }
         }).then(res => {
             setFailed(res.data.data.failed)
@@ -175,8 +176,8 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
                         <p>恭喜你通过笔试٩(^ᴗ^)۶</p>
                         <p>向进入家园迈进了一大步</p>
                         <p>第一次面试的时间和地点</p>
-                        <p>请关注私聊或短信通知哟</p>
-                        <p>记得点击下面的按钮确认参加一面噢~</p>
+                        <p>请关注聊天或短信通知哟</p>
+                        <p>可以点击下面的按钮确认参加一面噢~</p>
                         <br />
                         <div className={"confirmBtn-container " + 'check' + checked} onClick={handleCheckBtn}>
                             <span hidden={checked}>&nbsp;确认继续&nbsp;</span>
@@ -189,8 +190,9 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
                     <div className="progressText-container">
                         <p>恭喜你通过一面٩(^ᴗ^)۶</p>
                         <p>距离进入家园只剩最后一步</p>
-                        <p>第二次面试约于9月25日进行</p>
-                        <p>记得点击下面的按钮确认参加二面噢~</p>
+                        <p>第二次面试的时间和地点</p>
+                        <p>请关注聊天或短信通知哟</p>
+                        <p>可以点击下面的按钮确认参加二面噢~</p>
                         <br />
                         <div className={"confirmBtn-container " + 'check' + checked} onClick={handleCheckBtn}>
                             <span hidden={checked}>&nbsp;确认继续&nbsp;</span>
