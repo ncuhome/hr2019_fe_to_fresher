@@ -53,7 +53,8 @@
 .groupPic-container img{
     border-radius: 6vw;
     width: 100%;
-    
+    transition: all .5s;
+    /* transform: scale(.6); */
 }
 
 .progressText-container{

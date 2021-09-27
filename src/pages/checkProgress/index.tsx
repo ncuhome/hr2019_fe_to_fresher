@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Link, withRouter, RouteComponentProps } from 'react-router-dom';
 import BackArrow from "../../components/BackArrow";
 import anime from "animejs";
@@ -20,6 +20,7 @@ import { toast } from "react-toastify";
 
 const checkProgress: React.FC<RouteComponentProps> = props => {
     const isReady = useAppReady()
+    const [name, setName] = useState('')
     const [group, setGroup] = useState('运营组')
     const [groupPic, setGroupPic] = useState()
     const [step, setStep] = useState(-2)
@@ -28,8 +29,10 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
     //被淘汰failed则为true
     const [token, setToken] = useState('')
     const [place1, setPlace1] = useState('信工楼E316')
+    const [isZoom, setZoom] = useState(true)
 
-
+    const imgRef = useRef(null)
+    const pageRef = useRef()
 
     const handleCheckBtn = () => {
         axios({
@@ -100,13 +103,14 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
                 // 'Authorization': ''
             }
         }).then(res => {
+            setName(res.data.data.info.name)
             setFailed(res.data.data.failed)
             setGroup(res.data.data.info.group)
             handleGroupPic(res.data.data.info.group)
             setChecked(res.data.data.checked)
             setStep(res.data.data.step)
             // setStep(5)
-        }).catch(err=>{
+        }).catch(err => {
             // toast('正在获取进度信息')
         })
     }, [token])
@@ -203,8 +207,15 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
             case 5:
                 return (
                     <div className="progressText-container">
-                        <p>恭喜你成为家园工作室的一员！</p>
-                        <p>家园线下见面会欢迎你的到来...</p>
+                        <p>{name} 同学你好，</p>
+                        <p>在笔试、一面、二面中，</p>
+                        <p>你一路披荆斩棘，</p>
+                        <p>现在终于到了宣布结果的时候：</p>
+                        <p>恭喜你成为家园工作室{group}的一员!</p>
+                        <p>因为你的选择与努力，</p>
+                        <p>我们终于在家园相遇，</p>
+                        <p>家园工作室的每一位成员</p>
+                        <p>都在期待与你的相见!</p>
                     </div>
                 )
             default:
@@ -214,7 +225,7 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
     }
 
     useEffect(() => {
-        // 动画
+        // 进度条动画
         const finalColor = failed === true ? '#F7392E' : '#666'//被淘汰为红色
         const t0 = anime.timeline({
             autoplay: true
@@ -290,12 +301,49 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
                 background: '#FFFFFF'
             })
         }
-
     }, [step])
 
+    useEffect(() => {
+        //组别图片缩放动画
+        const handleScroll = (e: Event) => {
+            let scrollTop = pageRef.current.scrollTop ;
+            // toast(scrollTop+' '+(imgRef.current.offsetTop-100))
+            if (scrollTop > (imgRef.current.offsetTop-130) && !isZoom) {
+                anime({
+                  targets: '.groupPic-container img',
+                  scale:'0.7',
+                  duration: 100,
+                  translateY:80,
+                  easing: 'linear',
+                  complete: () => {
+                    setZoom(true);
+                  }
+                });
+              }
+              else if (scrollTop <= (imgRef.current.offsetTop-130) && isZoom) {
+                anime({
+                  targets: '.groupPic-container img',
+                  scale:'1',
+                  duration: 100,
+                  translateY:0,
+                  easing: 'linear',
+                  complete: () => {
+                    setZoom(false);
+                  }
+                });
+              }
+        }
+        
+        pageRef.current.addEventListener('scroll', handleScroll);
+
+
+        return function cleanup() {
+            pageRef.current.removeEventListener('scroll', handleScroll);
+        };
+    }, [isZoom]);
 
     return (
-        <div className="checkProgress-container">
+        <div className="checkProgress-container" ref={pageRef}>
             <BackArrow onClick={() => { props.history.push('/product') }} />
             <div className="progressBar-container">
                 <div className="dots-container">
@@ -307,7 +355,7 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
             </div>
 
             <div className="groupPic-container">
-                <img src={groupPic} alt="" />
+                <img src={groupPic} alt="" ref={imgRef} />
             </div>
             {renderText()}
         </div>
