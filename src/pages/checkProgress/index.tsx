@@ -32,7 +32,7 @@ const checkProgress: React.FC<RouteComponentProps> = props => {
     const [isZoom, setZoom] = useState(true)
 
     const imgRef = useRef(null)
-    const pageRef = useRef()
+    const pageRef = useRef(null)
 
     const handleCheckBtn = () => {
         axios({
