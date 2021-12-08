@@ -1,0 +1,81 @@
+import React from 'react'
+import './fire.css';
+export default function Fire() {
+    return (
+        <div className="g-fire-box">
+            <div className="g-fire">
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+                <div className="g-ball"></div>
+            </div>
+        </div>
+    )
+}

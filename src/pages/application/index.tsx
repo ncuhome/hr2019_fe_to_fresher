@@ -8,12 +8,12 @@ import * as ReactGA from 'react-ga';
 import BackArrow from '../../components/BackArrow';
 import JoinusForm, { FormType } from '../../components/JoinusForm/index';
 import './style.css';
-import './fire.css';
 import xiaojiayuan from '../../assets/png/xiaojiayuan.png';
 import QRcode from '../../assets/png/QRcode.png';
 import ncuhome from '../../assets/png/ncuhome_planet.png';
 import arrowUp from '../../assets/svg/form_arrow_up.svg';
 import { toast } from 'react-toastify';
+import Fire from './fire';
 
 const { useState, useEffect } = React;
 
@@ -374,81 +374,7 @@ const Application: React.FC<RouteComponentProps> = props => {
 
       <div className="xjyContainer" ref={ref => { xjyRef = ref }}>
         <img src={xiaojiayuan} alt="小家园" id="xiaojiayuan" />
-        <div className="g-fire-box">
-          <div className="g-fire">
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-            <div className="g-ball"></div>
-          </div>
-        </div>
+        <Fire/>
       </div>
     </div>
   );
