@@ -13,7 +13,7 @@ import QRcode from '../../assets/png/QRcode.png';
 import ncuhome from '../../assets/png/ncuhome_planet.png';
 import arrowUp from '../../assets/svg/form_arrow_up.svg';
 import { toast } from 'react-toastify';
-import Fire from './fire';
+import Fire from './Fire';
 
 const { useState, useEffect } = React;
 
